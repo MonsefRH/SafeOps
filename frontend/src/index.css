@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌟 Background général */
+body {
+  @apply bg-gradient-to-br from-gray-900 to-gray-800 text-gray-200;
+  font-family: 'Inter', sans-serif;
+}
+
+/* 📌 Sidebar */
+/* 🎨 Sidebar Styling */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(10px);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+
+/* 🏠 Header */
+.header {
+  @apply flex items-center justify-between bg-white/10 backdrop-blur-md p-4 shadow-lg border-b border-white/10;
+}
+
+/* 🎨 Style des cartes (glassmorphism) */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  @apply p-6 rounded-lg shadow-md transition hover:scale-105 hover:shadow-lg;
+}
+/* 🎨 Formulaire de connexion */
+.login-container {
+  @apply flex items-center justify-center min-h-screen bg-gray-900;
+}
+
+.login-box {
+  @apply bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-xl shadow-lg text-center w-96;
+}
+
+/* 📝 Champs d'entrée */
+.login-box input {
+  @apply w-full p-3 my-2 bg-white text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400;
+}
+
+/* 🔘 Bouton de connexion */
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg w-full transition-transform transform hover:scale-105;
+}
+
+/* 📌 Lien d'inscription */
+.login-box p {
+  @apply text-sm mt-4;
+}
+
+.login-box a {
+  @apply text-blue-400 hover:underline;
+}
+
+
+/* 📌 Effet hover */
+.card:hover {
+  @apply shadow-lg;
+}
+
+/* 🔘 Boutons */
+.btn {
+  @apply px-4 py-2 rounded font-semibold transition;
+}
+
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white;
+}
+/* 🔍 Barre de recherche */
+.search-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input:focus {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.2);
+}
+/*              ////////////    */
+/* index.css */
+.grid-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      90deg,
+      rgba(96, 165, 250, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      0deg,
+      rgba(96, 165, 250, 0.05) 1px,
+      transparent 1px
+    );
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
