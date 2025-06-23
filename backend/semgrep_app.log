@@ -4865,3 +4865,3005 @@ LINE 3:             VALUES ('null', 31, '{"results": {"status": "com...
 2025-06-23 12:13:13,304 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 12:13:13] "GET /github/repo-configs HTTP/1.1" 200 -
 2025-06-23 12:13:16,407 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 12:13:16] "OPTIONS /t5 HTTP/1.1" 200 -
 2025-06-23 12:13:28,012 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 12:13:28] "POST /t5 HTTP/1.1" 200 -
+2025-06-23 18:55:19,403 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 18:55:19,425 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 18:55:21,905 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-06-23 18:55:22,194 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-06-23 18:55:22,803 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-06-23 18:55:23,101 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 200 0
+2025-06-23 18:55:24,777 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 200 0
+2025-06-23 18:55:24,944 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-06-23 18:55:25,027 INFO:werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-23 18:55:25,028 INFO:werkzeug: [33mPress CTRL+C to quit[0m
+2025-06-23 18:55:25,029 INFO:werkzeug:  * Restarting with stat
+2025-06-23 18:55:25,529 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 18:55:25,545 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 18:55:27,142 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-06-23 18:55:27,396 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-06-23 18:55:27,578 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-06-23 18:55:27,858 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 200 0
+2025-06-23 18:55:28,852 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 200 0
+2025-06-23 18:55:29,017 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-06-23 18:55:29,047 WARNING:werkzeug:  * Debugger is active!
+2025-06-23 18:55:29,057 INFO:werkzeug:  * Debugger PIN: 690-662-370
+2025-06-23 18:57:26,001 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:26] "[32mGET /auth/github HTTP/1.1[0m" 302 -
+2025-06-23 18:57:26,444 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): github.com:443
+2025-06-23 18:57:26,809 DEBUG:urllib3.connectionpool: https://github.com:443 "POST /login/oauth/access_token HTTP/1.1" 200 None
+2025-06-23 18:57:26,816 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): api.github.com:443
+2025-06-23 18:57:27,181 DEBUG:urllib3.connectionpool: https://api.github.com:443 "GET /user HTTP/1.1" 200 None
+2025-06-23 18:57:27,183 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): api.github.com:443
+2025-06-23 18:57:27,574 DEBUG:urllib3.connectionpool: https://api.github.com:443 "GET /user/emails HTTP/1.1" 200 None
+2025-06-23 18:57:27,796 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:27] "[32mGET /auth/github/callback?code=71c52fa284a2aa18f206 HTTP/1.1[0m" 302 -
+2025-06-23 18:57:28,662 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:28] "OPTIONS /stats HTTP/1.1" 200 -
+2025-06-23 18:57:28,664 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:28] "OPTIONS /github/repos HTTP/1.1" 200 -
+2025-06-23 18:57:28,665 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:28] "OPTIONS /stats HTTP/1.1" 200 -
+2025-06-23 18:57:28,667 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:28] "OPTIONS /github/repos HTTP/1.1" 200 -
+2025-06-23 18:57:28,678 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): api.github.com:443
+2025-06-23 18:57:28,687 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:28] "GET /stats HTTP/1.1" 200 -
+2025-06-23 18:57:28,701 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:28] "GET /stats HTTP/1.1" 200 -
+2025-06-23 18:57:28,948 DEBUG:urllib3.connectionpool: https://api.github.com:443 "GET /user/repos HTTP/1.1" 401 95
+2025-06-23 18:57:28,950 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:28] "[31m[1mGET /github/repos HTTP/1.1[0m" 400 -
+2025-06-23 18:57:28,965 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): api.github.com:443
+2025-06-23 18:57:29,264 DEBUG:urllib3.connectionpool: https://api.github.com:443 "GET /user/repos HTTP/1.1" 401 95
+2025-06-23 18:57:29,265 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:29] "[31m[1mGET /github/repos HTTP/1.1[0m" 400 -
+2025-06-23 18:57:34,061 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:57:34] "OPTIONS /full-scan HTTP/1.1" 200 -
+2025-06-23 18:57:34,063 DEBUG:routes.full_scan_routes: Cloning https://github.com/YoussefElbadouri/Sbiy3at/ into /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy
+2025-06-23 18:57:34,097 DEBUG:git.cmd: Popen(['git', 'clone', '-v', '--', 'https://github.com/YoussefElbadouri/Sbiy3at/', '/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=True)
+2025-06-23 18:57:35,133 DEBUG:git.repo.base: Cmd(['git', 'clone', '-v', '--', 'https://github.com/YoussefElbadouri/Sbiy3at/', '/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy'])'s unused stdout: 
+2025-06-23 18:57:35,139 WARNING:routes.checkov: Falling back to shell execution with 'checkov' as checkov.exe not found
+2025-06-23 18:57:35,139 DEBUG:routes.checkov: Executing Checkov command on single file: checkov -f /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile --framework dockerfile -o json --quiet
+2025-06-23 18:57:39,306 DEBUG:routes.checkov: Checkov output for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile: {
+  "check_type": "dockerfile",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "bc_check_id": "BC_DKR_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "check_result": {
+          "result": "FAILED",
+          "results_configuration": null
+        },
+        "code_block": [
+          [
+            1,
+            "FROM python:3.8-slim\n"
+          ],
+          [
+            2,
+            "WORKD...
+2025-06-23 18:57:39,306 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:57:40,358 DEBUG:routes.checkov: Gemini suggestion for CKV_DOCKER_2: Add a `HEALTHCHECK` instruction to your Dockerfile to periodically verify the container's health.  The instruction should specify a command that returns a 0 exit code if the container is healthy, and a non-zero exit code otherwise.
+2025-06-23 18:57:41,362 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:57:41,459 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 1/3. Retrying after 5s...
+2025-06-23 18:57:46,464 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:57:46,569 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 2/3. Retrying after 5s...
+2025-06-23 18:57:51,574 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:57:51,742 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 3/3. Retrying after 5s...
+2025-06-23 18:57:56,747 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_3.
+2025-06-23 18:57:57,753 DEBUG:routes.checkov: Single file result for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile: {
+  "results": {
+    "status": "success",
+    "path_scanned": "Dockerfile",
+    "files_found": [
+      "Dockerfile"
+    ],
+    "passed_checks": [],
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "file_path": "Dockerfile",
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-ins...
+2025-06-23 18:57:57,753 DEBUG:routes.checkov: Processing file /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile: {
+  "status": "success",
+  "path_scanned": "Dockerfile",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-...
+2025-06-23 18:57:57,753 DEBUG:routes.checkov: Final directory scan result: {
+  "status": "completed",
+  "path_scanned": "",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images",
+      "file_line_range": [
+        1,
+        5
+      ],
+      "resource": "/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile.",
+      "severity": null,
+      "suggestion": "Add a `HEALTHCHECK` instruction to your Dockerfile to periodically verify the container's health.  The instruction should specify a command that returns a 0 exit code if the container is healthy, and a non-zero exit code otherwise."
+    },
+    {
+      "check_id": "CKV_DOCKER_3",
+      "check_name": "En...
+2025-06-23 18:57:57,755 DEBUG:urllib3.connectionpool: Starting new HTTP connection (1): localhost:5000
+2025-06-23 18:58:05,501 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 18:58:05] "POST /t5 HTTP/1.1" 200 -
+2025-06-23 18:58:05,502 DEBUG:urllib3.connectionpool: http://localhost:5000 "POST /t5 HTTP/1.1" 200 1026
+2025-06-23 18:58:05,505 DEBUG:routes.checkov: Executing Checkov command on single file: checkov -f /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile --framework dockerfile -o json --quiet
+2025-06-23 18:58:08,433 DEBUG:routes.checkov: Checkov output for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile: {
+  "check_type": "dockerfile",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "bc_check_id": "BC_DKR_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "check_result": {
+          "result": "FAILED",
+          "results_configuration": null
+        },
+        "code_block": [
+          [
+            1,
+            "FROM python:3.8-slim\n"
+          ],
+          [
+            2,
+            "\n"
+ ...
+2025-06-23 18:58:08,433 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:58:08,542 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 1/3. Retrying after 5s...
+2025-06-23 18:58:13,548 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:58:13,693 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 2/3. Retrying after 5s...
+2025-06-23 18:58:18,698 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:58:18,788 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 3/3. Retrying after 5s...
+2025-06-23 18:58:23,794 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_2.
+2025-06-23 18:58:24,800 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:58:24,911 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 1/3. Retrying after 5s...
+2025-06-23 18:58:29,916 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:58:30,033 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 2/3. Retrying after 5s...
+2025-06-23 18:58:35,038 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 18:58:35,438 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 3/3. Retrying after 5s...
+2025-06-23 18:58:40,440 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_3.
+2025-06-23 18:58:41,444 DEBUG:routes.checkov: Single file result for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile: {
+  "results": {
+    "status": "success",
+    "path_scanned": "Dockerfile",
+    "files_found": [
+      "Dockerfile"
+    ],
+    "passed_checks": [],
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "file_path": "Dockerfile",
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-ins...
+2025-06-23 18:58:41,446 DEBUG:routes.checkov: Processing file /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile: {
+  "status": "success",
+  "path_scanned": "Dockerfile",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-...
+2025-06-23 18:58:41,446 DEBUG:routes.checkov: Final directory scan result: {
+  "status": "completed",
+  "path_scanned": "",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images",
+      "file_line_range": [
+        1,
+        15
+      ],
+      "resource": "/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmp64ye95iy/Dockerfile.",
+      "severity": null,
+      "suggestion": "Review the Ensure that HEALTHCHECK instructions have been added to container images issue in Dockerfile (lines 1-15) and apply best practices to address it."
+    },
+    {
+      "check_id": "CKV_DOCKER_3",
+      "check_name": "Ensure that a user for the container has been created",
+      "file_path": "...
+2025-06-23 18:58:49,421 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 10
+}
+]
+2025-06-23 18:58:51,532 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 8
+}
+]
+2025-06-23 18:58:53,637 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 6
+}
+]
+2025-06-23 18:58:56,758 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 3
+}
+]
+2025-06-23 18:58:58,871 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 1
+}
+]
+2025-06-23 18:59:00,975 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 59
+}
+]
+2025-06-23 18:59:04,074 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 55
+}
+]
+2025-06-23 18:59:06,175 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 53
+}
+]
+2025-06-23 18:59:08,271 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+]
+2025-06-23 18:59:11,395 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 48
+}
+]
+2025-06-23 18:59:13,493 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 46
+}
+]
+2025-06-23 18:59:15,597 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 44
+}
+]
+2025-06-23 18:59:18,700 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 41
+}
+]
+2025-06-23 18:59:20,809 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 39
+}
+]
+2025-06-23 18:59:22,901 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 37
+}
+]
+2025-06-23 18:59:26,017 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 33
+}
+]
+2025-06-23 18:59:28,122 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 31
+}
+]
+2025-06-23 18:59:30,223 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 29
+}
+]
+2025-06-23 18:59:33,336 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 26
+}
+]
+2025-06-23 18:59:35,456 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 24
+}
+]
+2025-06-23 18:59:37,553 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 22
+}
+]
+2025-06-23 18:59:40,652 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 19
+}
+]
+2025-06-23 18:59:42,755 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 17
+}
+]
+2025-06-23 18:59:44,854 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 15
+}
+]
+2025-06-23 18:59:47,962 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 12
+}
+]
+2025-06-23 18:59:50,067 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 9
+}
+]
+2025-06-23 18:59:52,154 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 7
+}
+]
+2025-06-23 18:59:55,265 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 4
+}
+]
+2025-06-23 18:59:57,366 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+2025-06-23 18:59:59,457 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+}
+]
+2025-06-23 19:00:02,561 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 57
+}
+]
+2025-06-23 19:00:04,682 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 55
+}
+]
+2025-06-23 19:00:06,765 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 53
+}
+]
+2025-06-23 19:00:09,877 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+2025-06-23 19:00:11,958 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 48
+}
+]
+2025-06-23 19:00:14,108 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 45
+}
+]
+2025-06-23 19:00:17,216 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+]
+2025-06-23 19:00:36,488 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 19:00:36,500 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 19:00:38,572 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-06-23 19:00:38,842 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-06-23 19:00:39,013 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-06-23 19:00:39,296 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 200 0
+2025-06-23 19:00:40,407 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 200 0
+2025-06-23 19:00:40,632 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-06-23 19:00:40,680 INFO:werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-23 19:00:40,680 INFO:werkzeug: [33mPress CTRL+C to quit[0m
+2025-06-23 19:00:40,682 INFO:werkzeug:  * Restarting with stat
+2025-06-23 19:00:41,098 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 19:00:41,115 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 19:00:42,555 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-06-23 19:00:42,814 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-06-23 19:00:42,993 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-06-23 19:00:43,276 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 200 0
+2025-06-23 19:00:44,315 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 200 0
+2025-06-23 19:00:44,525 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-06-23 19:00:44,565 WARNING:werkzeug:  * Debugger is active!
+2025-06-23 19:00:44,580 INFO:werkzeug:  * Debugger PIN: 690-662-370
+2025-06-23 19:00:49,933 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 19:00:49] "OPTIONS /full-scan HTTP/1.1" 200 -
+2025-06-23 19:00:49,938 DEBUG:routes.full_scan_routes: Cloning https://github.com/YoussefElbadouri/Sbiy3at/ into /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e
+2025-06-23 19:00:49,950 DEBUG:git.cmd: Popen(['git', 'clone', '-v', '--', 'https://github.com/YoussefElbadouri/Sbiy3at/', '/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=True)
+2025-06-23 19:00:50,886 DEBUG:git.repo.base: Cmd(['git', 'clone', '-v', '--', 'https://github.com/YoussefElbadouri/Sbiy3at/', '/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e'])'s unused stdout: 
+2025-06-23 19:00:50,890 WARNING:routes.checkov: Falling back to shell execution with 'checkov' as checkov.exe not found
+2025-06-23 19:00:50,890 DEBUG:routes.checkov: Executing Checkov command on single file: checkov -f /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile --framework dockerfile -o json --quiet
+2025-06-23 19:00:53,791 DEBUG:routes.checkov: Checkov output for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile: {
+  "check_type": "dockerfile",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "bc_check_id": "BC_DKR_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "check_result": {
+          "result": "FAILED",
+          "results_configuration": null
+        },
+        "code_block": [
+          [
+            1,
+            "FROM python:3.8-slim\n"
+          ],
+          [
+            2,
+            "WORKD...
+2025-06-23 19:00:53,792 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:00:54,143 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 1/3. Retrying after 5s...
+2025-06-23 19:00:59,143 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:00:59,274 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 2/3. Retrying after 5s...
+2025-06-23 19:01:04,276 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:04,371 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 3/3. Retrying after 5s...
+2025-06-23 19:01:09,375 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_2.
+2025-06-23 19:01:10,380 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:10,488 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 1/3. Retrying after 5s...
+2025-06-23 19:01:15,493 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:15,609 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 2/3. Retrying after 5s...
+2025-06-23 19:01:20,614 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:21,335 ERROR:routes.checkov: Failed to get Gemini suggestion for check CKV_DOCKER_3, attempt 3/3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:01:21,335 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_3.
+2025-06-23 19:01:22,341 DEBUG:routes.checkov: Single file result for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile: {
+  "results": {
+    "status": "success",
+    "path_scanned": "Dockerfile",
+    "files_found": [
+      "Dockerfile"
+    ],
+    "passed_checks": [],
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "file_path": "Dockerfile",
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-ins...
+2025-06-23 19:01:22,341 DEBUG:routes.checkov: Processing file /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile: {
+  "status": "success",
+  "path_scanned": "Dockerfile",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-...
+2025-06-23 19:01:22,341 DEBUG:routes.checkov: Final directory scan result: {
+  "status": "completed",
+  "path_scanned": "",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images",
+      "file_line_range": [
+        1,
+        5
+      ],
+      "resource": "/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile.",
+      "severity": null,
+      "suggestion": "Review the Ensure that HEALTHCHECK instructions have been added to container images issue in Dockerfile (lines 1-5) and apply best practices to address it."
+    },
+    {
+      "check_id": "CKV_DOCKER_3",
+      "check_name": "Ensure that a user for the container has been created",
+      "file_path": "Do...
+2025-06-23 19:01:22,345 DEBUG:urllib3.connectionpool: Starting new HTTP connection (1): localhost:5000
+2025-06-23 19:01:30,407 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 19:01:30] "POST /t5 HTTP/1.1" 200 -
+2025-06-23 19:01:30,408 DEBUG:urllib3.connectionpool: http://localhost:5000 "POST /t5 HTTP/1.1" 200 601
+2025-06-23 19:01:30,411 DEBUG:routes.checkov: Executing Checkov command on single file: checkov -f /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile --framework dockerfile -o json --quiet
+2025-06-23 19:01:33,610 DEBUG:routes.checkov: Checkov output for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile: {
+  "check_type": "dockerfile",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "bc_check_id": "BC_DKR_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "check_result": {
+          "result": "FAILED",
+          "results_configuration": null
+        },
+        "code_block": [
+          [
+            1,
+            "FROM python:3.8-slim\n"
+          ],
+          [
+            2,
+            "\n"
+ ...
+2025-06-23 19:01:33,610 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:33,713 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 1/3. Retrying after 5s...
+2025-06-23 19:01:38,713 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:38,802 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 2/3. Retrying after 5s...
+2025-06-23 19:01:43,805 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:43,899 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 3/3. Retrying after 5s...
+2025-06-23 19:01:48,903 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_2.
+2025-06-23 19:01:49,909 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:50,006 ERROR:routes.checkov: Failed to get Gemini suggestion for check CKV_DOCKER_3, attempt 1/3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:01:55,011 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:01:55,124 ERROR:routes.checkov: Failed to get Gemini suggestion for check CKV_DOCKER_3, attempt 2/3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:00,130 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:02:00,234 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 3/3. Retrying after 5s...
+2025-06-23 19:02:05,239 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_3.
+2025-06-23 19:02:06,243 DEBUG:routes.checkov: Single file result for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile: {
+  "results": {
+    "status": "success",
+    "path_scanned": "Dockerfile",
+    "files_found": [
+      "Dockerfile"
+    ],
+    "passed_checks": [],
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "file_path": "Dockerfile",
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-ins...
+2025-06-23 19:02:06,244 DEBUG:routes.checkov: Processing file /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile: {
+  "status": "success",
+  "path_scanned": "Dockerfile",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-...
+2025-06-23 19:02:06,244 DEBUG:routes.checkov: Final directory scan result: {
+  "status": "completed",
+  "path_scanned": "",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images",
+      "file_line_range": [
+        1,
+        15
+      ],
+      "resource": "/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpnavwi53e/Dockerfile.",
+      "severity": null,
+      "suggestion": "Review the Ensure that HEALTHCHECK instructions have been added to container images issue in Dockerfile (lines 1-15) and apply best practices to address it."
+    },
+    {
+      "check_id": "CKV_DOCKER_3",
+      "check_name": "Ensure that a user for the container has been created",
+      "file_path": "...
+2025-06-23 19:02:15,042 WARNING:routes.semgrep: Gemini error on attempt 1: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:17,142 WARNING:routes.semgrep: Gemini error on attempt 2: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:19,229 WARNING:routes.semgrep: Gemini error on attempt 3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:22,333 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 37
+}
+]
+2025-06-23 19:02:24,429 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 35
+}
+]
+2025-06-23 19:02:26,522 WARNING:routes.semgrep: Gemini error on attempt 3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:29,628 WARNING:routes.semgrep: Gemini error on attempt 1: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:31,706 WARNING:routes.semgrep: Gemini error on attempt 2: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:33,793 WARNING:routes.semgrep: Gemini error on attempt 3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:36,900 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 23
+}
+]
+2025-06-23 19:02:38,985 WARNING:routes.semgrep: Gemini error on attempt 2: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:41,084 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 18
+}
+]
+2025-06-23 19:02:44,202 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 15
+}
+]
+2025-06-23 19:02:46,320 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 13
+}
+]
+2025-06-23 19:02:48,462 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 11
+}
+]
+2025-06-23 19:02:51,583 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 8
+}
+]
+2025-06-23 19:02:53,683 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 6
+}
+]
+2025-06-23 19:02:55,773 WARNING:routes.semgrep: Gemini error on attempt 3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:02:58,877 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 1
+}
+]
+2025-06-23 19:03:00,991 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 58
+}
+]
+2025-06-23 19:03:03,074 WARNING:routes.semgrep: Gemini error on attempt 3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:06,156 WARNING:routes.semgrep: Gemini error on attempt 1: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:08,243 WARNING:routes.semgrep: Gemini error on attempt 2: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:10,346 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 49
+}
+]
+2025-06-23 19:03:13,417 WARNING:routes.semgrep: Gemini error on attempt 1: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:15,497 WARNING:routes.semgrep: Gemini error on attempt 2: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:17,597 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+]
+2025-06-23 19:03:20,716 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 39
+}
+]
+2025-06-23 19:03:22,798 WARNING:routes.semgrep: Gemini error on attempt 2: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:24,894 WARNING:routes.semgrep: Gemini error on attempt 3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:28,039 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 31
+}
+]
+2025-06-23 19:03:30,185 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 29
+}
+]
+2025-06-23 19:03:32,287 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 27
+}
+]
+2025-06-23 19:03:35,395 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 24
+}
+]
+2025-06-23 19:03:37,533 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 22
+}
+]
+2025-06-23 19:03:39,631 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 20
+}
+]
+2025-06-23 19:03:42,740 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 17
+}
+]
+2025-06-23 19:03:44,830 WARNING:routes.semgrep: Gemini error on attempt 2: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:46,926 WARNING:routes.semgrep: Gemini error on attempt 3: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:50,036 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 9
+}
+]
+2025-06-23 19:03:52,129 WARNING:routes.semgrep: Gemini error on attempt 2: 400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key expired. Please renew the API key."
+]
+2025-06-23 19:03:54,240 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 5
+}
+]
+2025-06-23 19:03:57,393 INFO:routes.semgrep: Saved Semgrep scan with ID 15
+2025-06-23 19:03:57,403 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 19:03:57] "POST /full-scan HTTP/1.1" 200 -
+2025-06-23 19:21:54,637 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 19:21:54,659 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 19:21:56,892 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-06-23 19:21:57,229 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-06-23 19:21:57,416 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-06-23 19:21:57,701 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 200 0
+2025-06-23 19:21:58,852 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 200 0
+2025-06-23 19:21:59,331 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-06-23 19:21:59,363 INFO:werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-06-23 19:21:59,363 INFO:werkzeug: [33mPress CTRL+C to quit[0m
+2025-06-23 19:21:59,364 INFO:werkzeug:  * Restarting with stat
+2025-06-23 19:21:59,874 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 19:21:59,886 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-06-23 19:22:01,411 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-06-23 19:22:01,703 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-06-23 19:22:01,892 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-06-23 19:22:02,161 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 200 0
+2025-06-23 19:22:03,195 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 200 0
+2025-06-23 19:22:03,355 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-06-23 19:22:03,387 WARNING:werkzeug:  * Debugger is active!
+2025-06-23 19:22:03,402 INFO:werkzeug:  * Debugger PIN: 690-662-370
+2025-06-23 19:22:19,643 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 19:22:19] "OPTIONS /full-scan HTTP/1.1" 200 -
+2025-06-23 19:22:19,646 DEBUG:routes.full_scan_routes: Cloning https://github.com/YoussefElbadouri/Sbiy3at/ into /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk
+2025-06-23 19:22:19,658 DEBUG:git.cmd: Popen(['git', 'clone', '-v', '--', 'https://github.com/YoussefElbadouri/Sbiy3at/', '/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=True)
+2025-06-23 19:22:20,566 DEBUG:git.repo.base: Cmd(['git', 'clone', '-v', '--', 'https://github.com/YoussefElbadouri/Sbiy3at/', '/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk'])'s unused stdout: 
+2025-06-23 19:22:20,573 WARNING:routes.checkov: Falling back to shell execution with 'checkov' as checkov.exe not found
+2025-06-23 19:22:20,573 DEBUG:routes.checkov: Executing Checkov command on single file: checkov -f /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile --framework dockerfile -o json --quiet
+2025-06-23 19:22:23,772 DEBUG:routes.checkov: Checkov output for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile: {
+  "check_type": "dockerfile",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "bc_check_id": "BC_DKR_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "check_result": {
+          "result": "FAILED",
+          "results_configuration": null
+        },
+        "code_block": [
+          [
+            1,
+            "FROM python:3.8-slim\n"
+          ],
+          [
+            2,
+            "WORKD...
+2025-06-23 19:22:23,773 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:22:24,259 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 1/3. Retrying after 5s...
+2025-06-23 19:22:29,261 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:22:29,365 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 2/3. Retrying after 5s...
+2025-06-23 19:22:34,371 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:22:34,470 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 3/3. Retrying after 5s...
+2025-06-23 19:22:39,476 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_2.
+2025-06-23 19:22:40,482 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:22:40,587 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 1/3. Retrying after 5s...
+2025-06-23 19:22:45,592 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:22:45,677 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 2/3. Retrying after 5s...
+2025-06-23 19:22:50,682 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:22:50,795 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 3/3. Retrying after 5s...
+2025-06-23 19:22:55,797 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_3.
+2025-06-23 19:22:56,799 DEBUG:routes.checkov: Single file result for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile: {
+  "results": {
+    "status": "success",
+    "path_scanned": "Dockerfile",
+    "files_found": [
+      "Dockerfile"
+    ],
+    "passed_checks": [],
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "file_path": "Dockerfile",
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-ins...
+2025-06-23 19:22:56,800 DEBUG:routes.checkov: Processing file /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile: {
+  "status": "success",
+  "path_scanned": "Dockerfile",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-...
+2025-06-23 19:22:56,800 DEBUG:routes.checkov: Final directory scan result: {
+  "status": "completed",
+  "path_scanned": "",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images",
+      "file_line_range": [
+        1,
+        5
+      ],
+      "resource": "/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile.",
+      "severity": null,
+      "suggestion": "Review the Ensure that HEALTHCHECK instructions have been added to container images issue in Dockerfile (lines 1-5) and apply best practices to address it."
+    },
+    {
+      "check_id": "CKV_DOCKER_3",
+      "check_name": "Ensure that a user for the container has been created",
+      "file_path": "Do...
+2025-06-23 19:22:56,806 DEBUG:urllib3.connectionpool: Starting new HTTP connection (1): localhost:5000
+2025-06-23 19:23:04,310 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 19:23:04] "POST /t5 HTTP/1.1" 200 -
+2025-06-23 19:23:04,311 DEBUG:urllib3.connectionpool: http://localhost:5000 "POST /t5 HTTP/1.1" 200 1026
+2025-06-23 19:23:04,314 DEBUG:routes.checkov: Executing Checkov command on single file: checkov -f /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile --framework dockerfile -o json --quiet
+2025-06-23 19:23:07,266 DEBUG:routes.checkov: Checkov output for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile: {
+  "check_type": "dockerfile",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "bc_check_id": "BC_DKR_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "check_result": {
+          "result": "FAILED",
+          "results_configuration": null
+        },
+        "code_block": [
+          [
+            1,
+            "FROM python:3.8-slim\n"
+          ],
+          [
+            2,
+            "\n"
+ ...
+2025-06-23 19:23:07,266 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:23:07,362 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 1/3. Retrying after 5s...
+2025-06-23 19:23:12,367 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:23:12,461 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 2/3. Retrying after 5s...
+2025-06-23 19:23:17,462 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_2: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:23:17,554 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_2, attempt 3/3. Retrying after 5s...
+2025-06-23 19:23:22,558 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_2.
+2025-06-23 19:23:23,564 DEBUG:routes.checkov: Attempt 1/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:23:23,656 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 1/3. Retrying after 5s...
+2025-06-23 19:23:28,658 DEBUG:routes.checkov: Attempt 2/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:23:28,747 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 2/3. Retrying after 5s...
+2025-06-23 19:23:33,752 DEBUG:routes.checkov: Attempt 3/3 - Sending prompt to Gemini for check CKV_DOCKER_3: I have detected an issue in an Infrastructure-as-Code file using Checkov. Here are the details:
+- Ch...
+2025-06-23 19:23:33,850 WARNING:routes.checkov: Rate limit hit for check CKV_DOCKER_3, attempt 3/3. Retrying after 5s...
+2025-06-23 19:23:38,855 ERROR:routes.checkov: All 3 attempts failed for check CKV_DOCKER_3.
+2025-06-23 19:23:39,861 DEBUG:routes.checkov: Single file result for /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile: {
+  "results": {
+    "status": "success",
+    "path_scanned": "Dockerfile",
+    "files_found": [
+      "Dockerfile"
+    ],
+    "passed_checks": [],
+    "failed_checks": [
+      {
+        "check_id": "CKV_DOCKER_2",
+        "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+        "file_path": "Dockerfile",
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-ins...
+2025-06-23 19:23:39,861 DEBUG:routes.checkov: Processing file /var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile: {
+  "status": "success",
+  "path_scanned": "Dockerfile",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-...
+2025-06-23 19:23:39,861 DEBUG:routes.checkov: Final directory scan result: {
+  "status": "completed",
+  "path_scanned": "",
+  "files_found": [
+    "Dockerfile"
+  ],
+  "passed_checks": [],
+  "failed_checks": [
+    {
+      "check_id": "CKV_DOCKER_2",
+      "check_name": "Ensure that HEALTHCHECK instructions have been added to container images",
+      "file_path": "Dockerfile",
+      "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images",
+      "file_line_range": [
+        1,
+        15
+      ],
+      "resource": "/var/folders/lx/41_46j7s7vd_9vqg1r4xm1180000gn/T/tmpixwp7hsk/Dockerfile.",
+      "severity": null,
+      "suggestion": "Review the Ensure that HEALTHCHECK instructions have been added to container images issue in Dockerfile (lines 1-15) and apply best practices to address it."
+    },
+    {
+      "check_id": "CKV_DOCKER_3",
+      "check_name": "Ensure that a user for the container has been created",
+      "file_path": "...
+2025-06-23 19:23:48,007 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 11
+}
+]
+2025-06-23 19:23:50,102 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 9
+}
+]
+2025-06-23 19:23:52,199 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 7
+}
+]
+2025-06-23 19:23:55,307 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 4
+}
+]
+2025-06-23 19:23:57,404 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+2025-06-23 19:23:59,495 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+}
+]
+2025-06-23 19:24:02,591 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 57
+}
+]
+2025-06-23 19:24:04,689 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 55
+}
+]
+2025-06-23 19:24:06,842 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 53
+}
+]
+2025-06-23 19:24:09,941 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+2025-06-23 19:24:12,043 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 47
+}
+]
+2025-06-23 19:24:14,172 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 45
+}
+]
+2025-06-23 19:24:17,275 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+]
+2025-06-23 19:24:19,367 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 40
+}
+]
+2025-06-23 19:24:21,475 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 38
+}
+]
+2025-06-23 19:24:24,559 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 35
+}
+]
+2025-06-23 19:24:26,645 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 33
+}
+]
+2025-06-23 19:24:28,738 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 31
+}
+]
+2025-06-23 19:24:31,840 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 28
+}
+]
+2025-06-23 19:24:33,933 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 26
+}
+]
+2025-06-23 19:24:36,026 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 23
+}
+]
+2025-06-23 19:24:39,143 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 20
+}
+]
+2025-06-23 19:24:41,236 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 18
+}
+]
+2025-06-23 19:24:43,328 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 16
+}
+]
+2025-06-23 19:24:46,419 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 13
+}
+]
+2025-06-23 19:24:48,534 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 11
+}
+]
+2025-06-23 19:24:50,648 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 9
+}
+]
+2025-06-23 19:24:53,737 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 6
+}
+]
+2025-06-23 19:24:55,820 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 4
+}
+]
+2025-06-23 19:24:57,912 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+2025-06-23 19:25:01,004 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 58
+}
+]
+2025-06-23 19:25:03,085 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 56
+}
+]
+2025-06-23 19:25:05,189 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 54
+}
+]
+2025-06-23 19:25:08,291 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+]
+2025-06-23 19:25:10,380 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 49
+}
+]
+2025-06-23 19:25:12,512 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 47
+}
+]
+2025-06-23 19:25:15,612 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 44
+}
+]
+2025-06-23 19:25:17,705 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+]
+2025-06-23 19:25:19,798 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 40
+}
+]
+2025-06-23 19:25:22,883 WARNING:routes.semgrep: Gemini error on attempt 1: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 37
+}
+]
+2025-06-23 19:25:24,961 WARNING:routes.semgrep: Gemini error on attempt 2: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 34
+}
+]
+2025-06-23 19:25:27,058 WARNING:routes.semgrep: Gemini error on attempt 3: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 32
+}
+]
+2025-06-23 19:25:30,284 INFO:routes.semgrep: Saved Semgrep scan with ID 16
+2025-06-23 19:25:30,290 INFO:werkzeug: 127.0.0.1 - - [23/Jun/2025 19:25:30] "POST /full-scan HTTP/1.1" 200 -
