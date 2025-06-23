@@ -106,6 +106,16 @@ const Sidebar = ({ handleLogout, isCollapsed, toggleSidebar }) => {
           {!isCollapsed && <span className="ml-3">Risque Monitoring</span>}
         </Link>
         <Link
+          to="/all-in-one"
+          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
+            isCollapsed ? "justify-center" : ""
+          }`}
+          aria-label="All in One"
+        >
+        <DocumentTextIcon className="h-5 w-5 text-gray-300" />
+        {!isCollapsed && <span className="ml-3">All in One</span>}
+        </Link>
+        <Link
           to="/pricing"
           className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
             isCollapsed ? "justify-center" : ""

@@ -8,8 +8,8 @@ on:
     branches: [ main ]
 
 env:
-  FLASK_API_URL: http://54.210.95.40:5001/scan
-  REPO_URL: https://github.com/YoussefElbadouri/tst
+  FLASK_API_URL: "http://<ip_server>:5001/scan"
+  REPO_URL: "https://github.com/username/repo_name"
 
 jobs:
   semgrep_scan:

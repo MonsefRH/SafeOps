@@ -16,6 +16,7 @@ import ComplianceChecker from "./pages/ComplianceChecker";
 import RiskDashboard from "./pages/RiskDashboard";
 import Pricing from "./pages/Pricing";
 import Configs from "./pages/Configs";
+import AllInOne from "./pages/AllInOne";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -140,6 +141,7 @@ function App() {
                 <Route path="/compliance" element={isAuthenticated ? <ComplianceChecker /> : <Navigate to="/login" />} />
                 <Route path="/configs" element={isAuthenticated ? <Configs /> : <Navigate to="/login" />} />
                 <Route path="/risks" element={isAuthenticated ? <RiskDashboard /> : <Navigate to="/login" />} />
+                <Route path="/all-in-one" element={<AllInOne />} />
                 <Route
                   path="/login"
                   element={!isAuthenticated ? <Login setIsAuthenticated={setIsAuthenticated} setUser={setUser} /> : <Navigate to="/dashboard" />}
