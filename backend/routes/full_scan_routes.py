@@ -91,7 +91,10 @@ def full_scan():
                 if correction:
                     with open(filepath, "w") as f:
                         f.write(correction)
-                    t5_summary[rel_path] = {"corrected": True}
+                    t5_summary[rel_path] = {
+                        "corrected": True,
+                        "content": correction  
+                    }
                 else:
                     t5_summary[rel_path] = {"corrected": False, "error": error}
 

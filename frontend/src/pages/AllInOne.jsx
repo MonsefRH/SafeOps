@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { ArrowPathIcon, BugAntIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowPathIcon,
+  BugAntIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  DocumentTextIcon
+} from "@heroicons/react/24/outline";
 
 const AllInOne = ({ userId }) => {
   const [url, setUrl] = useState("");
@@ -58,7 +64,7 @@ const AllInOne = ({ userId }) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded shadow-md w-full max-w-3xl mx-auto">
+    <div className="p-6 bg-white rounded shadow-md w-full max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-4 flex items-center gap-2">
         <BugAntIcon className="h-6 w-6 text-red-500" />
         All-In-One Scanner
@@ -96,11 +102,43 @@ const AllInOne = ({ userId }) => {
       </button>
 
       {result && (
-        <div className="mt-6 text-sm text-gray-800">
-          <h2 className="text-lg font-bold mb-2">Résultat du scan :</h2>
-          <pre className="bg-gray-100 p-4 rounded max-h-[300px] overflow-auto">
-            {JSON.stringify(result, null, 2)}
-          </pre>
+        <div className="mt-8 text-sm text-gray-800 space-y-8">
+          <h2 className="text-lg font-bold mb-2 flex items-center gap-2 text-blue-600">
+            <DocumentTextIcon className="h-5 w-5" />
+            Corrected files
+          </h2>
+          {Object.entries(result.t5 || {}).map(([filename, data]) => (
+            <div key={filename} className="mb-6">
+              <h3 className="font-semibold text-md text-gray-700">{filename}</h3>
+              {data.corrected && data.content ? (
+                <pre className="bg-gray-100 border p-4 rounded overflow-auto max-h-96 whitespace-pre-wrap">
+                  {data.content}
+                </pre>
+              ) : (
+                <p className="text-red-500">Erreur : {data.error || "correction impossible"}</p>
+              )}
+            </div>
+          ))}
+
+          <div>
+            <h2 className="text-lg font-bold mb-2 flex items-center gap-2 text-green-700">
+              <CheckCircleIcon className="h-5 w-5" />
+              Validation & Conformity
+            </h2>
+            <pre className="bg-green-50 border p-4 rounded max-h-[400px] overflow-auto">
+              {JSON.stringify(result.checkov_corrected || {}, null, 2)}
+            </pre>
+          </div>
+
+          <div>
+            <h2 className="text-lg font-bold mb-2 flex items-center gap-2 text-red-700">
+              <ExclamationTriangleIcon className="h-5 w-5" />
+              Vulnerability Analyser
+            </h2>
+            <pre className="bg-red-50 border p-4 rounded max-h-[400px] overflow-auto">
+              {JSON.stringify(result.semgrep || {}, null, 2)}
+            </pre>
+          </div>
         </div>
       )}
     </div>
