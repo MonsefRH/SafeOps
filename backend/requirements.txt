@@ -1,0 +1,13 @@
+Flask
+flask-jwt-extended
+flask-bcrypt
+requests
+python-dotenv
+psycopg2-binary
+GitPython
+google-auth-oauthlib
+google-auth
+google-api-core
+google-generativeai
+transformers
+torch

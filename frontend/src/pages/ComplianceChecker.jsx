@@ -104,10 +104,10 @@ const ComplianceChecker = () => {
             <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">Select a type :</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { type: "selected_repos", label: "Dépôts Sélectionnés", icon: <ListBulletIcon className="w-5 h-5" /> },
+                { type: "selected_repos", label: "Selected repositories", icon: <ListBulletIcon className="w-5 h-5" /> },
                 {
                   type: "github",
-                  label: "Lien GitHub",
+                  label: "Github link",
                   icon: (
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.135 1.838 1.24 1.838 1.24 1.065 1.885 2.876 1.34 3.578 1.025.112-.795.434-1.34.792-1.645-2.776-.315-5.686-1.385-5.686-6.165 0-1.365.487-2.48 1.287-3.355-.13-.315-.558-1.585.123-3.305 0 0 1.05-.335 3.44 1.285A12.01 12.01 0 0112 4.8c1.065.005 2.135.145 3.14.43 2.39-1.62 3.435-1.285 3.435-1.285.685 1.72.255 2.99.125 3.305.805.875 1.285 1.99 1.285 3.355 0 4.795-2.915 5.845-5.695 6.155.445.385.84 1.145.84 2.31 0 1.665-.015 3.015-.015 3.42 0 .32.215.695.825.575C20.565 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
@@ -115,7 +115,7 @@ const ComplianceChecker = () => {
                   ),
                 },
                 { type: "code", label: "Code", icon: <CodeBracketSquareIcon className="h-5 w-5" /> },
-                { type: "file", label: "Fichier", icon: <CloudArrowDownIcon className="h-5 w-5" /> },
+                { type: "file", label: "File", icon: <CloudArrowDownIcon className="h-5 w-5" /> },
                 {
                   type: "jenkinsfile",
                   label: "Jenkinsfile",
@@ -178,14 +178,14 @@ const ComplianceChecker = () => {
                 onClick={resetChecker}
                 className="bg-gray-600 text-white px-6 py-3 mt-4 rounded-lg font-semibold hover:bg-gray-700 transition-all duration-200 flex items-center gap-2 shadow-md"
               >
-                Retour
+                Back
               </button>
               <button
                 onClick={() => setResult(null)}
                 className="bg-gray-600 text-white px-6 py-3 mt-4 rounded-lg font-semibold hover:bg-gray-700 transition-all duration-200 flex items-center gap-2 shadow-md"
                 style={{ display: result ? "flex" : "none" }}
               >
-                Effacer le résultat
+                Clear the result
               </button>
             </div>
           </>

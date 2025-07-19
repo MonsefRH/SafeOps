@@ -75,18 +75,18 @@ const ResultDisplay = ({ result, item_name}) => {
     // Extract repository name from repo_url
     const repoUrl = result?.repo_url;
     const ItemName = (repoUrl != null )? repoUrl.split("/").slice(-2).join("/")
-        : (item_name ? item_name : "Fichier");
+        : (item_name ? item_name : "File");
 
 
     return (
       <div>
         {/* Repository Name */}
-        {ItemName !== "Fichier"  && <h3 className="text-lg font-semibold text-gray-100 mb-4">{ItemName}</h3>}
+        {ItemName !== "File"  && <h3 className="text-lg font-semibold text-gray-100 mb-4">{ItemName}</h3>}
 
         {/* Summary */}
         <div className="mb-4">
           {results.compliant !== undefined && (
-            <p className="text-gray-100">Conforme : {results.compliant ? "Oui" : "Non"}</p>
+            <p className="text-gray-100">Conforme : {results.compliant ? "Yes" : "No"}</p>
           )}
           {results.summary?.passed!==0 && <p className="text-green-400">Successed Verifications  : { results.summary?.passed || results.passed_checks?.length }</p>}
           <p className="text-red-400">Failed Verifications  : {results.summary?.failed || results.failed_checks?.length || 0}</p>
@@ -102,7 +102,7 @@ const ResultDisplay = ({ result, item_name}) => {
               }`}
               onClick={() => setActiveTab("checkov")}
             >
-              Résultats
+              Results
             </button>
             <button
               className={`px-4 py-2 font-semibold ${

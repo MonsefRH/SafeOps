@@ -499,7 +499,7 @@ const HistoryModal = ({ isOpen, onClose, userId, scanType }) => {
               className="mb-4 bg-gray-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-700 transition-colors duration-200"
               aria-label="Retour à l'historique"
             >
-              Retour à l'historique
+              Back to history
             </button>
             <ResultDisplay
               result={selectedScan.scan_result?.results}

@@ -100,10 +100,10 @@ const Sidebar = ({ handleLogout, isCollapsed, toggleSidebar }) => {
           className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
             isCollapsed ? "justify-center" : ""
           }`}
-          aria-label="Risque Monitoring"
+          aria-label="Risk Monitoring"
         >
           <ChartBarIcon className="h-5 w-5 text-gray-300" />
-          {!isCollapsed && <span className="ml-3">Risque Monitoring</span>}
+          {!isCollapsed && <span className="ml-3">Risk Monitoring</span>}
         </Link>
         <Link
           to="/all-in-one"
@@ -120,10 +120,10 @@ const Sidebar = ({ handleLogout, isCollapsed, toggleSidebar }) => {
           className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
             isCollapsed ? "justify-center" : ""
           }`}
-          aria-label="Tarification"
+          aria-label="Pricing"
         >
           <CurrencyDollarIcon className="h-5 w-5 text-gray-300" />
-          {!isCollapsed && <span className="ml-3">Tarification</span>}
+          {!isCollapsed && <span className="ml-3">Princing</span>}
         </Link>
       </nav>
 

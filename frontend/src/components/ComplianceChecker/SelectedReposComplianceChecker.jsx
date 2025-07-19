@@ -99,7 +99,7 @@ const SelectedReposComplianceChecker = ({ setResult, isLoading, setIsLoading, us
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-        Validation & Conformité - Selected Repos
+        Validation & Conformity - Selected Repos
       </h2>
       {reposLoading ? (
         <div className="flex justify-center items-center py-4">
