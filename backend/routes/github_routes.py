@@ -72,7 +72,7 @@ def github_callback():
         try:
             with conn.cursor() as cur:
                 cur.execute(
-                    "SELECT id, name, email, password FROM users_test WHERE email = %s",
+                    "SELECT id, name, email, password FROM users WHERE email = %s",
                     (email,)
                 )
                 user = cur.fetchone()
@@ -82,7 +82,7 @@ def github_callback():
                     needs_password = user[3] is None
                 else:
                     cur.execute(
-                        "INSERT INTO users_test (name, email, created_at) VALUES (%s, %s, CURRENT_TIMESTAMP) RETURNING id",
+                        "INSERT INTO users (name, email, created_at) VALUES (%s, %s, CURRENT_TIMESTAMP) RETURNING id",
                         (name, email)
                     )
                     user_id = cur.fetchone()[0]

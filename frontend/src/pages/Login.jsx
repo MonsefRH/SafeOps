@@ -23,13 +23,14 @@ const Login = ({ setIsAuthenticated, setUser }) => {
       const userId = params.get("user_id");
       const name = params.get("name");
       const email = params.get("email");
+      const role = params.get("role") || "user"; // Include role from OAuth callback
       const needsPassword = params.get("needs_password") === "true";
 
       if (accessToken && refreshToken && userId && email) {
         localStorage.setItem("token", accessToken);
         localStorage.setItem("refresh_token", refreshToken);
         localStorage.setItem("token_expiration", Date.now() + 3600000);
-        const user = { id: userId, name, email };
+        const user = { id: userId, name, email, role }; // Include role
         localStorage.setItem("user", JSON.stringify(user));
 
         if (!needsPassword) {
@@ -40,7 +41,8 @@ const Login = ({ setIsAuthenticated, setUser }) => {
             autoClose: 3000,
             theme: "light",
           });
-          navigate("/dashboard", { replace: true });
+          // Navigate based on role
+          navigate(role === "admin" ? "/admin-dashboard" : "/dashboard", { replace: true });
         } else {
           setAuthUser(user);
           setNeedsPassword(true);
@@ -89,7 +91,8 @@ const Login = ({ setIsAuthenticated, setUser }) => {
           theme: "light",
         });
 
-        navigate("/dashboard");
+        // Navigate based on role
+        navigate(data.user.role === "admin" ? "/admin-dashboard" : "/dashboard");
       } else {
         toast.error(data.error || "Échec de la connexion", {
           position: "top-right",
@@ -222,7 +225,7 @@ const Login = ({ setIsAuthenticated, setUser }) => {
             className="w-full bg-gray-900 text-white p-2 rounded-lg font-semibold flex items-center justify-center hover:bg-gray-700 transition-colors duration-200"
           >
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.12-1.47-1.12-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.29 1.08 2.85.82.09-.64.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85 0 1.71.11 2.52.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.66.94.66 1.9v2.81c0 .27.16.59.66.5A10 10 0 0 0 22 12 10 10 0 0 0 12 2z" />
+              <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16ig-1.12-1.47-1.12-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.29 1.08 2.85.82.09-.64.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85 0 1.71.11 2.52.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.66.94.66 1.9v2.81c0 .27.16.59.66.5A10 10 0 0 0 22 12 10 10 0 0 0 12 2z" />
             </svg>
             Connect with GitHub
           </button>

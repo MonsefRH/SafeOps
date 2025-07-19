@@ -74,7 +74,7 @@ def google_callback():
 
         try:
             with conn.cursor() as cur:
-                cur.execute("SELECT id, name, email, password FROM users_test WHERE email = %s", (email,))
+                cur.execute("SELECT id, name, email, password FROM users WHERE email = %s", (email,))
                 user = cur.fetchone()
 
                 if user:
@@ -82,7 +82,7 @@ def google_callback():
                     needs_password = user[3] is None
                 else:
                     cur.execute(
-                        "INSERT INTO users_test (name, email) VALUES (%s, %s) RETURNING id",
+                        "INSERT INTO users (name, email) VALUES (%s, %s) RETURNING id",
                         (name, email)
                     )
                     user_id = cur.fetchone()[0]

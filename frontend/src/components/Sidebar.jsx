@@ -11,16 +11,41 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DocumentTextIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/outline";
 
-const Sidebar = ({ handleLogout, isCollapsed, toggleSidebar }) => {
+const Sidebar = ({ handleLogout, isCollapsed, toggleSidebar, user }) => {
+  // Define navigation items based on role
+  const navItems = user?.role === "admin"
+    ? [
+        {
+          to: "/admin-dashboard",
+          label: "Admin Dashboard",
+          icon: <UserGroupIcon className="h-5 w-5 text-gray-200" />,
+        },
+        // Add more admin-specific routes here if needed
+      ]
+    : [
+        { to: "/", label: "Dashboard", icon: <HomeIcon className="h-5 w-5 text-gray-200" /> },
+        { to: "/configs", label: "Configuration Files", icon: <DocumentTextIcon className="h-5 w-5 text-gray-300" /> },
+        { to: "/generate-policy", label: "Policy Generator", icon: <ShieldCheckIcon className="h-5 w-5 text-gray-300" /> },
+        { to: "/scan", label: "Vulnerability Scanner", icon: <ShieldExclamationIcon className="h-5 w-5 text-gray-300" /> },
+        { to: "/compliance", label: "Compliance Checker", icon: <CheckCircleIcon className="h-5 w-5 text-gray-300" /> },
+        { to: "/risks", label: "Risk Monitoring", icon: <ChartBarIcon className="h-5 w-5 text-gray-300" /> },
+        { to: "/all-in-one", label: "All in One", icon: <DocumentTextIcon className="h-5 w-5 text-gray-300" /> },
+        { to: "/pricing", label: "Pricing", icon: <CurrencyDollarIcon className="h-5 w-5 text-gray-300" /> },
+      ];
+
+  // Use same theme for both admins and users
+  const sidebarBg = "bg-blue-600";
+
   return (
     <div
-      className={`bg-blue-600 text-gray-100 flex flex-col h-screen transition-all duration-300 ${
+      className={`${sidebarBg} text-gray-100 flex flex-col h-screen transition-all duration-300 ${
         isCollapsed ? "w-16" : "w-64"
       }`}
     >
-      {/* En-tête avec le titre et le bouton toggle */}
+      {/* Header with title and toggle button */}
       <div className="p-5 flex items-center justify-between">
         <h1
           className={`text-xl font-bold flex items-center gap-2 ${
@@ -32,7 +57,7 @@ const Sidebar = ({ handleLogout, isCollapsed, toggleSidebar }) => {
         </h1>
         <button
           onClick={toggleSidebar}
-          className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
           aria-label={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
         >
           {isCollapsed ? (
@@ -45,98 +70,31 @@ const Sidebar = ({ handleLogout, isCollapsed, toggleSidebar }) => {
 
       {/* Navigation */}
       <nav className="space-y-2 flex-1">
-        <Link
-          to="/"
-          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
-            isCollapsed ? "justify-center" : ""
-          }`}
-          aria-label="Dashboard"
-        >
-          <HomeIcon className="h-5 w-5 text-gray-200" />
-          {!isCollapsed && <span className="ml-3">Dashboard</span>}
-        </Link>
-        <Link
-          to="/configs"
-          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
-            isCollapsed ? "justify-center" : ""
-          }`}
-          aria-label="Configurations"
-        >
-          <DocumentTextIcon className="h-5 w-5 text-gray-300" />
-          {!isCollapsed && <span className="ml-3">Configuration Files </span>}
-        </Link>
-        <Link
-          to="/generate-policy"
-          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
-            isCollapsed ? "justify-center" : ""
-          }`}
-          aria-label="Policy Generator"
-        >
-          <ShieldCheckIcon className="h-5 w-5 text-gray-300" />
-          {!isCollapsed && <span className="ml-3">Policy Generator</span>}
-        </Link>
-        <Link
-          to="/scan"
-          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
-            isCollapsed ? "justify-center" : ""
-          }`}
-          aria-label="Vulnerability Analyse"
-        >
-          <ShieldExclamationIcon className="h-5 w-5 text-gray-300" />
-          {!isCollapsed && <span className="ml-3">Vulnerability Analyser</span>}
-        </Link>
-        <Link
-          to="/compliance"
-          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
-            isCollapsed ? "justify-center" : ""
-          }`}
-          aria-label="Validation & Conformity"
-        >
-          <CheckCircleIcon className="h-5 w-5 text-gray-300" />
-          {!isCollapsed && <span className="ml-3">Validation & Conformity</span>}
-        </Link>
-        <Link
-          to="/risks"
-          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
-            isCollapsed ? "justify-center" : ""
-          }`}
-          aria-label="Risk Monitoring"
-        >
-          <ChartBarIcon className="h-5 w-5 text-gray-300" />
-          {!isCollapsed && <span className="ml-3">Risk Monitoring</span>}
-        </Link>
-        <Link
-          to="/all-in-one"
-          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
-            isCollapsed ? "justify-center" : ""
-          }`}
-          aria-label="All in One"
-        >
-        <DocumentTextIcon className="h-5 w-5 text-gray-300" />
-        {!isCollapsed && <span className="ml-3">All in One</span>}
-        </Link>
-        <Link
-          to="/pricing"
-          className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
-            isCollapsed ? "justify-center" : ""
-          }`}
-          aria-label="Pricing"
-        >
-          <CurrencyDollarIcon className="h-5 w-5 text-gray-300" />
-          {!isCollapsed && <span className="ml-3">Princing</span>}
-        </Link>
+        {navItems.map((item) => (
+          <Link
+            key={item.to}
+            to={item.to}
+            className={`flex items-center p-2 rounded hover:bg-blue-700 transition-colors duration-200 ${
+              isCollapsed ? "justify-center" : ""
+            }`}
+            aria-label={item.label}
+          >
+            {item.icon}
+            {!isCollapsed && <span className="ml-3">{item.label}</span>}
+          </Link>
+        ))}
       </nav>
 
-      {/* Bouton Déconnexion */}
+      {/* Logout Button */}
       <button
         onClick={handleLogout}
         className={`flex items-center p-2 w-full rounded hover:bg-red-600 transition-colors duration-200 text-left mt-2 ${
           isCollapsed ? "justify-center" : ""
         }`}
-        aria-label="Deconnect"
+        aria-label="Logout"
       >
         <ArrowRightStartOnRectangleIcon className="h-5 w-5 text-gray-300" />
-        {!isCollapsed && <span className="ml-3">Deconnect</span>}
+        {!isCollapsed && <span className="ml-3">Logout</span>}
       </button>
     </div>
   );
