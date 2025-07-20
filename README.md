@@ -157,7 +157,7 @@ VALUES (
    - API: `http://localhost:5000`
 
 
-▶️ **Demo Video**  
+ **Demo Video**  
  
 https://github.com/user-attachments/assets/73c6a73c-dbdf-4698-b5f9-e1e1b639eddd
 
