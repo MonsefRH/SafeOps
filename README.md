@@ -43,10 +43,12 @@ Collect web metrics and ensure high-quality user experiences.
 ![Terraform](https://img.shields.io/badge/Terraform-623CE4?style=for-the-badge&logo=terraform&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chart.js&logoColor=white)
-
+## Software Architecture 
+<img width="1532" height="700" alt="Image" src="https://github.com/user-attachments/assets/53d2cfab-8de4-4f09-bb09-4e7b171dcb04" />
 ## Table of Contents
 
 - [Overview](#overview)
+- [Software Architecture ](#software-architecture)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
