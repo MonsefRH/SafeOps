@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # === Initialisation Flask ===
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "212bhbfefeeVRVEF#$REERGREGE#")
+
 
 
 csrf = CSRFProtect(app)
