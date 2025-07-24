@@ -22,7 +22,7 @@ from routes.admin import admin_bp
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "212bhbfefeeVRVEF#$REERGREGE#")
+
 
 
 csrf = CSRFProtect(app)
