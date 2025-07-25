@@ -115,12 +115,12 @@ CREATE DATABASE safeops;
 \q
 ```
 
-***Step 4: Create the admin user***
+***Step 3: Create the admin user***
 ```bash
-psql -U postgres -d safeops -f tables.txt
+psql -U postgres -d safeops -f base.sql
 
 ```
-***Step 3: Import Database Schema***
+***Step 4: Import Database Schema***
 ```bash
 psql -U postgres
 
@@ -133,6 +133,7 @@ VALUES (
     '$2b$12$YOUR_HASHED_PASSWORD', -- Replace with a bcrypt hashed password
     'admin'
 );
+\q
 ```
 ---
 
