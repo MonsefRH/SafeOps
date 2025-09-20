@@ -1,0 +1,179 @@
+2025-09-20 18:35:05,285 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:35:05,300 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:38:30,249 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:38:30,274 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:39:16,214 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:39:16,234 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:39:18,558 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 18:39:18,829 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 18:39:18,874 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 18:39:19,069 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 18:39:19,346 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 18:39:19,387 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 18:39:19,707 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 18:39:19,749 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 18:39:19,912 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 18:39:38,836 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:39:38,851 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:39:41,471 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 18:39:42,054 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 18:39:42,105 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 18:39:42,274 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 18:39:42,556 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 18:39:42,603 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 18:39:42,924 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 18:39:42,970 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 18:39:43,134 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 18:39:43,184 INFO:werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-20 18:39:43,186 INFO:werkzeug: [33mPress CTRL+C to quit[0m
+2025-09-20 18:39:43,188 INFO:werkzeug:  * Restarting with stat
+2025-09-20 18:39:43,487 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:39:43,500 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 18:39:45,119 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 18:39:45,371 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 18:39:45,417 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 18:39:45,591 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 18:39:45,852 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 18:39:45,893 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 18:39:46,160 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 18:39:46,203 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 18:39:46,358 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 18:39:46,397 WARNING:werkzeug:  * Debugger is active!
+2025-09-20 18:39:46,420 INFO:werkzeug:  * Debugger PIN: 262-613-458
+2025-09-20 19:18:28,527 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:18:28,546 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:18:30,936 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 19:18:31,252 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 19:18:31,300 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 19:18:31,494 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 19:18:31,766 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 19:18:31,810 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 19:18:32,120 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 19:18:32,163 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 19:18:32,329 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 19:18:33,132 INFO:werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-20 19:18:33,132 INFO:werkzeug: [33mPress CTRL+C to quit[0m
+2025-09-20 19:18:33,133 INFO:werkzeug:  * Restarting with stat
+2025-09-20 19:18:33,659 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:18:33,672 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:18:35,433 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 19:18:35,675 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 19:18:35,723 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 19:18:35,892 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 19:18:36,161 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 19:18:36,206 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 19:18:36,490 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 19:18:36,535 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 19:18:36,708 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 19:18:36,812 WARNING:werkzeug:  * Debugger is active!
+2025-09-20 19:18:36,833 INFO:werkzeug:  * Debugger PIN: 262-613-458
+2025-09-20 19:24:45,610 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:24:45,634 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:24:48,277 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 19:24:48,561 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 19:24:48,603 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 19:24:48,763 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 19:24:49,017 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 19:24:49,061 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 19:24:49,391 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 19:24:49,438 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 19:24:49,601 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 19:24:49,834 INFO:werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-20 19:24:49,834 INFO:werkzeug: [33mPress CTRL+C to quit[0m
+2025-09-20 19:24:49,836 INFO:werkzeug:  * Restarting with stat
+2025-09-20 19:24:50,287 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:24:50,301 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:24:52,065 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 19:24:52,313 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 19:24:52,359 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 19:24:52,536 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 19:24:52,934 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 19:24:52,980 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 19:24:53,254 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 19:24:53,298 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 19:24:53,454 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 19:24:53,532 WARNING:werkzeug:  * Debugger is active!
+2025-09-20 19:24:53,549 INFO:werkzeug:  * Debugger PIN: 262-613-458
+2025-09-20 19:25:56,164 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:25:56,178 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:25:58,372 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 19:25:58,649 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 19:25:58,696 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 19:25:58,863 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 19:25:59,157 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 19:25:59,202 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 19:25:59,496 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 19:25:59,539 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 19:25:59,694 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 19:27:52,602 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:27:52,618 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:27:55,058 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 19:27:55,320 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 19:27:55,362 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 19:27:55,530 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 19:27:55,981 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 19:27:56,023 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 19:27:56,340 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 19:27:56,380 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 19:27:56,539 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 19:27:57,010 INFO:werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-20 19:27:57,010 INFO:werkzeug: [33mPress CTRL+C to quit[0m
+2025-09-20 19:27:57,011 INFO:werkzeug:  * Restarting with stat
+2025-09-20 19:27:57,453 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:27:57,463 DEBUG:git.cmd: Popen(['git', 'version'], cwd=/Users/youssefelbadouri/Desktop/SafeOps/backend, stdin=None, shell=False, universal_newlines=False)
+2025-09-20 19:27:59,078 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): huggingface.co:443
+2025-09-20 19:27:59,333 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-20 19:27:59,381 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-20 19:27:59,549 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "GET /api/models/TahalliAnas/t5_base_ConfigFiles_fixer/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-20 19:27:59,814 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-20 19:27:59,862 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/config.json HTTP/1.1" 200 0
+2025-09-20 19:28:00,152 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/generation_config.json HTTP/1.1" 307 0
+2025-09-20 19:28:00,197 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /api/resolve-cache/models/TahalliAnas/t5_base_ConfigFiles_fixer/c4b47d450a392ce5e251eb7efd00bc266ec2031a/generation_config.json HTTP/1.1" 200 0
+2025-09-20 19:28:00,357 DEBUG:urllib3.connectionpool: https://huggingface.co:443 "HEAD /TahalliAnas/t5_base_ConfigFiles_fixer/resolve/main/custom_generate/generate.py HTTP/1.1" 404 0
+2025-09-20 19:28:00,465 WARNING:werkzeug:  * Debugger is active!
+2025-09-20 19:28:00,477 INFO:werkzeug:  * Debugger PIN: 262-613-458
+2025-09-20 19:28:57,004 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:28:57] "OPTIONS /login HTTP/1.1" 200 -
+2025-09-20 19:28:57,291 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:28:57] "POST /login HTTP/1.1" 200 -
+2025-09-20 19:28:57,329 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:28:57] "OPTIONS /api/admin-stats HTTP/1.1" 200 -
+2025-09-20 19:28:57,330 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:28:57] "OPTIONS /api/admin-stats HTTP/1.1" 200 -
+2025-09-20 19:28:57,346 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:28:57] "GET /api/admin-stats HTTP/1.1" 200 -
+2025-09-20 19:29:35,298 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:29:35] "OPTIONS /register HTTP/1.1" 200 -
+2025-09-20 19:29:37,047 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:29:37] "POST /register HTTP/1.1" 200 -
+2025-09-20 19:29:54,930 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:29:54] "OPTIONS /verify-code HTTP/1.1" 200 -
+2025-09-20 19:29:54,949 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:29:54] "[35m[1mPOST /verify-code HTTP/1.1[0m" 201 -
+2025-09-20 19:30:04,364 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "OPTIONS /login HTTP/1.1" 200 -
+2025-09-20 19:30:04,640 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "POST /login HTTP/1.1" 200 -
+2025-09-20 19:30:04,671 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "OPTIONS /stats HTTP/1.1" 200 -
+2025-09-20 19:30:04,671 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "OPTIONS /stats HTTP/1.1" 200 -
+2025-09-20 19:30:04,672 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "OPTIONS /github/repos HTTP/1.1" 200 -
+2025-09-20 19:30:04,672 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "OPTIONS /github/repos HTTP/1.1" 200 -
+2025-09-20 19:30:04,696 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "GET /stats HTTP/1.1" 200 -
+2025-09-20 19:30:04,700 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "GET /stats HTTP/1.1" 200 -
+2025-09-20 19:30:04,814 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "[33mGET /github/repos HTTP/1.1[0m" 404 -
+2025-09-20 19:30:04,818 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:30:04] "[33mGET /github/repos HTTP/1.1[0m" 404 -
+2025-09-20 19:32:01,438 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:01] "[32mGET /auth/github HTTP/1.1[0m" 302 -
+2025-09-20 19:32:01,881 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): github.com:443
+2025-09-20 19:32:02,325 DEBUG:urllib3.connectionpool: https://github.com:443 "POST /login/oauth/access_token HTTP/1.1" 200 None
+2025-09-20 19:32:02,328 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): api.github.com:443
+2025-09-20 19:32:02,805 DEBUG:urllib3.connectionpool: https://api.github.com:443 "GET /user HTTP/1.1" 200 None
+2025-09-20 19:32:02,807 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): api.github.com:443
+2025-09-20 19:32:03,211 DEBUG:urllib3.connectionpool: https://api.github.com:443 "GET /user/emails HTTP/1.1" 200 None
+2025-09-20 19:32:03,238 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:03] "[32mGET /auth/github/callback?code=589c30bbcbd70c3ff629 HTTP/1.1[0m" 302 -
+2025-09-20 19:32:12,711 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:12] "OPTIONS /set-password HTTP/1.1" 200 -
+2025-09-20 19:32:12,971 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:12] "POST /set-password HTTP/1.1" 200 -
+2025-09-20 19:32:13,008 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:13] "OPTIONS /stats HTTP/1.1" 200 -
+2025-09-20 19:32:13,009 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:13] "OPTIONS /github/repos HTTP/1.1" 200 -
+2025-09-20 19:32:13,009 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:13] "OPTIONS /stats HTTP/1.1" 200 -
+2025-09-20 19:32:13,010 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:13] "OPTIONS /github/repos HTTP/1.1" 200 -
+2025-09-20 19:32:13,027 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): api.github.com:443
+2025-09-20 19:32:13,028 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:13] "GET /stats HTTP/1.1" 200 -
+2025-09-20 19:32:13,032 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:13] "GET /stats HTTP/1.1" 200 -
+2025-09-20 19:32:14,184 DEBUG:urllib3.connectionpool: https://api.github.com:443 "GET /user/repos HTTP/1.1" 200 None
+2025-09-20 19:32:14,197 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:14] "GET /github/repos HTTP/1.1" 200 -
+2025-09-20 19:32:14,201 DEBUG:urllib3.connectionpool: Starting new HTTPS connection (1): api.github.com:443
+2025-09-20 19:32:15,259 DEBUG:urllib3.connectionpool: https://api.github.com:443 "GET /user/repos HTTP/1.1" 200 None
+2025-09-20 19:32:15,269 INFO:werkzeug: 127.0.0.1 - - [20/Sep/2025 19:32:15] "GET /github/repos HTTP/1.1" 200 -
