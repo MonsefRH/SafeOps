@@ -14,3 +14,4 @@ google-api-core
 google-generativeai
 transformers
 torch
+flask_sqlalchemy
