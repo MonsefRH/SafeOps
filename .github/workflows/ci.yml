@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, master, develop, feature/** ]
+    branches: [ main ]          # after merges
   pull_request:
-    branches: [ main, master, develop ]
+    branches: [ main ]          # PRs into main
   workflow_dispatch:
 
 concurrency:
@@ -12,16 +12,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ---------- Secrets scan ----------
   secrets:
     name: Secrets Scan (Gitleaks)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0              # ensure previous commit exists for diffs
       - name: Scan for secrets
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # ---------- Backend (Python) ----------
   backend:
     name: Backend (Python)
     runs-on: ubuntu-latest
@@ -80,8 +84,9 @@ jobs:
 
       - name: Dependency vulnerabilities (pip-audit)
         if: ${{ steps.detect_backend.outputs.present == 'true' }}
-        run: pip-audit --requirement requirements.txt || true
+        run: pip-audit --requirement requirements.txt || true   # make blocking later
 
+  # ---------- Frontend (Node) ----------
   frontend:
     name: Frontend (Node)
     runs-on: ubuntu-latest
@@ -126,32 +131,51 @@ jobs:
         working-directory: frontend
         run: npm run -s build || echo "No build step — skipping."
 
-  iac:
-    name: IaC Scan (Checkov)
+  # ---------- Semgrep SAST (security) ----------
+  semgrep:
+    name: Semgrep (SAST)
     runs-on: ubuntu-latest
+    needs: [secrets, backend, frontend]
     steps:
       - uses: actions/checkout@v4
-
-      - name: Detect IaC presence
-        id: detect_iac
-        shell: bash
-        run: |
-          if ls -1 **/*.tf **/*.tfvars **/kubernetes/*.y*ml **/helm/** >/dev/null 2>&1; then
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "present=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Checkov
-        if: ${{ steps.detect_iac.outputs.present == 'true' }}
-        uses: bridgecrewio/checkov-action@v12
         with:
-          quiet: true
-          soft_fail: true  
+          fetch-depth: 0
+      - name: Run Semgrep (CI ruleset)
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/ci            # solid default ruleset for PRs
+          generateSarif: true
+      - name: Upload SARIF to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
 
+  # ---------- SonarCloud (quality gate, duplication, trends) ----------
+  sonarcloud:
+    name: SonarCloud Analysis
+    runs-on: ubuntu-latest
+    needs: [semgrep]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0               # better blame/PR decoration
+
+      - name: Set up Java (required by scanner)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        # auto-reads sonar-project.properties at repo root
+
+  # ---------- Final gate ----------
   status:
     name: Status Gate
-    needs: [secrets, backend, frontend]
     runs-on: ubuntu-latest
+    needs: [secrets, backend, frontend, semgrep, sonarcloud]
     steps:
-      - run: echo "All core checks finished."
+      - run: echo "All required jobs finished."
