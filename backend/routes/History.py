@@ -1,9 +1,10 @@
 from flask import Blueprint, request, jsonify
 from routes.checkov import logger
-from utils.db import get_db_connection
+from utils.db import db
+from models.scan_history import ScanHistory
+from models.file_content import FileContent
 
 history_bp = Blueprint('history', __name__)
-
 
 @history_bp.route("/history", methods=["GET"])
 def get_scan_history():
@@ -11,68 +12,45 @@ def get_scan_history():
     if not user_id:
         return jsonify({"error": "user_id is required"}), 400
 
-    scan_type = request.args.get("scan_type")  # Get scan_type from query params
+    scan_type = request.args.get("scan_type")
 
     try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-
         # Base query
-        query = """
-            SELECT id, repo_id, scan_result, repo_url, status, score, compliant, created_at, input_type, scan_type
-            FROM scan_history
-            WHERE user_id = %s
-        """
-        params = [user_id]
-
+        query = ScanHistory.query.filter_by(user_id=user_id)
+        
         # Add scan_type filter if provided
         if scan_type:
-            query += " AND scan_type = %s"
-            params.append(scan_type)
-
-        query += " ORDER BY created_at DESC"
-
-        cursor.execute(query, params)
-        rows = cursor.fetchall()
+            query = query.filter_by(scan_type=scan_type)
+        
+        # Order by created_at DESC
+        query = query.order_by(ScanHistory.created_at.desc())
+        
         history = []
-
-        for row in rows:
-            input_type = row[8]
+        for scan in query.all():
             item_name = None
-            if input_type and input_type != "":
-                scan_id = row[0]
-                cursor.execute(
-                    """
-                    SELECT id, scan_id, file_path, content, input_type, created_at
-                    FROM file_contents
-                    WHERE scan_id = %s
-                    """,
-                    (scan_id,)
-                )
-                file_row = cursor.fetchone()
-                if file_row:
-                    item_name = f"{file_row[2]} {file_row[0]}"  # file_path + id
-                    logger.debug(f"Item name for scan_id {scan_id}: {item_name}")
+            if scan.input_type:
+                file_content = FileContent.query.filter_by(scan_id=scan.id).first()
+                if file_content:
+                    item_name = f"{file_content.file_path} {file_content.id}"
+                    logger.debug(f"Item name for scan_id {scan.id}: {item_name}")
 
             element = {
-                "id": row[0],
-                "repo_id": row[1],
-                "scan_result": row[2],
-                "repo_url": row[3],
+                "id": scan.id,
+                "repo_id": scan.repo_id,
+                "scan_result": scan.scan_result,
+                "repo_url": scan.repo_url,
                 "item_name": item_name,
-                "status": row[4],
-                "score": row[5],
-                "compliant": row[6],
-                "created_at": row[7].isoformat(),
-                "input_type": row[8],
-                "scan_type": row[9]
+                "status": scan.status,
+                "score": scan.score,
+                "compliant": scan.compliant,
+                "created_at": scan.created_at.isoformat(),
+                "input_type": scan.input_type,
+                "scan_type": scan.scan_type
             }
             history.append(element)
 
         return jsonify(history)
     except Exception as e:
         logger.error(f"Failed to fetch scan history for user_id {user_id}: {str(e)}")
+        db.session.rollback()
         return jsonify({"error": "Failed to fetch scan history"}), 500
-    finally:
-        cursor.close()
-        conn.close()

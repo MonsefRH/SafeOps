@@ -1,11 +1,14 @@
 from flask import Blueprint, request, jsonify, redirect
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
-from utils.db import get_db_connection
+from utils.db import db
+from models.user import User
+from models.github_user import GithubUser
+from models.selected_repo import SelectedRepo
+from models.repo_config import RepoConfig
 import requests
 import os
 from dotenv import load_dotenv
 import base64
-
 
 load_dotenv()
 
@@ -65,61 +68,46 @@ def github_callback():
         name = user_data.get("name", user_data.get("login", "GitHub User"))
         github_id = str(user_data["id"])
 
-        conn = get_db_connection()
-        if not conn:
-            return jsonify({"error": "Erreur connexion DB"}), 500
-
         try:
-            with conn.cursor() as cur:
-                cur.execute(
-                    "SELECT id, name, email, password FROM users WHERE email = %s",
-                    (email,)
+            # Check if user exists
+            user = User.query.filter_by(email=email).first()
+            if user:
+                user_id = user.id
+                needs_password = user.password is None
+            else:
+                user = User(name=name, email=email)
+                db.session.add(user)
+                db.session.flush()  # Get user.id before committing
+                user_id = user.id
+                needs_password = True
+
+            # Check if GitHub user exists
+            github_user = GithubUser.query.filter_by(github_id=github_id).first()
+            if not github_user:
+                github_user = GithubUser(
+                    user_id=user_id,
+                    github_id=github_id,
+                    access_token=access_token
                 )
-                user = cur.fetchone()
+                db.session.add(github_user)
 
-                if user:
-                    user_id = user[0]
-                    needs_password = user[3] is None
-                else:
-                    cur.execute(
-                        "INSERT INTO users (name, email, created_at) VALUES (%s, %s, CURRENT_TIMESTAMP) RETURNING id",
-                        (name, email)
-                    )
-                    user_id = cur.fetchone()[0]
-                    needs_password = True
+            db.session.commit()
 
-                cur.execute(
-                    "SELECT user_id FROM github_users WHERE github_id = %s",
-                    (github_id,)
-                )
-                github_user = cur.fetchone()
-
-                if not github_user:
-                    cur.execute(
-                        "INSERT INTO github_users (user_id, github_id, access_token, created_at) "
-                        "VALUES (%s, %s, %s, CURRENT_TIMESTAMP)",
-                        (user_id, github_id, access_token)
-                    )
-
-                conn.commit()
-
-                frontend_url = (
-                    f"http://localhost:3000/auth/github/callback"
-                    f"?access_token={create_access_token(identity=str(user_id))}"
-                    f"&refresh_token={create_refresh_token(identity=str(user_id))}"
-                    f"&user_id={user_id}"
-                    f"&name={name}"
-                    f"&email={email}"
-                    f"&needs_password={str(needs_password).lower()}"
-                )
-                return redirect(frontend_url)
+            frontend_url = (
+                f"http://localhost:3000/auth/github/callback"
+                f"?access_token={create_access_token(identity=str(user_id))}"
+                f"&refresh_token={create_refresh_token(identity=str(user_id))}"
+                f"&user_id={user_id}"
+                f"&name={name}"
+                f"&email={email}"
+                f"&needs_password={str(needs_password).lower()}"
+            )
+            return redirect(frontend_url)
 
         except Exception as e:
             print("❌ Erreur PostgreSQL:", e)
-            conn.rollback()
+            db.session.rollback()
             return jsonify({"error": "Erreur base de données"}), 500
-        finally:
-            conn.close()
 
     except Exception as e:
         print("❌ Erreur GitHub OAuth:", e)
@@ -129,20 +117,11 @@ def github_callback():
 @jwt_required()
 def get_github_repos():
     user_id = get_jwt_identity()
-    conn = get_db_connection()
-    if not conn:
-        return jsonify({"error": "Erreur connexion DB"}), 500
-
     try:
-        with conn.cursor() as cur:
-            cur.execute(
-                "SELECT access_token FROM github_users WHERE user_id = %s",
-                (user_id,)
-            )
-            result = cur.fetchone()
-            if not result:
-                return jsonify({"error": "Compte GitHub non lié"}), 404
-            access_token = result[0]
+        github_user = GithubUser.query.filter_by(user_id=user_id).first()
+        if not github_user:
+            return jsonify({"error": "Compte GitHub non lié"}), 404
+        access_token = github_user.access_token
 
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get("https://api.github.com/user/repos", headers=headers)
@@ -162,21 +141,15 @@ def get_github_repos():
             for repo in repos
         ]
         # Check selected repos
-        with conn.cursor() as cur:
-            cur.execute(
-                "SELECT full_name FROM selected_repos WHERE user_id = %s",
-                (user_id,)
-            )
-            selected = [row[0] for row in cur.fetchall()]
-            for repo in repo_data:
-                repo["is_selected"] = repo["full_name"] in selected
+        selected = {repo.full_name for repo in SelectedRepo.query.filter_by(user_id=user_id).all()}
+        for repo in repo_data:
+            repo["is_selected"] = repo["full_name"] in selected
         return jsonify(repo_data)
 
     except Exception as e:
         print("❌ Erreur PostgreSQL:", e)
+        db.session.rollback()
         return jsonify({"error": "Erreur base de données"}), 500
-    finally:
-        conn.close()
 
 @github_bp.route("/github/validate-token", methods=["POST"])
 @jwt_required()
@@ -213,36 +186,24 @@ def validate_github_token():
         if not selected_repos or repo["full_name"] in selected_repos
     ]
 
-    conn = get_db_connection()
-    if not conn:
-        return jsonify({"error": "Erreur connexion DB"}), 500
-
     try:
-        with conn.cursor() as cur:
-            cur.execute(
-                "SELECT user_id FROM github_users WHERE user_id = %s",
-                (user_id,)
+        github_user = GithubUser.query.filter_by(user_id=user_id).first()
+        if github_user:
+            github_user.access_token = token
+            github_user.github_id = github_id
+        else:
+            github_user = GithubUser(
+                user_id=user_id,
+                github_id=github_id,
+                access_token=token
             )
-            exists = cur.fetchone()
-            if exists:
-                cur.execute(
-                    "UPDATE github_users SET access_token = %s, github_id = %s WHERE user_id = %s",
-                    (token, github_id, user_id)
-                )
-            else:
-                cur.execute(
-                    "INSERT INTO github_users (user_id, github_id, access_token, created_at) "
-                    "VALUES (%s, %s, %s, CURRENT_TIMESTAMP)",
-                    (user_id, github_id, token)
-                )
-            conn.commit()
+            db.session.add(github_user)
+        db.session.commit()
         return jsonify({"message": "Jeton validé", "repos": repo_data})
     except Exception as e:
         print("❌ Erreur PostgreSQL:", e)
-        conn.rollback()
+        db.session.rollback()
         return jsonify({"error": "Erreur base de données"}), 500
-    finally:
-        conn.close()
 
 @github_bp.route("/github/save-repos", methods=["POST"])
 @jwt_required()
@@ -251,60 +212,39 @@ def save_selected_repos():
     data = request.get_json()
     selected_repos = data.get("selected_repos", [])
 
-    conn = get_db_connection()
-    if not conn:
-        return jsonify({"error": "Erreur connexion DB"}), 500
-
     try:
-        with conn.cursor() as cur:
-            # Clear existing selections
-            cur.execute(
-                "DELETE FROM selected_repos WHERE user_id = %s",
-                (user_id,)
+        # Clear existing selections
+        SelectedRepo.query.filter_by(user_id=user_id).delete()
+
+        # Insert new selections
+        for repo in selected_repos:
+            selected_repo = SelectedRepo(
+                user_id=user_id,
+                full_name=repo["full_name"],
+                name=repo["name"],
+                html_url=repo["html_url"]
             )
+            db.session.add(selected_repo)
 
-            # Insert new selections
-            for repo in selected_repos:
-                cur.execute(
-                    "INSERT INTO selected_repos (user_id, full_name, name, html_url, created_at) "
-                    "VALUES (%s, %s, %s, %s, CURRENT_TIMESTAMP) ON CONFLICT (full_name) DO NOTHING",
-                    (user_id, repo["full_name"], repo["name"], repo["html_url"])
-                )
-
-            conn.commit()
+        db.session.commit()
         return jsonify({"message": "Dépôts enregistrés"})
     except Exception as e:
         print("❌ Erreur PostgreSQL:", e)
-        conn.rollback()
+        db.session.rollback()
         return jsonify({"error": "Erreur base de données"}), 500
-    finally:
-        conn.close()
 
-# github.py (Flask Blueprint)
 @github_bp.route("/github/repo-configs", methods=["GET"])
 @jwt_required()
 def get_repo_configs():
     user_id = get_jwt_identity()
-    conn = get_db_connection()
-    if not conn:
-        return jsonify({"error": "Erreur connexion DB"}), 500
-
     try:
-        with conn.cursor() as cur:
-            cur.execute(
-                "SELECT access_token FROM github_users WHERE user_id = %s",
-                (user_id,)
-            )
-            result = cur.fetchone()
-            if not result:
-                return jsonify({"error": "Compte GitHub non lié"}), 404
-            access_token = result[0]
+        github_user = GithubUser.query.filter_by(user_id=user_id).first()
+        if not github_user:
+            return jsonify({"error": "Compte GitHub non lié"}), 404
+        access_token = github_user.access_token
 
-            cur.execute(
-                "SELECT id, full_name, html_url FROM selected_repos WHERE user_id = %s",
-                (user_id,)
-            )
-            repos = [{"id": row[0], "full_name": row[1], "html_url": row[2]} for row in cur.fetchall()]
+        repos = SelectedRepo.query.filter_by(user_id=user_id).all()
+        repos = [{"id": repo.id, "full_name": repo.full_name, "html_url": repo.html_url} for repo in repos]
 
         headers = {"Authorization": f"Bearer {access_token}"}
         config_files = []
@@ -350,45 +290,51 @@ def get_repo_configs():
             repo_configs = fetch_contents()
             config_files.extend(repo_configs)
 
-            with conn.cursor() as cur:
-                for config in repo_configs:
-                    content_bytes = config["content"].encode("utf-8")
-                    cur.execute(
-                        "INSERT INTO repo_configs (repo_id, file_path, file_name, content, sha, framework, created_at) "
-                        "VALUES (%s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP) "
-                        "ON CONFLICT (file_path, repo_id) DO UPDATE SET content = EXCLUDED.content, sha = EXCLUDED.sha, framework = EXCLUDED.framework",
-                        (config["repo_id"], config["file_path"], config["file_name"], content_bytes, config["sha"], config["framework"])
-                    )
-                conn.commit()
+            for config in repo_configs:
+                content_bytes = config["content"].encode("utf-8")
+                repo_config = RepoConfig(
+                    repo_id=config["repo_id"],
+                    file_path=config["file_path"],
+                    file_name=config["file_name"],
+                    content=content_bytes,
+                    sha=config["sha"],
+                    framework=config["framework"]
+                )
+                db.session.merge(repo_config)  # Upsert on file_path, repo_id
+            db.session.commit()
 
-        with conn.cursor() as cur:
-            cur.execute(
-                """
-                SELECT rc.id, rc.file_path, rc.file_name, rc.content, rc.sha, sr.full_name, sr.html_url, rc.framework
-                FROM repo_configs rc
-                JOIN selected_repos sr ON rc.repo_id = sr.id
-                WHERE sr.user_id = %s
-                """,
-                (user_id,)
+        configs = (
+            db.session.query(
+                RepoConfig.id,
+                RepoConfig.file_path,
+                RepoConfig.file_name,
+                RepoConfig.content,
+                RepoConfig.sha,
+                SelectedRepo.full_name,
+                SelectedRepo.html_url,
+                RepoConfig.framework
             )
-            configs = [
-                {
-                    "id": row[0],
-                    "file_path": row[1],
-                    "file_name": row[2],
-                    "content": bytes(row[3]).decode("utf-8", errors="ignore"),  # Convert memoryview to bytes first
-                    "sha": row[4],
-                    "repo_full_name": row[5],
-                    "repo_html_url": row[6],
-                    "framework": row[7]
-                }
-                for row in cur.fetchall()
-            ]
+            .join(SelectedRepo, RepoConfig.repo_id == SelectedRepo.id)
+            .filter(SelectedRepo.user_id == user_id)
+            .all()
+        )
+        configs = [
+            {
+                "id": config.id,
+                "file_path": config.file_path,
+                "file_name": config.file_name,
+                "content": config.content.decode("utf-8", errors="ignore"),
+                "sha": config.sha,
+                "repo_full_name": config.full_name,
+                "repo_html_url": config.html_url,
+                "framework": config.framework
+            }
+            for config in configs
+        ]
 
         return jsonify(configs)
 
     except Exception as e:
         print("❌ Erreur:", e)
+        db.session.rollback()
         return jsonify({"error": "Erreur serveur"}), 500
-    finally:
-        conn.close()

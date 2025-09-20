@@ -12,7 +12,6 @@ app = Flask(__name__)
 
 
 
-csrf = CSRFProtect(app)
 t5_base_bp = Blueprint('t5', __name__)
 
 # === Chargement du modèle T5 fine-tuné ===

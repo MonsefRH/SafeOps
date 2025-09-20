@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 import os
-
+from utils.db import init_db 
 from routes.semgrep import semgrep_bp
 from routes.History import history_bp
 from routes.user_routes import user_bp
@@ -22,10 +22,6 @@ from routes.admin import admin_bp
 load_dotenv()
 
 app = Flask(__name__)
-
-
-
-csrf = CSRFProtect(app)
 CORS(app)
 bcrypt = Bcrypt(app)
 
@@ -36,6 +32,9 @@ if not app.config["JWT_SECRET_KEY"]:
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600  # 1 hour
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = 86400  # 24 hours
 jwt = JWTManager(app)
+
+# Initialize database
+init_db(app)
 
 # Register Blueprints
 app.register_blueprint(user_bp, url_prefix="/")
@@ -51,5 +50,5 @@ app.register_blueprint(full_scan_bp, url_prefix="/")
 app.register_blueprint(t5_base_bp, url_prefix="/")
 app.register_blueprint(admin_bp, url_prefix="/")
 
-if __name__ == "__main__":
+if __name__ == "__main__" :
     app.run(debug=True, port=5000)

@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
-
 from routes.checkov import logger
-from utils.db import get_db_connection
+from utils.db import db
+from models.scan_history import ScanHistory
+from sqlalchemy import func
 
 dashboard_bp = Blueprint("dashboard", __name__)
 
@@ -13,45 +13,35 @@ def get_stats():
         return jsonify({"error": "user_id is required"}), 400
 
     try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-
         # Total scans
-        cursor.execute("SELECT COUNT(*) FROM scan_history WHERE user_id = %s", (user_id,))
-        total_scans = cursor.fetchone()[0]
+        total_scans = ScanHistory.query.filter_by(user_id=user_id).count()
 
         # Total failed checks
-        cursor.execute(
-            """
-            SELECT SUM((scan_result->'results'->'summary'->>'failed')::int)
-            FROM scan_history
-            WHERE user_id = %s
-            """,
-            (user_id,)
+        total_failed = (
+            db.session.query(
+                func.sum(func.cast(ScanHistory.scan_result["results"]["summary"]["failed"], db.Integer))
+            )
+            .filter_by(user_id=user_id)
+            .scalar() or 0
         )
-        total_failed = cursor.fetchone()[0] or 0
 
         # Total passed checks
-        cursor.execute(
-            """
-            SELECT SUM((scan_result->'results'->'summary'->>'passed')::int)
-            FROM scan_history
-            WHERE user_id = %s
-            """,
-            (user_id,)
+        total_passed = (
+            db.session.query(
+                func.sum(func.cast(ScanHistory.scan_result["results"]["summary"]["passed"], db.Integer))
+            )
+            .filter_by(user_id=user_id)
+            .scalar() or 0
         )
-        total_passed = cursor.fetchone()[0] or 0
 
         # Average security score
-        cursor.execute(
-            """
-            SELECT AVG((scan_result->'results'->>'score')::int)
-            FROM scan_history
-            WHERE user_id = %s
-            """,
-            (user_id,)
+        avg_score = (
+            db.session.query(
+                func.avg(func.cast(ScanHistory.scan_result["results"]["score"], db.Integer))
+            )
+            .filter_by(user_id=user_id)
+            .scalar() or 0
         )
-        avg_score = cursor.fetchone()[0] or 0
         avg_score = round(float(avg_score))
 
         return jsonify({
@@ -61,7 +51,5 @@ def get_stats():
         })
     except Exception as e:
         logger.error(f"Failed to fetch stats for user_id {user_id}: {str(e)}")
+        db.session.rollback()
         return jsonify({"error": "Failed to fetch stats"}), 500
-    finally:
-        cursor.close()
-        conn.close()

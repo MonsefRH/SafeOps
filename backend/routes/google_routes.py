@@ -3,7 +3,8 @@ from flask_jwt_extended import create_access_token, create_refresh_token
 from google_auth_oauthlib.flow import Flow
 from google.oauth2 import id_token
 from google.auth.transport.requests import Request
-from utils.db import get_db_connection
+from utils.db import db
+from models.user import User
 import os
 from dotenv import load_dotenv
 
@@ -68,47 +69,40 @@ def google_callback():
         email = id_info.get("email")
         name = id_info.get("name", "Utilisateur Google")
 
-        conn = get_db_connection()
-        if not conn:
-            return jsonify({"error": "Erreur de connexion à la base de données"}), 500
-
         try:
-            with conn.cursor() as cur:
-                cur.execute("SELECT id, name, email, password FROM users WHERE email = %s", (email,))
-                user = cur.fetchone()
+            # Check if user exists
+            user = User.query.filter_by(email=email).first()
+            if user:
+                user_id = user.id
+                needs_password = user.password is None
+            else:
+                user = User(name=name, email=email)
+                db.session.add(user)
+                db.session.flush()  # Get user.id before committing
+                user_id = user.id
+                needs_password = True
 
-                if user:
-                    user_id = user[0]
-                    needs_password = user[3] is None
-                else:
-                    cur.execute(
-                        "INSERT INTO users (name, email) VALUES (%s, %s) RETURNING id",
-                        (name, email)
-                    )
-                    user_id = cur.fetchone()[0]
-                    conn.commit()
-                    needs_password = True
+            db.session.commit()
 
-                access_token = create_access_token(identity=str(user_id))
-                refresh_token = create_refresh_token(identity=str(user_id))
+            access_token = create_access_token(identity=str(user_id))
+            refresh_token = create_refresh_token(identity=str(user_id))
 
-                frontend_url = (
-                    f"http://localhost:3000/auth/google/callback"
-                    f"?access_token={access_token}"
-                    f"&refresh_token={refresh_token}"
-                    f"&user_id={user_id}"
-                    f"&name={name}"
-                    f"&email={email}"
-                    f"&needs_password={str(needs_password).lower()}"
-                )
-                return redirect(frontend_url)
+            frontend_url = (
+                f"http://localhost:3000/auth/google/callback"
+                f"?access_token={access_token}"
+                f"&refresh_token={refresh_token}"
+                f"&user_id={user_id}"
+                f"&name={name}"
+                f"&email={email}"
+                f"&needs_password={str(needs_password).lower()}"
+            )
+            return redirect(frontend_url)
 
         except Exception as e:
-            print("❌ Erreur lors de l'authentification Google :", e)
+            print("❌ Erreur PostgreSQL:", e)
+            db.session.rollback()
             return jsonify({"error": "Erreur lors de l'authentification"}), 500
-        finally:
-            conn.close()
 
     except Exception as e:
-        print("❌ Erreur Google OAuth :", e)
+        print("❌ Erreur Google OAuth:", e)
         return jsonify({"error": "Erreur lors de l'authentification Google"}), 500

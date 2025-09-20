@@ -10,13 +10,12 @@ import logging
 import time
 import google.generativeai as genai
 from google.api_core import exceptions
-from psycopg2.extras import Json
-
-from utils.db import get_db_connection
+from utils.db import db
+from models.scan_history import ScanHistory
 
 semgrep_bp = Blueprint('semgrep', __name__)
 
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = "Uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 logging.basicConfig(
@@ -109,36 +108,24 @@ def run_semgrep(target_path):
 
 def save_scan_history(user_id, result, input_type, repo_url=None):
     try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-
-        cursor.execute(
-            """
-            INSERT INTO scan_history (user_id, repo_url, scan_result, status, score, compliant, input_type, scan_type)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING id
-            """,
-            (
-                user_id,
-                repo_url,
-                Json(result),
-                result.get("status"),
-                100 if result.get("results", {}).get("summary", {}).get("failed") == 0 else 0,
-                result.get("results", {}).get("summary", {}).get("failed") == 0,
-                input_type,
-                "semgrep"
-            )
+        scan = ScanHistory(
+            user_id=user_id,
+            repo_url=repo_url,
+            scan_result=result,
+            status=result.get("status"),
+            score=100 if result.get("results", {}).get("summary", {}).get("failed") == 0 else 0,
+            compliant=result.get("results", {}).get("summary", {}).get("failed") == 0,
+            input_type=input_type,
+            scan_type="semgrep"
         )
-        conn.commit()
-        scan_id = cursor.fetchone()[0]
-        logger.info(f"Saved Semgrep scan with ID {scan_id}")
-        return scan_id
+        db.session.add(scan)
+        db.session.commit()
+        logger.info(f"Saved Semgrep scan with ID {scan.id}")
+        return scan.id
     except Exception as e:
         logger.error(f"Failed to save scan: {str(e)}")
-        conn.rollback()
+        db.session.rollback()
         raise
-    finally:
-        cursor.close()
-        conn.close()
 
 @semgrep_bp.route("/semgrep", methods=["POST"])
 def validate_semgrep():
@@ -154,7 +141,7 @@ def validate_semgrep():
             file_path = os.path.join(temp_dir, file.filename)
             file.save(file_path)
             result = run_semgrep(file_path)
-            save_scan_history(user_id, result, input_type)
+            scan_id = save_scan_history(user_id, result, input_type)
             return jsonify(result)
 
         elif input_type == "zip" and "file" in request.files:
@@ -165,7 +152,7 @@ def validate_semgrep():
             with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                 zip_ref.extractall(extract_path)
             result = run_semgrep(extract_path)
-            save_scan_history(user_id, result, input_type)
+            scan_id = save_scan_history(user_id, result, input_type)
             return jsonify(result)
 
         elif input_type == "repo":
@@ -175,7 +162,7 @@ def validate_semgrep():
             clone_path = os.path.join(temp_dir, "repo")
             subprocess.run(["git", "clone", "--depth", "1", repo_url, clone_path], check=True)
             result = run_semgrep(clone_path)
-            save_scan_history(user_id, result, input_type, repo_url=repo_url)
+            scan_id = save_scan_history(user_id, result, input_type, repo_url=repo_url)
             return jsonify(result)
 
         elif input_type == "file" and request.form.get("content"):
@@ -185,7 +172,7 @@ def validate_semgrep():
             with open(file_path, "w") as f:
                 f.write(content)
             result = run_semgrep(file_path)
-            save_scan_history(user_id, result, "content")
+            scan_id = save_scan_history(user_id, result, "content")
             return jsonify(result)
 
         return jsonify({"error": "Invalid input_type or missing file"}), 400
@@ -194,7 +181,8 @@ def validate_semgrep():
         return jsonify({"error": str(e)}), 500
     finally:
         shutil.rmtree(temp_dir, ignore_errors=True)
+
 def run_semgrep_scan(path, user_id, input_type="repo", repo_url=None):
     result = run_semgrep(path)
-    save_scan_history(user_id, result, input_type, repo_url)
+    scan_id = save_scan_history(user_id, result, input_type, repo_url)
     return result

@@ -11,9 +11,10 @@ import logging
 import time
 import google.generativeai as genai
 from google.api_core import exceptions
-from psycopg2.extras import Json
-
-from utils.db import get_db_connection
+from utils.db import db
+from models.selected_repo import SelectedRepo
+from models.scan_history import ScanHistory
+from models.file_content import FileContent
 
 checkov_bp = Blueprint('checkov', __name__)
 
@@ -345,49 +346,40 @@ def run_checkov_on_dir(path, is_file=False):
 def save_file_contents(scan_id, files, input_type):
     """Save the content of files to the file_contents table."""
     try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-
         for file_path, content in files:
-            cursor.execute(
-                """
-                INSERT INTO file_contents (scan_id, file_path, content, input_type)
-                VALUES (%s, %s, %s, %s)
-                """,
-                (scan_id, file_path, content, input_type)
+            file_content = FileContent(
+                scan_id=scan_id,
+                file_path=file_path,
+                content=content,
+                input_type=input_type
             )
+            db.session.add(file_content)
 
-        conn.commit()
+        db.session.commit()
         logger.info(f"Saved {len(files)} file contents for scan_id {scan_id}")
     except Exception as e:
         logger.error(f"Failed to save file contents for scan_id {scan_id}: {str(e)}")
-        conn.rollback()
-    finally:
-        cursor.close()
-        conn.close()
+        db.session.rollback()
+        raise
 
 def save_scan_history(user_id, result, input_type, repo_url=None, files_to_save=None):
     """Save the scan result and associated file contents to the database."""
     try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
         repo_id = None
-
         if repo_url:
             repo_name = repo_url.split("/")[-2] + "/" + repo_url.split("/")[-1]
-            cursor.execute(
-                "SELECT id FROM selected_repos WHERE full_name = %s",
-                (repo_name,)
-            )
-            row = cursor.fetchone()
-            if row:
-                repo_id = row[0]
+            repo = SelectedRepo.query.filter_by(full_name=repo_name).first()
+            if repo:
+                repo_id = repo.id
             else:
-                cursor.execute(
-                    "INSERT INTO selected_repos (user_id, full_name, html_url) VALUES (%s, %s, %s) RETURNING id",
-                    (user_id, repo_name, repo_url)
+                repo = SelectedRepo(
+                    user_id=user_id,
+                    full_name=repo_name,
+                    html_url=repo_url
                 )
-                repo_id = cursor.fetchone()[0]
+                db.session.add(repo)
+                db.session.flush()  # Get repo.id before committing
+                repo_id = repo.id
 
         # Normalize paths in files_found
         if result.get("results", {}).get("files_found"):
@@ -397,30 +389,22 @@ def save_scan_history(user_id, result, input_type, repo_url=None, files_to_save=
             result["results"]["path_scanned"] = clean_path(tempfile.gettempdir())
 
         # Insert scan history
-        cursor.execute(
-            """
-            INSERT INTO scan_history (user_id, repo_id, scan_result, repo_url, status, score, compliant, input_type,scan_type)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-            RETURNING id
-            """,
-            (
-                user_id,
-                repo_id,
-                Json(result),
-                repo_url,
-                result.get("results", {}).get("status", "unknown"),
-                result.get("results", {}).get("score"),
-                result.get("results", {}).get("compliant"),
-                input_type,
-                "checkov"
-            )
+        scan_history = ScanHistory(
+            user_id=user_id,
+            repo_id=repo_id,
+            scan_result=result,
+            repo_url=repo_url,
+            status=result.get("results", {}).get("status", "unknown"),
+            score=result.get("results", {}).get("score"),
+            compliant=result.get("results", {}).get("compliant"),
+            input_type=input_type,
+            scan_type="checkov"
         )
+        db.session.add(scan_history)
+        db.session.flush()  # Get scan_id before committing
+        scan_id = scan_history.id
 
-        scan_id = cursor.fetchone()[0]
-
-
-
-        conn.commit()
+        db.session.commit()
         # Save file contents if provided
         if files_to_save:
             save_file_contents(scan_id, files_to_save, input_type)
@@ -428,11 +412,8 @@ def save_scan_history(user_id, result, input_type, repo_url=None, files_to_save=
         return scan_id
     except Exception as e:
         logger.error(f"Failed to save scan history: {str(e)}")
-        conn.rollback()
+        db.session.rollback()
         raise
-    finally:
-        cursor.close()
-        conn.close()
 
 @checkov_bp.route("/checkov", methods=["POST"])
 def validate():

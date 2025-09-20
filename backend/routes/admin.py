@@ -1,6 +1,9 @@
 from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from utils.db import get_db_connection
+from utils.db import db
+from models.user import User
+from models.scan_history import ScanHistory
+from sqlalchemy import func
 
 admin_bp = Blueprint("admin", __name__)
 
@@ -8,62 +11,56 @@ admin_bp = Blueprint("admin", __name__)
 @jwt_required()
 def get_admin_stats():
     user_id = get_jwt_identity()
-    conn = get_db_connection()
-    if not conn:
-        return jsonify({"error": "Database connection failed"}), 500
 
     try:
-        with conn.cursor() as cur:
-            # Verify user is admin
-            cur.execute("SELECT role FROM users WHERE id = %s", (user_id,))
-            user = cur.fetchone()
-            if not user or user[0] != "admin":
-                return jsonify({"error": "Access denied: Admin role required"}), 403
+        # Verify user is admin
+        user = User.query.filter_by(id=user_id).first()
+        if not user or user.role != "admin":
+            return jsonify({"error": "Access denied: Admin role required"}), 403
 
-            # Get total users
-            cur.execute("SELECT COUNT(*) FROM users where role = 'user'")
-            total_users = cur.fetchone()[0]
+        # Get total users (with role 'user')
+        total_users = User.query.filter_by(role="user").count()
 
-            # Get total scans
-            cur.execute("SELECT COUNT(*) FROM scan_history")
-            total_scans = cur.fetchone()[0]
+        # Get total scans
+        total_scans = ScanHistory.query.count()
 
-            # Get user data with scan counts
-            cur.execute("""
-                SELECT 
-                    u.id, 
-                    u.name, 
-                    u.email, 
-                    u.role, 
-                    u.created_at, 
-                    COUNT(sh.id) as scan_count
-                FROM users u
-                LEFT JOIN scan_history sh ON u.id = sh.user_id
-                Where role = 'user'
-                GROUP BY u.id, u.name, u.email, u.role, u.created_at
-                ORDER BY u.created_at DESC
-            """)
-            users = [
-                {
-                    "id": row[0],
-                    "name": row[1],
-                    "email": row[2],
-                    "role": row[3],
-                    "created_at": row[4].isoformat(),
-                    "scan_count": row[5]
-                }
-                for row in cur.fetchall()
-            ]
+        # Get user data with scan counts
+        users = (
+            db.session.query(
+                User.id,
+                User.name,
+                User.email,
+                User.role,
+                User.created_at,
+                func.count(ScanHistory.id).label("scan_count")
+            )
+            .outerjoin(ScanHistory, User.id == ScanHistory.user_id)
+            .filter(User.role == "user")
+            .group_by(User.id, User.name, User.email, User.role, User.created_at)
+            .order_by(User.created_at.desc())
+            .all()
+        )
 
-            return jsonify({
-                "totalUsers": total_users,
-                "totalScans": total_scans,
-                "users": users
-            })
+        # Format users data for response
+        users_data = [
+            {
+                "id": user.id,
+                "name": user.name,
+                "email": user.email,
+                "role": user.role,
+                "created_at": user.created_at.isoformat(),
+                "scan_count": user.scan_count
+            }
+            for user in users
+        ]
+
+        return jsonify({
+            "totalUsers": total_users,
+            "totalScans": total_scans,
+            "users": users_data
+        })
 
     except Exception as e:
         print(f"❌ Error fetching admin stats: {e}")
+        db.session.rollback()
         return jsonify({"error": "Internal server error"}), 500
-
-    finally:
-        conn.close()

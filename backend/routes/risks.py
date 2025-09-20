@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
-from utils.db import get_db_connection
+from utils.db import db
+from models.scan_history import ScanHistory
 import logging
 
 risks_bp = Blueprint('risks', __name__)
@@ -11,7 +12,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
 @risks_bp.route("/risks", methods=["GET"])
 def get_risks():
     user_id = request.headers.get("X-User-ID")
@@ -19,27 +19,22 @@ def get_risks():
         return jsonify({"error": "user_id is required"}), 400
 
     try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-
         # Fetch scan history
-        query = """
-            SELECT scan_result, scan_type
-            FROM scan_history
-            WHERE user_id = %s
-            ORDER BY created_at DESC
-            LIMIT 10
-        """
-        cursor.execute(query, (user_id,))
-        rows = cursor.fetchall()
+        scans = (
+            ScanHistory.query
+            .filter_by(user_id=user_id)
+            .order_by(ScanHistory.created_at.desc())
+            .limit(10)
+            .all()
+        )
 
         # Aggregate risks by severity
         severity_counts = {"ERROR": 0, "WARNING": 0, "INFO": 0}
         detailed_risks = []
 
-        for row in rows:
-            scan_result = row[0]
-            scan_type = row[1]
+        for scan in scans:
+            scan_result = scan.scan_result
+            scan_type = scan.scan_type
             failed_checks = scan_result.get("results", {}).get("failed_checks", [])
 
             for check in failed_checks:
@@ -67,7 +62,5 @@ def get_risks():
         })
     except Exception as e:
         logger.error(f"Failed to fetch risks for user_id {user_id}: {str(e)}")
+        db.session.rollback()
         return jsonify({"error": "Failed to fetch risks"}), 500
-    finally:
-        cursor.close()
-        conn.close()
