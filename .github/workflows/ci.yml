@@ -169,7 +169,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: 5b0392f2bf515c989e72e6f89803afaeeb03e5f5
         # auto-reads sonar-project.properties at repo root
 
   # ---------- Final gate ----------
