@@ -1,8 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import pytz
 from  utils.db import db 
-from models.selected_repo import SelectedRepo
 
 class RepoConfig(db.Model):
     __tablename__ = "repo_configs"

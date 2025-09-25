@@ -1,8 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import pytz
 from  utils.db import db 
-from models.scan_history import ScanHistory
 
 class FileContent(db.Model):
     __tablename__ = "file_contents"

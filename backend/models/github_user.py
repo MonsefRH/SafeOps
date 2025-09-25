@@ -1,8 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import pytz
 from  utils.db import db 
-from models.user import User
 
 class GithubUser(db.Model):
     __tablename__ = "github_users"

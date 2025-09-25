@@ -96,8 +96,8 @@ const AdminDashboard = () => {
   }, [user, stats, navigate]);
 
   // Animated stats
-  const totalUsersCount = useCountUp(stats ? stats.totalUsers : 0, 1500);
-  const totalScansCount = useCountUp(stats ? stats.totalScans : 0, 1500);
+  const totalUsersCount = useCountUp(stats ? stats.total_users : 0, 1500);
+  const totalScansCount = useCountUp(stats ? stats.total_scans : 0, 1500);
 
   const filteredStats = stats
     ? {

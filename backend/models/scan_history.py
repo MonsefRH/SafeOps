@@ -1,9 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import pytz
 from  utils.db import db 
-from models.user import User
-from models.selected_repo import SelectedRepo
 from sqlalchemy.dialects.postgresql import JSONB
 
 class ScanHistory(db.Model):
