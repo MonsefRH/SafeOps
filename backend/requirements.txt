@@ -5,6 +5,7 @@ flask_wtf
 flask_cors
 pytz
 requests
+pydantic
 python-dotenv
 psycopg2-binary
 GitPython
