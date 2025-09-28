@@ -1,0 +1,502 @@
+/* Risk Dashboard Page Styles */
+.risk-dashboard-page {
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.risk-dashboard-page__container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 80rem;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.risk-dashboard-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.risk-dashboard-page__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+.risk-dashboard-page__icon {
+  width: 2rem;
+  height: 2rem;
+  color: #3b82f6;
+  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+.risk-dashboard-page__refresh {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
+  letter-spacing: 0.025em;
+}
+
+.risk-dashboard-page__refresh:hover:not(.risk-dashboard-page__refresh--loading) {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px 0 rgba(59, 130, 246, 0.4);
+}
+
+.risk-dashboard-page__refresh:active:not(.risk-dashboard-page__refresh--loading) {
+  transform: translateY(0);
+}
+
+.risk-dashboard-page__refresh--loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  box-shadow: 0 4px 14px 0 rgba(107, 114, 128, 0.3);
+}
+
+.risk-dashboard-page__refresh-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.risk-dashboard-page__refresh-icon--spinning {
+  animation: spin 1s linear infinite;
+}
+
+.risk-dashboard-page__content {
+  padding: 2rem;
+  background: #fafbfc;
+}
+
+/* Loading Spinner Styles */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loading-spinner__icon {
+  width: 3rem;
+  height: 3rem;
+  color: #3b82f6;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner__text {
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Error Message Styles */
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.error-message__content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.error-message__icon {
+  width: 2rem;
+  height: 2rem;
+  color: #ef4444;
+  flex-shrink: 0;
+}
+
+.error-message__text {
+  text-align: left;
+}
+
+.error-message__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #b91c1c;
+  margin: 0 0 0.5rem 0;
+}
+
+.error-message__description {
+  font-size: 0.875rem;
+  color: #dc2626;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.error-message__retry {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.error-message__retry:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+}
+
+/* Risk Chart Styles */
+.risk-chart {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.risk-chart__label {
+  display: block;
+  color: #475569;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.risk-chart__container {
+  height: 20rem;
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03);
+}
+
+/* Vulnerability Table Styles */
+.vulnerability-table {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.vulnerability-table__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vulnerability-table__empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #64748b;
+  background: white;
+  border-radius: 8px;
+  border: 2px dashed #e2e8f0;
+}
+
+/* Desktop Table Styles */
+.vulnerability-table__desktop {
+  display: none;
+}
+
+.vulnerability-table__scroll {
+  max-height: 24rem;
+  overflow-y: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03);
+}
+
+.vulnerability-table__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vulnerability-table__table thead {
+  position: sticky;
+  top: 0;
+  background: #475569;
+  z-index: 10;
+}
+
+.vulnerability-table__table th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  border-bottom: 1px solid #64748b;
+}
+
+.vulnerability-table__table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease;
+}
+
+.vulnerability-table__table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.vulnerability-table__table td {
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #334155;
+  vertical-align: top;
+}
+
+.vulnerability-table__severity {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.vulnerability-table__message,
+.vulnerability-table__suggestion {
+  line-height: 1.5;
+  max-width: 300px;
+}
+
+/* Mobile Cards Styles */
+.vulnerability-table__mobile {
+  display: block;
+}
+
+.vulnerability-table__cards {
+  max-height: 24rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vulnerability-card {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.vulnerability-card:hover {
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.vulnerability-card__header {
+  padding: 1rem 1rem 0 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.vulnerability-card__severity {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid;
+}
+
+.vulnerability-card__content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vulnerability-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vulnerability-card__label {
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.vulnerability-card__text {
+  color: #64748b;
+  line-height: 1.6;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 768px) {
+  .vulnerability-table__desktop {
+    display: block;
+  }
+  
+  .vulnerability-table__mobile {
+    display: none;
+  }
+  
+  .vulnerability-table {
+    padding: 2rem;
+  }
+  
+  .risk-chart {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .risk-dashboard-page {
+    padding: 0.5rem;
+  }
+  
+  .risk-dashboard-page__container {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .risk-dashboard-page {
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+  
+  .risk-dashboard-page__header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .risk-dashboard-page__title {
+    font-size: 1.5rem;
+    justify-content: center;
+  }
+  
+  .risk-dashboard-page__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .risk-dashboard-page__content {
+    padding: 1.5rem;
+  }
+  
+  .risk-chart__container {
+    height: 16rem;
+    padding: 0.75rem;
+  }
+  
+  .error-message__content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .error-message__text {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .risk-dashboard-page__header {
+    padding: 1rem;
+  }
+  
+  .risk-dashboard-page__title {
+    font-size: 1.25rem;
+  }
+  
+  .risk-dashboard-page__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .risk-dashboard-page__refresh {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .risk-dashboard-page__refresh-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .risk-dashboard-page__content {
+    padding: 1rem;
+  }
+  
+  .risk-chart {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Animation keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom Scrollbar */
+.vulnerability-table__scroll::-webkit-scrollbar,
+.vulnerability-table__cards::-webkit-scrollbar {
+  width: 8px;
+}
