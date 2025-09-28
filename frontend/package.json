@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.15",
     "@heroicons/react": "^2.2.0",
     "@react-oauth/google": "^0.12.1",
     "@tailwindcss/postcss": "^4.0.9",

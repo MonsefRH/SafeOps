@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { DocumentTextIcon, ArrowPathIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
+import LoadingLogo from "../components/LoadingLogo";
+import loadingVideo from "../assets/loading.mp4";
 
 const Configs = () => {
   const [configs, setConfigs] = useState([]);
@@ -40,7 +42,7 @@ const Configs = () => {
           theme: "light",
         });
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
@@ -48,9 +50,9 @@ const Configs = () => {
   }, []);
 
   const copyToClipboard = (content) => {
-    navigator.clipboard.writeText(content).then(() => {
-      toast.success("Content copied", { position: "top-right", autoClose: 2000, theme: "light" });
-    });
+    // navigator.clipboard.writeText(content).then(() => {
+    //   toast.success("Content copied", { position: "top-right", autoClose: 2000, theme: "light" });
+    // });
   };
 
   const checkSingleFileCompliance = (config) => {
@@ -80,14 +82,27 @@ const Configs = () => {
       </h2>
 
       {loading ? (
-        <div className="flex justify-center items-center py-10">
-          <ArrowPathIcon className="h-10 w-10 text-gray-800 animate-spin" />
-          <span className="ml-3 text-gray-600">Loading Configurations ...</span>
-        </div>
-      ) : error ? (
-        <div className="flex justify-center items-center py-10 text-red-400">
-          <ArrowPathIcon className="h-6 w-6 mr-2" />
-          <p>{error}</p>
+        <div className="flex-1 flex items-center justify-center bg-white min-h-[500px]">
+          <div className="flex flex-col items-center justify-center space-y-6">
+            <video 
+              src={loadingVideo} 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="w-64 h-64 object-cover rounded-2xl"
+              style={{ 
+                backgroundColor: 'transparent',
+                border: 'none',
+                outline: 'none',
+                filter: 'brightness(1.1) contrast(1.05)'
+              }}
+            />
+            <div className="text-center space-y-2">
+              <p className="text-xl font-semibold text-gray-700">Loading configurations...</p>
+              <p className="text-sm text-gray-500">Please wait while we fetch your repository data</p>
+            </div>
+          </div>
         </div>
       ) : configs.length > 0 ? (
         <div className="bg-sky-100 p-6 rounded-lg shadow-md w-full max-w-4xl mx-auto">
@@ -138,7 +153,17 @@ const Configs = () => {
           </ul>
         </div>
       ) : (
-        <p className="text-gray-400">Aucune configuration trouvée. Sélectionnez des dépôts dans le tableau de bord.</p>
+        <div className="flex-1 flex items-center justify-center bg-white min-h-[400px]">
+          <div className="text-center space-y-4">
+            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <DocumentTextIcon className="h-12 w-12 text-gray-400" />
+            </div>
+            <p className="text-xl font-medium text-gray-600">No configurations found</p>
+            <p className="text-sm text-gray-400 max-w-md">
+              Select repositories from the dashboard to view their configuration files here.
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );
