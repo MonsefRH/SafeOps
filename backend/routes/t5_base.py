@@ -1,12 +1,32 @@
-from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from services.t5_service import correct_dockerfile
-from schemas.t5_dto import T5Request, T5Response, T5ErrorResponse
-from pydantic import ValidationError
-import logging
+import os
 
-t5_base_bp = Blueprint("t5", __name__)
-logger = logging.getLogger(__name__)
+from flask import Flask, Blueprint, request, jsonify
+from flask_jwt_extended import jwt_required
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+import google.generativeai as genai
+from flask_wtf.csrf import CSRFProtect
+import torch
+from dotenv import load_dotenv
+
+# === Initialisation Flask ===
+app = Flask(__name__)
+
+
+
+csrf = CSRFProtect(app)
+t5_base_bp = Blueprint('t5', __name__)
+
+# === Chargement du modèle T5 fine-tuné ===
+MODEL_PATH = "TahalliAnas/t5_base_ConfigFiles_fixer"
+tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
+t5_model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_PATH)
+
+# === Configuration Gemini API ===
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+genai.configure(api_key=GEMINI_API_KEY)
+gemini_model = genai.GenerativeModel("gemini-1.5-flash")
 
 @t5_base_bp.route("/t5", methods=["POST"])
 @jwt_required()

@@ -1,6 +1,8 @@
 Flask
 flask-jwt-extended
 flask-bcrypt
+flask-cors
+SQLAlchemy
 flask_wtf
 flask_cors
 pytz
