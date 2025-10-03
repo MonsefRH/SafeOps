@@ -1,12 +1,20 @@
 import os
+import logging
 
 from flask import Flask, Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import google.generativeai as genai
 from flask_wtf.csrf import CSRFProtect
 import torch
+from pydantic import ValidationError
 from dotenv import load_dotenv
+
+from schemas.t5_dto import T5Request, T5Response, T5ErrorResponse
+from services.t5_service import correct_dockerfile
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 # === Initialisation Flask ===
 app = Flask(__name__)
