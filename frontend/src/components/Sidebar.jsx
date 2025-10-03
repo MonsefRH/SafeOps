@@ -40,27 +40,17 @@ const Sidebar = ({ handleLogout, isCollapsed, toggleSidebar, user }) => {
 
   return (
     <div className={`sidebar ${isCollapsed ? 'sidebar--collapsed' : 'sidebar--expanded'}`}>
-      {/* Header with title and toggle button */}
-      <div className="sidebar__header">
-        {!isCollapsed && (
-          <h1 className="sidebar__title">
-            <ShieldCheckIcon className="sidebar__title-icon" />
-            Security Hub
-          </h1>
+      <button
+        onClick={toggleSidebar}
+        className="sidebar__toggle"
+        aria-label={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+      >
+        {isCollapsed ? (
+          <ChevronRightIcon className="sidebar__toggle-icon" />
+        ) : (
+          <ChevronLeftIcon className="sidebar__toggle-icon" />
         )}
-        <button
-          onClick={toggleSidebar}
-          className="sidebar__toggle"
-          aria-label={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-        >
-          {isCollapsed ? (
-            <ChevronRightIcon className="sidebar__toggle-icon" />
-          ) : (
-            <ChevronLeftIcon className="sidebar__toggle-icon" />
-          )}
-        </button>
-      </div>
-
+      </button>
       {/* Navigation */}
       <nav className="sidebar__nav">
         {navItems.map((item) => {
