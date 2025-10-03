@@ -42,15 +42,6 @@ const Header = ({ isAuthenticated, user, handleLogout, isAdmin, isCollapsed }) =
             {user?.name ? user.name : "User"}
           </span>
         </div>
-        
-        <button
-          onClick={handleLogout}
-          className="header__logout"
-          aria-label="Logout"
-        >
-          <ArrowRightStartOnRectangleIcon className="header__logout-icon" />
-          <span className="header__logout-text">Logout</span>
-        </button>
       </div>
     </header>
   ) : null;
