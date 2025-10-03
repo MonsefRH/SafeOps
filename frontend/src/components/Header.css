@@ -88,42 +88,7 @@
   font-weight: 600;
 }
 
-/* Logout Button */
-.header__logout {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 2px 0 rgba(239, 68, 68, 0.2);
-}
 
-.header__logout:hover {
-  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px 0 rgba(239, 68, 68, 0.3);
-}
-
-.header__logout:active {
-  transform: translateY(0);
-}
-
-.header__logout-icon {
-  width: 1rem;
-  height: 1rem;
-}
-
-.header__logout-text {
-  font-size: 0.875rem;
-  font-weight: 600;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -221,13 +186,5 @@
 @media (prefers-reduced-motion: reduce) {
   .header {
     animation: none;
-  }
-  
-  .header__logout {
-    transition: none;
-  }
-  
-  .header__logout:hover {
-    transform: none;
   }
 }
