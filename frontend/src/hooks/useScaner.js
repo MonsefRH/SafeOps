@@ -8,14 +8,17 @@ export const useScaner = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
+  // NEW: lifted code state
+  const [code, setCode] = useState("");
+    const [url, setUrl] = useState(""); // <-- define state
+
+
   const location = useLocation();
   const selectedFiles = location.state?.selectedFiles || [];
   
-  // Get user data
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const userId = user.id;
 
-  // Handle body scroll when loading
   useEffect(() => {
     document.body.style.overflow = isLoading ? 'hidden' : 'auto';
     return () => {
@@ -27,8 +30,10 @@ export const useScaner = () => {
     setSourceType(null);
     setResult(null);
     setIsLoading(false);
+    // Keep code if you want persistence across reset,
+    // OR uncomment next line to clear when going back:
+    // setCode("");
     
-    // Add smooth transition effect
     const scannerContent = document.querySelector('.scanner-content');
     if (scannerContent) {
       scannerContent.classList.add('opacity-0');
@@ -38,17 +43,9 @@ export const useScaner = () => {
     }
   };
 
-  const clearResult = () => {
-    setResult(null);
-  };
-
-  const openHistory = () => {
-    setIsHistoryOpen(true);
-  };
-
-  const closeHistory = () => {
-    setIsHistoryOpen(false);
-  };
+  const clearResult = () => setResult(null);
+  const openHistory = () => setIsHistoryOpen(true);
+  const closeHistory = () => setIsHistoryOpen(false);
 
   const handleCopy = async (content) => {
     try {
@@ -67,20 +64,20 @@ export const useScaner = () => {
     }
   };
 
-  const selectSourceType = (type) => {
-    setSourceType(type);
-  };
+  const selectSourceType = (type) => setSourceType(type);
 
   return {
-    // State
     sourceType,
     result,
     isLoading,
     isHistoryOpen,
     selectedFiles,
     userId,
-    
-    // Actions
+    code, 
+    url,
+    setUrl,
+    setIsLoading,      // NEW
+    setCode,    // NEW
     setResult,
     setIsLoading,
     resetScanner,
