@@ -19,4 +19,4 @@ transformers
 torch
 flask_sqlalchemy
 semgrep
-checkov
+check

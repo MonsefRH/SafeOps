@@ -6,6 +6,9 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ReactMarkdown from "react-markdown";
 
+const BASE_URL = (import.meta.env?.VITE_SIP || "http://localhost").replace(/\/+$/, "");
+const API = `${BASE_URL}`;
+
 const PoliciesGenerator = () => {
   const location = useLocation();
   const selectedFiles = location.state?.selectedFiles || [];
@@ -34,7 +37,7 @@ const PoliciesGenerator = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://127.0.0.1:5000/t5", {
+      const response = await fetch(`${API}:5000/t5`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

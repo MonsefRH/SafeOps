@@ -7,7 +7,8 @@ import {
   ArrowPathIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/outline";
-
+const BASE_URL = (import.meta.env?.VITE_SIP || "http://localhost").replace(/\/+$/, "");
+const API = `${BASE_URL}/api`;
 // Utility function for smooth number animation
 const useCountUp = (end, duration = 2000) => {
   const [count, setCount] = useState(0);
@@ -62,7 +63,7 @@ const AdminDashboard = () => {
 
     const fetchAdminStats = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/admin-stats", {
+        const response = await fetch(`${API}/admin-stats`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

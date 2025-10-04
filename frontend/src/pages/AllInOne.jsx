@@ -10,6 +10,9 @@ import {
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
 
+const BASE_URL = (import.meta.env?.VITE_SIP || "http://localhost").replace(/\/+$/, "");
+const API = `${BASE_URL}`;
+
 // Fonction pour convertir les données Checkov en texte lisible avec fichier en premier
 const formatCheckovText = (data, filename) => {
   if (!data || !data.failed_checks) return "Aucune vérification disponible pour ce fichier.";
@@ -44,7 +47,7 @@ const AllInOne = ({ userId }) => {
 
     setLoading(true);
     try {
-      const response = await fetch("http://127.0.0.1:5000/full-scan", {
+      const response = await fetch(`${API}/full-scan`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
