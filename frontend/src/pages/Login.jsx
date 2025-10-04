@@ -137,7 +137,7 @@ const Login = ({ setIsAuthenticated, setUser }) => {
 
   const handleGitHubLogin = async () => {
     try {
-      window.location.href = `${API}/auth/github`;
+      window.location.href = `${API}:5000/auth/github`;
     } catch (error) {
       toast.error("Erreur GitHub OAuth", {
         position: "top-right",
