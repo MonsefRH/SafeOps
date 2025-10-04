@@ -18,3 +18,5 @@ google-generativeai
 transformers
 torch
 flask_sqlalchemy
+semgrep
+checkov
