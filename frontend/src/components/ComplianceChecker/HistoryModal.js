@@ -501,10 +501,9 @@ const HistoryModal = ({ isOpen, onClose, userId, scanType }) => {
             >
               Back to history
             </button>
-            <ResultDisplay
-              result={selectedScan.scan_result?.results}
-              item_name={selectedScan.ItemName}
-            />
+            <ResultDisplay 
+            result={selectedScan.scan_result} 
+            item_name={selectedScan.ItemName} />
           </div>
         )}
       </div>
