@@ -33,11 +33,17 @@ def get_risks(user_id):
         for scan in scans:
             scan_result = scan.scan_result
             scan_type = scan.scan_type
-            failed_checks = scan_result.get("results", {}).get("failed_checks", [])
+            failed_checks = scan_result.get("failed_checks", [])
 
             for check in failed_checks:
-                severity = check.get("severity", "INFO")
-                severity_counts[severity] = severity_counts.get(severity, 0) + 1
+                severity = check.get("severity") or "INFO"  # <-- FIXED: Handles None explicitly
+                  # Normalize to uppercase for counting (in case Checkov uses "high" or "High")
+                severity_upper = severity.upper() if severity else "INFO"
+                  # Only count if it's one of our expected keys (avoids errors if weird values)
+                if severity_upper in severity_counts:
+                      severity_counts[severity_upper] += 1
+                else:
+                      severity_counts["INFO"] += 1  # Fallback for unknown severities
                 detailed_risks.append({
                     "severity": severity,
                     "check_id": check.get("check_id"),
