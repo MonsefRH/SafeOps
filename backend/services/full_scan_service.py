@@ -2,7 +2,9 @@ import os
 import tempfile
 import logging
 import requests
+from datetime import datetime
 from git import Repo
+
 from services.checkov_service import run_checkov_on_dir, save_scan_history as save_checkov_history
 from services.semgrep_service import run_semgrep
 
@@ -10,6 +12,7 @@ from services.semgrep_service import run_semgrep
 logger = logging.getLogger(__name__)
 
 SUPPORTED_CONFIG_FILES = ["Dockerfile", ".tf", ".yml", ".yaml"]
+
 
 def collect_config_files(root_dir):
     """Collect supported configuration files from a directory."""
@@ -24,6 +27,7 @@ def collect_config_files(root_dir):
             ):
                 matched_files.append(os.path.join(root, file))
     return matched_files
+
 
 def call_t5_fix(file_path, jwt_token):
     """Call the T5 correction API for a file."""
@@ -48,8 +52,21 @@ def call_t5_fix(file_path, jwt_token):
     except Exception as e:
         return None, f"Exception during T5 fix: {str(e)}"
 
+
+def _repo_full_name_from_url(repo_url: str) -> str:
+    try:
+        parts = repo_url.rstrip("/").split("/")
+        return f"{parts[-2]}/{parts[-1]}" if len(parts) >= 2 else parts[-1]
+    except Exception:
+        return repo_url
+
+
 def run_full_scan(user_id, repo_url, jwt_token):
-    """Run a full scan (Checkov, T5 correction, Checkov re-run, Semgrep) on a repository."""
+    """
+    Run a full scan (Checkov initial, T5 correction, Checkov re-run, Semgrep) on a repository.
+    - Les notifications + envoi de CSV sont gérés dans les services concernés (Checkov/Semgrep).
+    - Ici on ajoute seulement meta.executed_at aux résultats Checkov avant la sauvegarde.
+    """
     try:
         with tempfile.TemporaryDirectory() as tmpdirname:
             logger.debug(f"Cloning {repo_url} into {tmpdirname}")
@@ -62,16 +79,27 @@ def run_full_scan(user_id, repo_url, jwt_token):
                 "semgrep": {}
             }
 
+            repo_full_name = _repo_full_name_from_url(repo_url)
+
             # Step 1: Initial Checkov scan
             try:
                 checkov_result = run_checkov_on_dir(tmpdirname, is_file=False)
-                scan_id = save_checkov_history(user_id, checkov_result, input_type="repo", repo_url=repo_url)
+                # ➕ horodatage d'exécution
+                checkov_result.setdefault("meta", {})
+                checkov_result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+
+                scan_id = save_checkov_history(
+                    user_id=user_id,
+                    result=checkov_result,
+                    input_type="repo",
+                    repo_url=repo_url
+                )
                 results["checkov"] = {"scan_id": scan_id, "results": checkov_result}
             except Exception as e:
                 logger.error(f"Checkov scan failed: {str(e)}")
                 results["checkov"] = {"error": str(e)}
 
-            # Step 2: T5 Correction on Supported Files
+            # Step 2: T5 Correction on Supported Files (appel de l'API /t5)
             t5_summary = {}
             config_files = collect_config_files(tmpdirname)
 
@@ -92,7 +120,15 @@ def run_full_scan(user_id, repo_url, jwt_token):
             # Step 3: Re-run Checkov after correction
             try:
                 corrected_checkov_result = run_checkov_on_dir(tmpdirname, is_file=False)
-                scan_id = save_checkov_history(user_id, corrected_checkov_result, input_type="repo", repo_url=repo_url)
+                corrected_checkov_result.setdefault("meta", {})
+                corrected_checkov_result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+
+                scan_id = save_checkov_history(
+                    user_id=user_id,
+                    result=corrected_checkov_result,
+                    input_type="repo",
+                    repo_url=repo_url
+                )
                 results["checkov_corrected"] = {"scan_id": scan_id, "results": corrected_checkov_result}
             except Exception as e:
                 logger.error(f"Corrected Checkov scan failed: {str(e)}")
@@ -100,7 +136,14 @@ def run_full_scan(user_id, repo_url, jwt_token):
 
             # Step 4: Semgrep scan
             try:
-                semgrep_result = run_semgrep(user_id=user_id, input_type="repo", repo_url=repo_url, file_path=tmpdirname)
+                # ⚠️ on utilise la version de run_semgrep fournie par ton service.
+                # Elle gère déjà la sauvegarde + notifs + email CSV (selon ta version actuelle).
+                semgrep_result = run_semgrep(
+                    user_id=user_id,
+                    input_type="repo",
+                    repo_url=repo_url,
+                    file_path=tmpdirname
+                )
                 results["semgrep"] = semgrep_result
             except Exception as e:
                 logger.error(f"Semgrep scan failed: {str(e)}")

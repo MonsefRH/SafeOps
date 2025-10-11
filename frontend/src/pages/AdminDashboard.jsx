@@ -63,7 +63,7 @@ const AdminDashboard = () => {
 
     const fetchAdminStats = async () => {
       try {
-        const response = await fetch(`${API}/admin-stats`, {
+        const response = await fetch(`${API}:5000/admin-stats`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

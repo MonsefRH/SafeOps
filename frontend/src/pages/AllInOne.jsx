@@ -47,7 +47,7 @@ const AllInOne = ({ userId }) => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${API}/full-scan`, {
+      const response = await fetch(`${API}:5000/full-scan`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
