@@ -17,6 +17,7 @@ from routes.risks import risks_bp
 from routes.full_scan_routes import full_scan_bp
 from routes.t5_base import t5_base_bp
 from routes.admin import admin_bp
+from routes.report_routes import report_bp
 
 from flasgger import Swagger
 from utils.api_spec import swagger_template, swagger_config
@@ -55,6 +56,7 @@ app.register_blueprint(risks_bp, url_prefix="/")
 app.register_blueprint(full_scan_bp, url_prefix="/")
 app.register_blueprint(t5_base_bp, url_prefix="/")
 app.register_blueprint(admin_bp, url_prefix="/")
+app.register_blueprint(report_bp, url_prefix="/")
 
 if __name__ == "__main__" :
     app.run(debug=True, port=5000)

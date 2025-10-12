@@ -2,18 +2,15 @@ import smtplib
 from email.message import EmailMessage
 import os
 
-# Load email credentials from environment variables
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 def send_verification_email(to_email, name, code):
-    # Create the message
     msg = EmailMessage()
     msg["Subject"] = "Your SafeOps Verification Code"
     msg["From"] = EMAIL_ADDRESS
     msg["To"] = to_email
 
-    # Plain text content (fallback)
     body = f"""
 Hello {name},
 
@@ -28,7 +25,6 @@ The SafeOps Team
 """
     msg.set_content(body)
 
-    # HTML content
     html_content = f"""
 <!DOCTYPE html>
 <html>
@@ -69,13 +65,12 @@ The SafeOps Team
 """
     msg.add_alternative(html_content, subtype="html")
 
-    # Send the message
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
             smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
             smtp.send_message(msg)
-        print(f"✅ Email sent successfully to {to_email}!")
+        print(f" Email sent successfully to {to_email}!")
         return True
     except Exception as e:
-        print(f"❌ Failed to send email to {to_email}: {e}")
+        print(f" Failed to send email to {to_email}: {e}")
         return False

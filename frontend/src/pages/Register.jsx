@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
+const BASE_URL = (process.env.REACT_APP_SIP || "http://localhost").replace(/\/+$/, "");
+const API = `${BASE_URL}`;
+
 const Register = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1); // 1: Register form, 2: Verify code
@@ -13,7 +16,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://127.0.0.1:5000/register", {
+      const response = await fetch(`${API}:5000/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
@@ -26,7 +29,7 @@ const Register = () => {
           autoClose: 3000,
           theme: "light",
         });
-        setStep(2); // Move to verification step
+        setStep(2); 
       } else {
         toast.error(data.error || "Registration failed!", {
           position: "top-right",
@@ -46,7 +49,7 @@ const Register = () => {
   const handleVerifyCode = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://127.0.0.1:5000/verify-code", {
+      const response = await fetch(`${API}:5000/verify-code`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, code }),

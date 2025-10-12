@@ -18,5 +18,7 @@ google-generativeai
 transformers
 torch
 flask_sqlalchemy
+semgrep
+check
 flasgger
 apispec-pydantic-plugin

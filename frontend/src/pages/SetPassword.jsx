@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+const BASE_URL = (import.meta.env?.VITE_SIP || "http://localhost").replace(/\/+$/, "");
+const API = `${BASE_URL}`;
+
 const SetPassword = ({ user, setIsAuthenticated, setUser }) => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
@@ -23,7 +26,7 @@ const SetPassword = ({ user, setIsAuthenticated, setUser }) => {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/set-password", {
+      const response = await fetch(`${API}:5000/set-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

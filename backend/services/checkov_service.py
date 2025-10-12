@@ -1,3 +1,4 @@
+# services/checkov_service.py
 from pathlib import Path
 import os
 import tempfile
@@ -8,115 +9,125 @@ import stat
 import json
 import logging
 import time
+from datetime import datetime
+
 import google.generativeai as genai
 from google.api_core import exceptions
+
 from utils.db import db
 from models.selected_repo import SelectedRepo
 from models.scan_history import ScanHistory
 from models.file_content import FileContent
+from models.user import User
 
-# Configure logging
+# CSV report + HTML email wrapper
+from services.report_service import generate_csv_for_scan, send_csv_report_email
+
 logger = logging.getLogger(__name__)
 
-# Configure Gemini API
+# -------- Gemini ----------
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     logger.error("GEMINI_API_KEY environment variable not set.")
     raise ValueError("GEMINI_API_KEY environment variable not set.")
 genai.configure(api_key=GEMINI_API_KEY)
 
-# Cache the Checkov path globally
+ENABLE_AI_SUGGESTIONS = os.getenv("ENABLE_AI_SUGGESTIONS", "true").lower() == "true"
+
+# Cache for checkov path
 _checkov_path = None
 
-def clean_path(full_path):
-    """Remove temporary directory prefix from file paths."""
+
+def clean_path(full_path: str) -> str:
+    """Remove temp-dir prefixes from file paths for nicer display."""
     try:
         path = Path(full_path)
         temp_index = next((i for i, part in enumerate(path.parts) if part.startswith('tmp')), None)
         if temp_index is not None:
-            relative_path = '/'.join(path.parts[temp_index + 1:])
-            return relative_path
+            return '/'.join(path.parts[temp_index + 1:])
         logger.warning(f"Temporary directory not found in path: {full_path}")
         return str(path)
     except Exception as e:
         logger.error(f"Error cleaning path {full_path}: {str(e)}")
         return str(full_path)
 
-def get_checkov_path():
-    """Find or set the Checkov executable path."""
+
+def get_checkov_path() -> str:
+    """Resolve the Checkov executable path."""
     global _checkov_path
     if _checkov_path:
         return _checkov_path
 
     checkov_path = shutil.which("checkov.exe")
     if checkov_path and os.path.exists(checkov_path):
-        logger.info(f"Found Checkov executable at {checkov_path}")
         _checkov_path = checkov_path
         return _checkov_path
 
     fallback_path = os.getenv("CHECKOV_FILE_PATH")
     if fallback_path and os.path.exists(fallback_path):
-        logger.info(f"Found Checkov executable at fallback path {fallback_path}")
         _checkov_path = fallback_path
         return _checkov_path
 
-    logger.warning("Falling back to shell execution with 'checkov' as checkov.exe not found")
-    _checkov_path = "checkov"
+    _checkov_path = "checkov"  # fallback to PATH
     return _checkov_path
 
-def get_gemini_suggestion(check, max_retries=3, retry_delay=5):
-    """Get improvement suggestion from Gemini API."""
+
+def get_gemini_suggestion(check: dict, max_retries: int = 3, retry_delay: int = 5) -> str:
+    """Ask Gemini for a short manual suggestion for a Checkov finding."""
     prompt = (
-        f"I have detected an issue in an Infrastructure-as-Code file using Checkov. "
-        f"Here are the details:\n"
-        f"- Check ID: {check['check_id']}\n"
-        f"- Check Name: {check['check_name']}\n"
-        f"- File Path: {check['file_path']}\n"
-        f"- Line Range: {check['file_line_range']}\n"
-        f"- Resource: {check['resource']}\n"
-        f"- Severity: {check['severity'] or 'Unknown'}\n"
-        f"Please provide a concise suggestion for improving this issue. "
-        f"Do not suggest automatic fixes, only recommend manual improvements."
+        f"I have detected an issue in an Infrastructure-as-Code file using Checkov.\n"
+        f"- Check ID: {check.get('check_id')}\n"
+        f"- Check Name: {check.get('check_name')}\n"
+        f"- File Path: {check.get('file_path')}\n"
+        f"- Line Range: {check.get('file_line_range')}\n"
+        f"- Resource: {check.get('resource')}\n"
+        f"- Severity: {check.get('severity') or 'Unknown'}\n"
+        f"Provide a concise improvement suggestion (manual, no auto-fix)."
     )
+
+    # Fast path if AI suggestions disabled
+    if not ENABLE_AI_SUGGESTIONS:
+        start, end = (check.get("file_line_range") or [0, 0])[:2]
+        return (f"Review {check.get('check_name')} in {check.get('file_path')} "
+                f"(lines {start}-{end}) and apply best practices.")
 
     for attempt in range(max_retries):
         try:
-            logger.debug(f"Attempt {attempt + 1}/{max_retries} - Sending prompt to Gemini for check {check['check_id']}: {prompt[:100]}...")
             model = genai.GenerativeModel('gemini-1.5-flash')
             response = model.generate_content(prompt)
-            suggestion = response.text.strip()
-            logger.debug(f"Gemini suggestion for {check['check_id']}: {suggestion}")
-            return suggestion
+            suggestion = (response.text or "").strip()
+            if suggestion:
+                return suggestion
         except exceptions.ResourceExhausted:
-            logger.warning(f"Rate limit hit for check {check['check_id']}, attempt {attempt + 1}/{max_retries}. Retrying after {retry_delay}s...")
             time.sleep(retry_delay)
-        except Exception as e:
-            logger.error(f"Failed to get Gemini suggestion for check {check['check_id']}, attempt {attempt + 1}/{max_retries}: {str(e)}")
+        except Exception:
             if attempt < max_retries - 1:
                 time.sleep(retry_delay)
-            continue
-    logger.error(f"All {max_retries} attempts failed for check {check['check_id']}.")
-    return f"Review the {check['check_name']} issue in {check['file_path']} (lines {check['file_line_range'][0]}-{check['file_line_range'][1]}) and apply best practices to address it."
 
-def detect_framework(file_path):
-    """Detect the framework of a file based on its extension or content."""
+    start, end = (check.get("file_line_range") or [0, 0])[:2]
+    return (f"Review {check.get('check_name')} in {check.get('file_path')} "
+            f"(lines {start}-{end}) and apply best practices.")
+
+
+def detect_framework(file_path: str) -> str | None:
     if file_path.endswith(('.yaml', '.yml')):
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
                 if 'apiVersion' in content and 'kind' in content:
                     return 'kubernetes'
-        except Exception as e:
-            logger.warning(f"Could not read file {file_path} for framework detection: {str(e)}")
+        except Exception:
+            pass
         return 'kubernetes'
-    elif file_path.endswith('.tf'):
+    if file_path.endswith('.tf'):
         return 'terraform'
-    elif os.path.basename(file_path) == 'Dockerfile':
+    if os.path.basename(file_path) == 'Dockerfile':
         return 'dockerfile'
     return None
 
-def run_checkov_on_single_file(file_path):
-    """Run Checkov scan on a single file."""
+
+def run_checkov_on_single_file(file_path: str) -> dict:
+    """Run Checkov on one file and normalize the output."""
     if not os.path.exists(file_path):
         return {
             "status": "error",
@@ -137,23 +148,16 @@ def run_checkov_on_single_file(file_path):
         }
 
     checkov_path = get_checkov_path()
-    cmd = [
-        checkov_path,
-        "-f", file_path,
-        "--framework", framework,
-        "-o", "json",
-        "--quiet"
-    ]
+    cmd = [checkov_path, "-f", file_path, "--framework", framework, "-o", "json", "--quiet"]
 
     try:
-        logger.debug(f"Executing Checkov command on single file: {' '.join(cmd)}")
+        # Windows exe vs PATH
         if checkov_path == "checkov":
             process = subprocess.run(' '.join(cmd), shell=True, capture_output=True, text=True, timeout=60)
         else:
             process = subprocess.run(cmd, shell=False, capture_output=True, text=True, timeout=60)
 
         if not process.stdout.strip():
-            logger.warning(f"Checkov produced no output for {file_path}")
             return {
                 "status": "no_output",
                 "passed_checks": [],
@@ -163,7 +167,6 @@ def run_checkov_on_single_file(file_path):
 
         try:
             output = json.loads(process.stdout)
-            logger.debug(f"Checkov output for {file_path}: {json.dumps(output, indent=2)[:500]}...")
 
             if isinstance(output, dict):
                 results = output.get("results", {})
@@ -177,15 +180,8 @@ def run_checkov_on_single_file(file_path):
 
             filtered_failed = []
             for item in failed:
-                issue = {
-                    "check_id": item.get("check_id"),
-                    "check_name": item.get("check_name"),
-                    "file_path": clean_path(file_path),
-                    "guideline": item.get("guideline"),
-                    "file_line_range": item.get("file_line_range"),
-                    "resource": item.get("resource"),
-                    "severity": item.get("severity"),
-                    "suggestion": get_gemini_suggestion({
+                try:
+                    suggestion = get_gemini_suggestion({
                         "check_id": item.get("check_id"),
                         "check_name": item.get("check_name"),
                         "file_path": clean_path(file_path),
@@ -193,20 +189,30 @@ def run_checkov_on_single_file(file_path):
                         "resource": item.get("resource"),
                         "severity": item.get("severity")
                     })
-                }
-                filtered_failed.append(issue)
-                time.sleep(1)
+                except Exception:
+                    suggestion = "Review this finding and apply best practices."
 
-            filtered_passed = [
-                {
+                filtered_failed.append({
                     "check_id": item.get("check_id"),
                     "check_name": item.get("check_name"),
                     "file_path": clean_path(file_path),
+                    "guideline": item.get("guideline"),
                     "file_line_range": item.get("file_line_range"),
-                    "resource": item.get("resource")
-                }
-                for item in passed
-            ]
+                    "resource": item.get("resource"),
+                    "severity": item.get("severity"),
+                    "suggestion": suggestion
+                })
+
+                if ENABLE_AI_SUGGESTIONS:
+                    time.sleep(1)
+
+            filtered_passed = [{
+                "check_id": item.get("check_id"),
+                "check_name": item.get("check_name"),
+                "file_path": clean_path(file_path),
+                "file_line_range": item.get("file_line_range"),
+                "resource": item.get("resource")
+            } for item in passed]
 
             total_passed = len(filtered_passed)
             total_failed = len(filtered_failed)
@@ -221,11 +227,11 @@ def run_checkov_on_single_file(file_path):
                 "failed_checks": filtered_failed,
                 "summary": {"passed": total_passed, "failed": total_failed},
                 "score": score,
-                "compliant": score == 100
+                "compliant": score == 100,
+                "raw_output": output
             }
 
-        except json.JSONDecodeError as e:
-            logger.error(f"Failed to parse Checkov JSON output for {file_path}: {process.stdout}, Error: {str(e)}")
+        except json.JSONDecodeError:
             return {
                 "status": "json_error",
                 "passed_checks": [],
@@ -235,7 +241,6 @@ def run_checkov_on_single_file(file_path):
             }
 
     except subprocess.TimeoutExpired:
-        logger.error(f"Checkov command timed out after 60 seconds for {file_path}")
         return {
             "status": "timeout",
             "message": "Checkov command timed out after 60 seconds",
@@ -244,7 +249,6 @@ def run_checkov_on_single_file(file_path):
             "summary": {"passed": 0, "failed": 0}
         }
     except Exception as e:
-        logger.error(f"Unexpected error running Checkov on {file_path}: {str(e)}")
         return {
             "status": "error",
             "message": str(e),
@@ -253,8 +257,9 @@ def run_checkov_on_single_file(file_path):
             "summary": {"passed": 0, "failed": 0}
         }
 
-def run_checkov_on_dir(path, is_file=False):
-    """Run Checkov scan on a directory or single file."""
+
+def run_checkov_on_dir(path: str, is_file: bool = False) -> dict:
+    """Run Checkov on a directory (or delegate to single-file)."""
     if is_file:
         return run_checkov_on_single_file(path)
 
@@ -268,11 +273,11 @@ def run_checkov_on_dir(path, is_file=False):
         }
 
     files_found = []
-    for root, dirs, files in os.walk(path):
+    for root, _, files in os.walk(path):
         for file in files:
-            file_path = os.path.join(root, file)
+            fp = os.path.join(root, file)
             if file.endswith(('.tf', '.yaml', '.yml')) or file == 'Dockerfile':
-                files_found.append(file_path)
+                files_found.append(fp)
 
     if not files_found:
         return {
@@ -294,25 +299,23 @@ def run_checkov_on_dir(path, is_file=False):
 
     total_passed = 0
     total_failed = 0
-
-    for file_path in files_found:
-        file_result = run_checkov_on_single_file(file_path)
-        total_passed += len(file_result.get("passed_checks", []))
-        total_failed += len(file_result.get("failed_checks", []))
-        results["failed_checks"].extend(file_result.get("failed_checks", []))
-        results["passed_checks"].extend(file_result.get("passed_checks", []))
+    for fp in files_found:
+        r = run_checkov_on_single_file(fp)
+        total_passed += len(r.get("passed_checks", []))
+        total_failed += len(r.get("failed_checks", []))
+        results["failed_checks"].extend(r.get("failed_checks", []))
+        results["passed_checks"].extend(r.get("passed_checks", []))
 
     results["summary"]["passed"] = total_passed
     results["summary"]["failed"] = total_failed
     total_checks = total_passed + total_failed
     results["score"] = round((total_passed / total_checks) * 100) if total_checks > 0 else 0
     results["compliant"] = results["score"] == 100
-
-    logger.debug(f"Final directory scan result: {json.dumps(results, indent=2)[:1000]}...")
     return results
 
-def save_file_contents(scan_id, files, input_type):
-    """Save the content of files to the file_contents table."""
+
+def save_file_contents(scan_id: int, files: list[tuple[str, str]], input_type: str) -> None:
+    """Persist captured file contents used in a scan."""
     try:
         for file_path, content in files:
             file_content = FileContent(
@@ -323,15 +326,33 @@ def save_file_contents(scan_id, files, input_type):
             )
             db.session.add(file_content)
         db.session.commit()
-        logger.info(f"Saved {len(files)} file contents for scan_id {scan_id}")
-    except Exception as e:
-        logger.error(f"Failed to save file contents for scan_id {scan_id}: {str(e)}")
+    except Exception:
         db.session.rollback()
         raise
 
+
+def _repo_display(repo_url: str | None, fallback: str) -> str:
+    if repo_url:
+        parts = repo_url.rstrip("/").split("/")
+        return f"{parts[-2]}/{parts[-1]}" if len(parts) >= 2 else parts[-1]
+    return fallback
+
+
+def _final_status(result: dict) -> str:
+    status_raw = (result.get("status") or "").lower()
+    failed = int(result.get("summary", {}).get("failed", 0) or 0)
+    if status_raw in {"error", "timeout", "json_error"}:
+        return "FAILED"
+    return "FAILED" if failed > 0 else "SUCCESS"
+
+
 def save_scan_history(user_id, result, input_type, repo_url=None, files_to_save=None):
-    """Save the scan result and associated file contents to the database."""
+    """
+    Persist Checkov results, optional file contents, and send ONE HTML email with CSV attached.
+    Email is in English, no emojis, and **no scan ID** in the subject.
+    """
     try:
+        # Resolve / create repo entry
         repo_id = None
         if repo_url:
             repo_name = repo_url.split("/")[-2] + "/" + repo_url.split("/")[-1]
@@ -339,23 +360,18 @@ def save_scan_history(user_id, result, input_type, repo_url=None, files_to_save=
             if repo:
                 repo_id = repo.id
             else:
-                repo = SelectedRepo(
-                    user_id=user_id,
-                    full_name=repo_name,
-                    html_url=repo_url
-                )
+                repo = SelectedRepo(user_id=user_id, full_name=repo_name, html_url=repo_url)
                 db.session.add(repo)
-                db.session.flush()  # Get repo.id before committing
+                db.session.flush()
                 repo_id = repo.id
 
-        # Normalize paths in files_found
+        # Normalize result
         if result.get("files_found"):
             result["files_found"] = [f.replace("\\", "/") for f in result["files_found"]]
-        # Set path_scanned if missing
         if not result.get("path_scanned"):
             result["path_scanned"] = clean_path(tempfile.gettempdir())
 
-        # Insert scan history
+        # Persist ScanHistory
         scan_history = ScanHistory(
             user_id=user_id,
             repo_id=repo_id,
@@ -365,38 +381,76 @@ def save_scan_history(user_id, result, input_type, repo_url=None, files_to_save=
             score=result.get("score"),
             compliant=result.get("compliant"),
             input_type=input_type,
-            scan_type="checkov"
+            scan_type="checkov",
         )
         db.session.add(scan_history)
-        db.session.flush()  # Get scan_id before committing
+        db.session.flush()
         scan_id = scan_history.id
-
         db.session.commit()
+
         # Save file contents if provided
         if files_to_save:
             save_file_contents(scan_id, files_to_save, input_type)
-        logger.info(f"Scan history saved for user_id {user_id} with scan_id {scan_id}")
+
+        # ---- ONE combined HTML email with CSV (no emojis, no scan id) ----
+        try:
+            csv_path, csv_filename = generate_csv_for_scan(scan_id)
+            user = db.session.get(User, int(user_id))
+
+            repo_disp = _repo_display(repo_url, result.get("path_scanned", "local"))
+            findings = int(result.get("summary", {}).get("failed", 0) or 0)
+            final_status = _final_status(result)
+            status_color = "#16a34a" if final_status == "SUCCESS" else "#dc2626"
+
+            subject = f"SafeOps — Checkov: Scan completed for {repo_disp}"
+            # Note: send_csv_report_email wraps this HTML fragment inside the blue template.
+            body = (
+                f"<strong>Status:</strong> "
+                f"<span style='color:{status_color};font-weight:600;'>{final_status}</span><br>"
+                f"<strong>Findings:</strong> {findings}<br>"
+                f"<strong>Repository/path:</strong> {repo_disp}"
+            )
+
+            if user:
+                send_csv_report_email(
+                    to_email=user.email,
+                    subject=subject,
+                    body_text=body,
+                    csv_path=csv_path,
+                    csv_filename=csv_filename,
+                    user_name=user.name,
+                )
+        except Exception as e:
+            logger.warning(f"Combined email (finish + CSV) failed for scan_id {scan_id}: {e}")
+
         return scan_id
+
     except Exception as e:
         logger.error(f"Failed to save scan history: {str(e)}")
         db.session.rollback()
         raise
 
+
 def run_checkov_scan(user_id, input_type, content=None, file_path=None, repo_url=None, zip_path=None):
-    """Run Checkov scan based on input type and save results."""
+    """Entry point used by routes to run a Checkov scan and persist it."""
     temp_dir = None
     files_to_save = []
     try:
         if input_type == "content":
             if not content:
                 raise ValueError("Content is required for content input type")
-            framework = "terraform"  # Default; adjust based on your needs
+            framework = "terraform"
             extension = {"terraform": ".tf", "kubernetes": ".yaml", "dockerfile": "Dockerfile"}.get(framework, ".tf")
+
             temp_dir = tempfile.mkdtemp()
             temp_file_path = os.path.join(temp_dir, "Dockerfile" if extension == "Dockerfile" else f"input{extension}")
             with open(temp_file_path, "w", encoding="utf-8") as f:
                 f.write(content)
+
             result = run_checkov_on_single_file(temp_file_path)
+            result.setdefault("meta", {})
+            result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+
             files_to_save = [(clean_path(temp_file_path), content)]
             scan_id = save_scan_history(user_id, result, input_type, files_to_save=files_to_save)
             return {"scan_id": scan_id, "results": result}
@@ -404,9 +458,14 @@ def run_checkov_scan(user_id, input_type, content=None, file_path=None, repo_url
         elif input_type == "file":
             if not file_path or not os.path.exists(file_path):
                 raise ValueError(f"Le fichier {file_path} n'existe pas")
+
             with open(file_path, "r", encoding="utf-8") as f:
                 file_content = f.read()
+
             result = run_checkov_on_dir(file_path, is_file=True)
+            result.setdefault("meta", {})
+            result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+
             files_to_save = [(clean_path(file_path), file_content)]
             scan_id = save_scan_history(user_id, result, input_type, files_to_save=files_to_save)
             return {"scan_id": scan_id, "results": result}
@@ -414,53 +473,71 @@ def run_checkov_scan(user_id, input_type, content=None, file_path=None, repo_url
         elif input_type == "zip":
             if not zip_path or not os.path.exists(zip_path):
                 raise ValueError("Le fichier ZIP est invalide")
+
             temp_dir = tempfile.mkdtemp()
             with zipfile.ZipFile(zip_path, "r") as zip_ref:
                 zip_ref.extractall(temp_dir)
+
             macosx_path = os.path.join(temp_dir, "__MACOSX")
             if os.path.exists(macosx_path):
                 shutil.rmtree(macosx_path)
+
             files_found = []
-            for root, dirs, files in os.walk(temp_dir):
+            for root, _, files in os.walk(temp_dir):
                 for file in files:
-                    file_path = os.path.join(root, file)
+                    p = os.path.join(root, file)
                     if file.endswith(('.tf', '.yaml', '.yml')) or file == 'Dockerfile':
-                        with open(file_path, "r", encoding="utf-8") as f:
+                        with open(p, "r", encoding="utf-8") as f:
                             content = f.read()
-                        files_found.append((clean_path(file_path), content))
+                        files_found.append((clean_path(p), content))
+
             if not files_found:
                 raise ValueError("Aucun fichier scannable trouvé dans l’archive")
+
             result = run_checkov_on_dir(temp_dir, is_file=False)
+            result.setdefault("meta", {})
+            result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+
             scan_id = save_scan_history(user_id, result, input_type, files_to_save=files_found)
             return {"scan_id": scan_id, "results": result}
 
         elif input_type == "repo":
             if not repo_url:
                 raise ValueError("repo_url est requis")
+
             temp_dir = tempfile.mkdtemp()
             clone_cmd = ["git", "clone", "--depth", "1", repo_url, temp_dir]
             subprocess.run(clone_cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+            # make directory deletable on Windows
             git_dir = os.path.join(temp_dir, ".git")
             if os.path.exists(git_dir):
                 def remove_readonly(func, path, _):
                     os.chmod(path, stat.S_IWRITE)
                     func(path)
                 shutil.rmtree(git_dir, onerror=remove_readonly)
+
             files_found = []
-            for root, dirs, files in os.walk(temp_dir):
+            for root, _, files in os.walk(temp_dir):
                 for file in files:
-                    file_path = os.path.join(root, file)
+                    p = os.path.join(root, file)
                     if file.endswith(('.tf', '.yaml', '.yml')) or file == 'Dockerfile':
-                        with open(file_path, "r", encoding="utf-8") as f:
+                        with open(p, "r", encoding="utf-8") as f:
                             content = f.read()
-                        files_found.append((clean_path(file_path), content))
+                        files_found.append((clean_path(p), content))
+
             if not files_found:
                 raise ValueError("Aucun fichier scannable trouvé dans le dépôt")
+
             result = run_checkov_on_dir(temp_dir, is_file=False)
+            result.setdefault("meta", {})
+            result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+
             scan_id = save_scan_history(user_id, result, input_type, repo_url=repo_url, files_to_save=files_found)
             return {"scan_id": scan_id, "results": result}
 
         raise ValueError("Type d'entrée invalide. Utilisez 'file', 'zip', 'repo' ou 'content'")
+
     finally:
         if temp_dir and os.path.exists(temp_dir):
             shutil.rmtree(temp_dir, ignore_errors=True)

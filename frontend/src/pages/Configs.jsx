@@ -5,6 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import LoadingLogo from "../components/LoadingLogo";
 import loadingVideo from "../assets/loading.mp4";
 
+const BASE_URL = (import.meta.env?.VITE_SIP || "http://localhost").replace(/\/+$/, "");
+const API = `${BASE_URL}`;
+
 const Configs = () => {
   const [configs, setConfigs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +19,7 @@ const Configs = () => {
       setLoading(true);
       setError("");
       try {
-        const response = await fetch("http://127.0.0.1:5000/github/repo-configs", {
+        const response = await fetch(`${API}:5000/github/repo-configs`, {
           method: "GET",
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });

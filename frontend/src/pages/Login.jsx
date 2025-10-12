@@ -4,6 +4,9 @@ import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
 import SetPassword from "./SetPassword"; // Adjust path
 
+const BASE_URL = (import.meta.env?.VITE_SIP || "http://localhost").replace(/\/+$/, "");
+const API = `${BASE_URL}`;
+
 const Login = ({ setIsAuthenticated, setUser }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -67,7 +70,7 @@ const Login = ({ setIsAuthenticated, setUser }) => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/login", {
+      const response = await fetch(`${API}:5000/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -112,7 +115,7 @@ const Login = ({ setIsAuthenticated, setUser }) => {
 
   const handleGoogleLogin = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/auth/google");
+      const response = await fetch(`${API}:5000/auth/google`);
       const data = await response.json();
       if (data.authorization_url) {
         window.location.href = data.authorization_url;
@@ -134,7 +137,7 @@ const Login = ({ setIsAuthenticated, setUser }) => {
 
   const handleGitHubLogin = async () => {
     try {
-      window.location.href = "http://127.0.0.1:5000/auth/github";
+      window.location.href = `${API}:5000/auth/github`;
     } catch (error) {
       toast.error("Erreur GitHub OAuth", {
         position: "top-right",
