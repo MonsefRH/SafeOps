@@ -93,9 +93,7 @@ Before you begin, ensure you have met the following requirements:
 ## Usage
 
 
-Start the full application (backend, frontend, and database) with:
-
-1. **Start the backend server**
+1. **Start the full application:**
    ```bash
    docker compose up -d --build
 
