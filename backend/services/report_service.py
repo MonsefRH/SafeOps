@@ -157,6 +157,7 @@ def send_csv_report_email(
     csv_path: str,
     csv_filename: str,
     user_name: str | None = None,
+    download_url: str | None = None,
 ):
     """Send an HTML email with SafeOps blue style and attach the CSV report."""
     msg = EmailMessage()

@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        FLASK_API_URL: "http://<ip_server>:5001/scan"
+        FLASK_API_URL: "http://safeops:5000/scan"
         REPO_URL: "https://github.com/username/repo_name"
     }
 
@@ -30,9 +30,9 @@ pipeline {
                     def status = parsed.status
 
                     if (exitCode.toInteger() != 0 || status == 'failed') {
-                        error "🚨 Vulnérabilités détectées. Le pipeline est arrêté."
+                        error " Vulnérabilités détectées. Le pipeline est arrêté."
                     } else {
-                        echo "✅ Aucun problème détecté. Le pipeline continue."
+                        echo " Aucun problème détecté. Le pipeline continue."
                     }
                 }
             }

@@ -19,6 +19,9 @@ transformers
 torch
 flask_sqlalchemy
 semgrep
-check
+checkov
 flasgger
 apispec-pydantic-plugin
+flasgger
+apispec
+apispec_pydantic_plugin

@@ -79,20 +79,9 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/MonsefRH/SafeOps
    ```
 
-2. **Install dependencies**
-   ```bash
-   # Install frontend dependencies
-   cd frontend
 
-   npm install
-   
-   # Install Python backend dependencies
-   cd backend
 
-   pip install -r requirements.txt
-   ```
-
-3. **Environment setup**
+2. **Environment setup in the backend**
    ```bash
    # Copy environment template
    cp .env.example .env
@@ -101,59 +90,18 @@ Before you begin, ensure you have met the following requirements:
    nano .env
    ```
 
- 4. **Database Setup**
-
- ***Step 1: Connect to PostgreSQL***
-```bash
-psql -U postgres
-```
-
-***Step 2: Create Database***
-```sql
--- In the psql terminal
-CREATE DATABASE safeops;
-\q
-```
-
-***Step 3: Create the admin user***
-```bash
-psql -U postgres -d safeops -f base.sql
-
-```
-***Step 4: Import Database Schema***
-```bash
-psql -U postgres
-
--- In the psql terminal
-
-INSERT INTO users  (name, email, password, role)
-VALUES (
-    'Admin ',
-    'admin@example.com',
-    '$2b$12$YOUR_HASHED_PASSWORD', -- Replace with a bcrypt hashed password
-    'admin'
-);
-\q
-```
----
-
-**Note:** Replace `postgres` with your actual PostgreSQL username.
-
 ## Usage
 
-### Development Mode
+
+Start the full application (backend, frontend, and database) with:
 
 1. **Start the backend server**
    ```bash
-   python app.py
+   docker compose up -d --build
+
    ```
 
-2. **Start the frontend development server**
-   ```bash
-   npm start
-   ```
-
-3. **Access the application**
+2. **Access the application**
    - Frontend: `http://localhost:3000`
    - API: `http://localhost:5000`
 
