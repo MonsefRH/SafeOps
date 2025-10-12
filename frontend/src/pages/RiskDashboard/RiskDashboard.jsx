@@ -1,5 +1,5 @@
-import React from 'react';
-import { ChartBarIcon, ArrowPathIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import React, { useState } from 'react';
+import { ChartBarIcon, ArrowPathIcon, ExclamationCircleIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import { Bar } from 'react-chartjs-2';
 import { useRisks } from '../../hooks/UseRisk';
 import { createChartData, createChartOptions, getSeverityColor } from '../../utils/chartConfig';
@@ -7,6 +7,37 @@ import './RiskDashboard.css';
 
 const RiskDashboardPage = () => {
   const { risks, details, loading, error, isRefreshing, refreshRisks } = useRisks();
+  const [selectedScanType, setSelectedScanType] = useState('all');
+
+  // Get unique scan types from details
+  const scanTypes = ['all', ...new Set(details.map(d => d.scan_type).filter(Boolean))];
+
+  // Filter details based on selected scan type
+  const filteredDetails = selectedScanType === 'all' 
+    ? details 
+    : details.filter(d => d.scan_type === selectedScanType);
+
+  // Aggregate risks by severity for filtered data
+  const getFilteredRisks = () => {
+    if (selectedScanType === 'all') return risks;
+
+    const severityCounts = { ERROR: 0, WARNING: 0, INFO: 0 };
+    
+    filteredDetails.forEach(detail => {
+      const severity = (detail.severity || 'INFO').toUpperCase();
+      if (severity in severityCounts) {
+        severityCounts[severity] += 1;
+      } else {
+        severityCounts.INFO += 1;
+      }
+    });
+
+    return [
+      { name: "Critical (ERROR)", level: severityCounts.ERROR * 10 },
+      { name: "High (WARNING)", level: severityCounts.WARNING * 5 },
+      { name: "Low (INFO)", level: severityCounts.INFO * 2 }
+    ];
+  };
 
   // Loading Spinner Component
   const LoadingSpinner = ({ message = 'Loading...' }) => (
@@ -34,10 +65,39 @@ const RiskDashboardPage = () => {
     </div>
   );
 
+  // Scan Type Filter Component
+  const ScanTypeFilter = () => (
+    <div className="scan-type-filter">
+      <div className="scan-type-filter__label">
+        <FunnelIcon className="scan-type-filter__icon" />
+        <span>Filter by Scan Type:</span>
+      </div>
+      <div className="scan-type-filter__buttons">
+        {scanTypes.map(type => (
+          <button
+            key={type}
+            className={`scan-type-filter__button ${
+              selectedScanType === type ? 'scan-type-filter__button--active' : ''
+            }`}
+            onClick={() => setSelectedScanType(type)}
+          >
+            {type === 'all' ? 'All Scans' : type.charAt(0).toUpperCase() + type.slice(1)}
+            {type !== 'all' && (
+              <span className="scan-type-filter__count">
+                ({details.filter(d => d.scan_type === type).length})
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
   // Risk Chart Section
   const RiskChart = ({ risks }) => {
-    const chartData = createChartData(risks);
-    const chartOptions = createChartOptions(risks);
+    const filteredRisks = getFilteredRisks();
+    const chartData = createChartData(filteredRisks);
+    const chartOptions = createChartOptions(filteredRisks);
 
     return (
       <div className="risk-chart">
@@ -58,7 +118,7 @@ const RiskDashboardPage = () => {
         <div className="vulnerability-table">
           <h3 className="vulnerability-table__title">Vulnerability Details</h3>
           <div className="vulnerability-table__empty">
-            <p>No vulnerabilities found</p>
+            <p>No vulnerabilities found{selectedScanType !== 'all' ? ` for ${selectedScanType}` : ''}</p>
           </div>
         </div>
       );
@@ -67,7 +127,7 @@ const RiskDashboardPage = () => {
     return (
       <div className="vulnerability-table">
         <h3 className="vulnerability-table__title">
-          Vulnerability Details ({details.length})
+          Vulnerabilities Details ({details.length})
         </h3>
         
         {/* Desktop Table */}
@@ -76,6 +136,7 @@ const RiskDashboardPage = () => {
             <table className="vulnerability-table__table">
               <thead>
                 <tr>
+                  <th>Scan Type</th>
                   <th>Severity</th>
                   <th>Problem</th>
                   <th>Suggestion</th>
@@ -84,6 +145,11 @@ const RiskDashboardPage = () => {
               <tbody>
                 {details.map((detail, index) => (
                   <tr key={index}>
+                    <td>
+                      <span className="vulnerability-table__scan-type">
+                        {detail.scan_type || 'N/A'}
+                      </span>
+                    </td>
                     <td>
                       <span 
                         className="vulnerability-table__severity"
@@ -111,6 +177,9 @@ const RiskDashboardPage = () => {
             {details.map((detail, index) => (
               <div key={index} className="vulnerability-card">
                 <div className="vulnerability-card__header">
+                  <span className="vulnerability-card__scan-type">
+                    {detail.scan_type || 'N/A'}
+                  </span>
                   <span 
                     className="vulnerability-card__severity"
                     style={{ 
@@ -150,8 +219,9 @@ const RiskDashboardPage = () => {
 
     return (
       <>
+        <ScanTypeFilter />
         <RiskChart risks={risks} />
-        <VulnerabilityTable details={details} />
+        <VulnerabilityTable details={filteredDetails} />
       </>
     );
   };
