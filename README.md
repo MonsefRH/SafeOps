@@ -1,13 +1,13 @@
-# SAFEOPS
+# SAFEOPS+
 
 *Ensuring Safety, Empowering Innovation, Securing the Future*
 
 
 ## Overview
 
-SafeOps is an all-in-one developer toolset focused on enhancing operational safety, security, and compliance within complex system architectures. It streamlines incident management, automates vulnerability detection, and enforces security standards across repositories, configurations, and infrastructure components.
+SafeOps+ is an all-in-one developer toolset focused on enhancing operational safety, security, and compliance within complex system architectures. It streamlines incident management, automates vulnerability detection, and enforces security standards across repositories, configurations, and infrastructure components.
 
-## Why SafeOps?
+## Why SafeOps+?
 
 This project helps developers build resilient, compliant, and secure systems with ease. The core features include:
 
@@ -162,7 +162,7 @@ https://github.com/user-attachments/assets/73c6a73c-dbdf-4698-b5f9-e1e1b639eddd
 
 ## Contributing
 
-We welcome contributions to SafeOps! Please follow these steps:
+We welcome contributions to SafeOps+! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch 
