@@ -1,0 +1,26 @@
+tags:
+  - Google Authentication
+summary: Handle Google OAuth callback
+description: Processes the OAuth code and redirects to frontend with session setup.
+parameters:
+  - name: code
+    in: query
+    type: string
+    required: true
+    description: OAuth authorization code from Google
+security: []
+responses:
+  302:
+    description: Redirect to frontend
+    headers:
+      Location:
+        type: string
+        description: Redirect URL to frontend
+  400:
+    description: Callback error
+    schema:
+      $ref: '#/definitions/GoogleErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/GoogleErrorResponse'

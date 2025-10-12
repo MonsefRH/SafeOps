@@ -5,11 +5,13 @@ from schemas.full_scan_dto import FullScanResponse, FullScanRequest, FullScanErr
 from pydantic import ValidationError
 import logging
 
+from flasgger import swag_from
 full_scan_bp = Blueprint("full_scan", __name__)
 logger = logging.getLogger(__name__)
 
 @full_scan_bp.route("/full-scan", methods=["POST"])
 @jwt_required()
+@swag_from("../specs/full_scan_specs.yml")
 def full_scan():
     try:
         data = FullScanRequest(**request.get_json())

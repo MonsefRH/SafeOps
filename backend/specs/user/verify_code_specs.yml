@@ -1,0 +1,28 @@
+tags:
+  - User Authentication
+summary: Verify registration code
+description: Verifies the email code sent during registration.
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '#/definitions/VerifyCodeRequest'
+security: []
+responses:
+  201:
+    description: Code verified successfully
+    schema:
+      $ref: '#/definitions/VerifyCodeResponse'
+  400:
+    description: Invalid input or verification error
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/ErrorResponse'

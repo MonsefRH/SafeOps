@@ -1,0 +1,26 @@
+tags:
+  - Dashboard
+summary: Get user dashboard stats
+description: Retrieves scan history and risk stats for the user based on X-User-ID header.
+produces:
+  - application/json
+parameters:
+  - name: X-User-ID
+    in: header
+    type: string
+    required: true
+    description: User ID for fetching stats
+security: []
+responses:
+  200:
+    description: Stats retrieved successfully
+    schema:
+      $ref: '#/definitions/DashboardStatsResponse'
+  400:
+    description: Missing user_id
+    schema:
+      $ref: '#/definitions/DashboardErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/DashboardErrorResponse'

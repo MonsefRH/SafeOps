@@ -1,0 +1,26 @@
+tags:
+  - GitHub Authentication
+summary: Handle GitHub OAuth callback
+description: Processes the OAuth code and redirects to frontend.
+parameters:
+  - name: code
+    in: query
+    type: string
+    required: true
+    description: OAuth authorization code from GitHub
+security: []
+responses:
+  302:
+    description: Redirect to frontend
+    headers:
+      Location:
+        type: string
+        description: Frontend redirect URL
+  400:
+    description: Callback error
+    schema:
+      $ref: '#/definitions/GithubErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/GithubErrorResponse'

@@ -1,0 +1,58 @@
+tags:
+  - Checkov Scan
+summary: Run Checkov scan on input
+description: "Performs Checkov IaC scan on file, zip, repo URL, or inline content. Supports JSON (for content/repo) or multipart/form-data (for file/zip/repo). Provide user_id via X-User-ID header or body."
+consumes:
+  - application/json
+  - multipart/form-data
+produces:
+  - application/json
+parameters:
+  - name: X-User-ID
+    in: header
+    type: string
+    required: false
+    description: "User ID (alternative: provide in body for JSON)"
+  - name: input_type
+    in: formData
+    type: string
+    required: false
+    description: "Input type ('file', 'zip', 'repo', or omit for JSON content)"
+    enum: [file, zip, repo, content]
+  - name: file
+    in: formData
+    type: file
+    required: false
+    description: "File or zip to upload (for input_type 'file' or 'zip')"
+  - name: repo_url
+    in: formData
+    type: string
+    required: false
+    description: "Repository URL (for input_type 'repo')"
+  - name: content
+    in: formData
+    type: string
+    required: false
+    description: "Inline content (for JSON mode)"
+  - in: body
+    name: body
+    required: false
+    schema:
+      oneOf:
+        - $ref: '#/definitions/CheckovContentRequest'
+        - $ref: '#/definitions/CheckovRepoRequest'
+    description: "JSON body for content or repo (if no form input_type)"
+security: []
+responses:
+  200:
+    description: "Checkov scan completed successfully"
+    schema:
+      $ref: '#/definitions/CheckovResponse'
+  400:
+    description: "Invalid input, missing user_id, or invalid type"
+    schema:
+      $ref: '#/definitions/CheckovErrorResponse'
+  500:
+    description: "Server error"
+    schema:
+      $ref: '#/definitions/CheckovErrorResponse'

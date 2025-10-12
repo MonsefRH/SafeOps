@@ -2,9 +2,12 @@ from flask import Blueprint, jsonify, request
 from services.dashboard_service import get_user_stats
 from schemas.dashboard_dto import DashboardStatsResponse, DashboardErrorResponse
 
+from flasgger import swag_from
+
 dashboard_bp = Blueprint("dashboard", __name__)
 
 @dashboard_bp.route("/stats", methods=["GET"])
+@swag_from("../specs/dashboard_specs.yml")
 def get_stats():
     user_id = request.headers.get("X-User-ID")
     if not user_id:

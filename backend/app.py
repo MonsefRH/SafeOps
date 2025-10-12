@@ -18,12 +18,18 @@ from routes.full_scan_routes import full_scan_bp
 from routes.t5_base import t5_base_bp
 from routes.admin import admin_bp
 
+from flasgger import Swagger
+from utils.api_spec import swagger_template, swagger_config
+
 # Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 bcrypt = Bcrypt(app)
+
+# Initialize Swagger
+swagger = Swagger(app, template=swagger_template,config=swagger_config)
 
 # JWT configuration
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")

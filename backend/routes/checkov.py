@@ -5,6 +5,7 @@ from pydantic import ValidationError
 import os
 import logging
 
+from flasgger import swag_from
 checkov_bp = Blueprint("checkov", __name__)
 
 # Configure upload folder
@@ -15,6 +16,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 logger = logging.getLogger(__name__)
 
 @checkov_bp.route("/checkov", methods=["POST"])
+@swag_from("../specs/checkov_specs.yml")
 def validate():
     try:
         user_id = request.headers.get("X-User-ID") or (request.json and request.json.get("user_id"))

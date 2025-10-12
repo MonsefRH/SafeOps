@@ -1,0 +1,32 @@
+tags:
+  - User Authentication
+summary: Login a user
+description: Authenticates user with email and password, returns JWT tokens.
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '#/definitions/LoginRequest'
+security: []
+responses:
+  200:
+    description: Login successful
+    schema:
+      $ref: '#/definitions/LoginResponse'
+  400:
+    description: Invalid input or credentials
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  429:
+    description: Too many failed attempts (account blocked)
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/ErrorResponse'

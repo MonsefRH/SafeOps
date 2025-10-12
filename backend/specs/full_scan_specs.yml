@@ -1,0 +1,34 @@
+tags:
+  - Full Scan
+summary: Run full security scan on repository
+description: Performs a comprehensive scan on the provided repo URL using all tools. Requires JWT authentication.
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - name: Authorization
+    in: header
+    type: string
+    required: true
+    description: JWT Bearer token
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '#/definitions/FullScanRequest'
+security:
+  - Bearer: []
+responses:
+  200:
+    description: Full scan completed successfully
+    schema:
+      $ref: '#/definitions/FullScanResponse'
+  400:
+    description: Invalid input
+    schema:
+      $ref: '#/definitions/FullScanErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/FullScanErrorResponse'

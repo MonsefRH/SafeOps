@@ -1,0 +1,20 @@
+tags:
+  - User Authentication
+summary: Refresh JWT access token
+description: Refreshes the access token using a valid refresh token.
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters: []  # No body required
+security:
+  - Bearer: []
+responses:
+  200:
+    description: Token refreshed successfully
+    schema:
+      $ref: '#/definitions/RefreshResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/ErrorResponse'

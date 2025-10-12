@@ -1,0 +1,17 @@
+tags:
+  - Google Authentication
+summary: Initiate Google OAuth login
+description: Generates Google OAuth authorization URL for user login.
+produces:
+  - application/json
+parameters: []
+security: []
+responses:
+  200:
+    description: Authorization URL generated
+    schema:
+      $ref: '#/definitions/GoogleAuthResponse'
+  400:
+    description: Login error
+    schema:
+      $ref: '#/definitions/GoogleErrorResponse'

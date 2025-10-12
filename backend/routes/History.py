@@ -3,10 +3,12 @@ from services.history_service import get_scan_history
 from schemas.history_dto import ScanHistoryResponse, HistoryErrorResponse
 import logging
 
+from flasgger import swag_from
 history_bp = Blueprint("history", __name__)
 logger = logging.getLogger(__name__)
 
 @history_bp.route("/history", methods=["GET"])
+@swag_from("../specs/history_specs.yml")
 def get_scan_history_route():
     user_id = request.headers.get("X-User-ID")
     scan_type = request.args.get("scan_type")

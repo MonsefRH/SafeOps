@@ -1,0 +1,26 @@
+tags:
+  - Risks
+summary: Get user risks data
+description: Retrieves security risks data for the user based on X-User-ID header.
+produces:
+  - application/json
+parameters:
+  - name: X-User-ID
+    in: header
+    type: string
+    required: true
+    description: User ID for fetching risks
+security: []
+responses:
+  200:
+    description: Risks data retrieved successfully
+    schema:
+      $ref: '#/definitions/RisksResponse'
+  400:
+    description: Invalid user ID
+    schema:
+      $ref: '#/definitions/RisksErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/RisksErrorResponse'

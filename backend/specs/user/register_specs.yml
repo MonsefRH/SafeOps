@@ -1,0 +1,28 @@
+tags:
+  - User Authentication
+summary: Register a new user
+description: Registers a user with name, email, and password. Sends a verification code via email.
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '#/definitions/RegisterRequest'
+security: []
+responses:
+  200:
+    description: User registered successfully
+    schema:
+      $ref: '#/definitions/RegisterResponse'
+  400:
+    description: Invalid input or registration error
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/ErrorResponse'

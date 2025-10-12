@@ -1,27 +1,21 @@
 import os
 import logging
 
-from flask import Flask, Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import google.generativeai as genai
-from flask_wtf.csrf import CSRFProtect
-import torch
 from pydantic import ValidationError
 from dotenv import load_dotenv
 
 from schemas.t5_dto import T5Request, T5Response, T5ErrorResponse
 from services.t5_service import correct_dockerfile
 
+from flasgger import swag_from
+
 # Configure logging
 logger = logging.getLogger(__name__)
 
-# === Initialisation Flask ===
-app = Flask(__name__)
-
-
-
-csrf = CSRFProtect(app)
 t5_base_bp = Blueprint('t5', __name__)
 
 # === Chargement du modèle T5 fine-tuné ===
@@ -38,6 +32,7 @@ gemini_model = genai.GenerativeModel("gemini-1.5-flash")
 
 @t5_base_bp.route("/t5", methods=["POST"])
 @jwt_required()
+@swag_from("../specs/t5_specs.yml")
 def correct_dockerfile_route():
     try:
         data = T5Request(**request.get_json())

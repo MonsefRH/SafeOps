@@ -3,10 +3,12 @@ from services.google_service import google_login, google_callback
 from schemas.google_dto import GoogleAuthResponse, GoogleCallbackResponse, GoogleErrorResponse
 import logging
 
+from flasgger import swag_from
 google_bp = Blueprint("google", __name__)
 logger = logging.getLogger(__name__)
 
 @google_bp.route("/auth/google", methods=["GET"])
+@swag_from("../specs/google/auth_google_specs.yml")
 def google_login_route():
     try:
         auth_url = google_login()
@@ -16,6 +18,7 @@ def google_login_route():
         return jsonify(GoogleErrorResponse(error=str(e)).dict()), 400
 
 @google_bp.route("/auth/google/callback", methods=["GET"])
+@swag_from("../specs/google/auth_google_callback_specs.yml")
 def google_callback_route():
     try:
         code = request.args.get("code")

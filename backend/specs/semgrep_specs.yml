@@ -1,0 +1,50 @@
+tags:
+  - Semgrep Scan
+summary: Validate code with Semgrep
+description: Runs Semgrep security scan on uploaded file, repo URL, or inline content. Requires JWT authentication.
+consumes:
+  - multipart/form-data
+produces:
+  - application/json
+parameters:
+  - name: input_type
+    in: formData
+    type: string
+    required: true
+    description: Type of input (e.g., 'file', 'repo', 'content')
+  - name: file
+    in: formData
+    type: file
+    required: false
+    description: File to scan (if input_type is 'file')
+  - name: repo_url
+    in: formData
+    type: string
+    required: false
+    description: GitHub repo URL (if input_type is 'repo')
+  - name: content
+    in: formData
+    type: string
+    required: false
+    description: Inline code content (if input_type is 'content')
+  - name: extension
+    in: formData
+    type: string
+    default: py
+    required: false
+    description: "File extension (default: py)"
+security:
+  - Bearer: []
+responses:
+  200:
+    description: Semgrep scan completed successfully
+    schema:
+      $ref: '#/definitions/SemgrepResponse'
+  400:
+    description: Invalid input
+    schema:
+      $ref: '#/definitions/SemgrepErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/SemgrepErrorResponse'

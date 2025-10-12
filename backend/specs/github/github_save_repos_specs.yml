@@ -1,0 +1,29 @@
+tags:
+  - GitHub Repos
+summary: Save selected GitHub repos
+description: Saves filtered list of selected repos for the user. Requires JWT.
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '#/definitions/GithubSaveReposRequest'
+security:
+  - Bearer: []
+responses:
+  200:
+    description: Repos saved successfully
+    schema:
+      $ref: '#/definitions/GithubSaveReposResponse'
+  400:
+    description: Invalid input
+    schema:
+      $ref: '#/definitions/GithubErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/GithubErrorResponse'

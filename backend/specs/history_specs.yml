@@ -1,0 +1,33 @@
+tags:
+  - Scan History
+summary: Get user scan history
+description: Retrieves scan history for the user based on X-User-ID header and optional scan_type query.
+produces:
+  - application/json
+parameters:
+  - name: X-User-ID
+    in: header
+    type: string
+    required: true
+    description: User ID for fetching history
+  - name: scan_type
+    in: query
+    type: string
+    required: false
+    description: Optional filter by scan type (e.g., 'semgrep', 'checkov')
+security: []
+responses:
+  200:
+    description: Scan history retrieved successfully
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/ScanHistoryResponse'
+  400:
+    description: Invalid input
+    schema:
+      $ref: '#/definitions/HistoryErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/HistoryErrorResponse'

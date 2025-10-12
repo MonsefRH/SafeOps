@@ -1,0 +1,24 @@
+tags:
+  - GitHub Repos
+summary: Get user's GitHub repo configurations
+description: Fetches list of repo configs. Requires JWT.
+produces:
+  - application/json
+parameters: []
+security:
+  - Bearer: []
+responses:
+  200:
+    description: Configs retrieved successfully
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/GithubRepoConfig'
+  404:
+    description: Configs not found
+    schema:
+      $ref: '#/definitions/GithubErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/GithubErrorResponse'

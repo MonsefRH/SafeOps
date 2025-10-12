@@ -3,10 +3,12 @@ from services.risks_service import get_risks
 from schemas.risks_dto import RisksResponse, RisksErrorResponse
 import logging
 
+from flasgger import swag_from
 risks_bp = Blueprint("risks", __name__)
 logger = logging.getLogger(__name__)
 
 @risks_bp.route("/risks", methods=["GET"])
+@swag_from("../specs/risks_specs.yml")
 def get_risks_route():
     user_id = request.headers.get("X-User-ID")
     try:

@@ -1,0 +1,29 @@
+tags:
+  - T5 Correction
+summary: Correct Dockerfile using T5 model
+description: Fine-tuned T5 model corrects Dockerfile configurations. Requires JWT authentication.
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      $ref: '#/definitions/T5Request'
+security:
+  - Bearer: []
+responses:
+  200:
+    description: Dockerfile corrected successfully
+    schema:
+      $ref: '#/definitions/T5Response'
+  400:
+    description: Invalid input or correction error
+    schema:
+      $ref: '#/definitions/T5ErrorResponse'
+  500:
+    description: Server error
+    schema:
+      $ref: '#/definitions/T5ErrorResponse'

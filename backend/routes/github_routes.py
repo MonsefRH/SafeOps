@@ -5,10 +5,12 @@ from schemas.github_dto import GithubCallbackResponse, GithubRepo, GithubValidat
 from pydantic import ValidationError
 import logging
 
+from flasgger import swag_from
 github_bp = Blueprint("github", __name__)
 logger = logging.getLogger(__name__)
 
 @github_bp.route("/auth/github")
+@swag_from("../specs/github/auth_github_specs.yml")
 def github_login_route():
     try:
         auth_url = github_login()
@@ -18,6 +20,7 @@ def github_login_route():
         return jsonify(GithubErrorResponse(error=str(e)).dict()), 400
 
 @github_bp.route("/auth/github/callback")
+@swag_from("../specs/github/auth_github_callback_specs.yml")
 def github_callback_route():
     try:
         code = request.args.get("code")
@@ -32,6 +35,7 @@ def github_callback_route():
 
 @github_bp.route("/github/repos", methods=["GET"])
 @jwt_required()
+@swag_from("../specs/github/github_repos_specs.yml")
 def get_github_repos_route():
     try:
         user_id = get_jwt_identity()
@@ -46,6 +50,7 @@ def get_github_repos_route():
 
 @github_bp.route("/github/validate-token", methods=["POST"])
 @jwt_required()
+@swag_from("../specs/github/github_validate_token_specs.yml")
 def validate_github_token_route():
     try:
         user_id = get_jwt_identity()
@@ -64,6 +69,7 @@ def validate_github_token_route():
 
 @github_bp.route("/github/save-repos", methods=["POST"])
 @jwt_required()
+@swag_from("../specs/github/github_save_repos_specs.yml")
 def save_selected_repos_route():
     try:
         user_id = get_jwt_identity()
@@ -88,6 +94,7 @@ def save_selected_repos_route():
 
 @github_bp.route("/github/repo-configs", methods=["GET"])
 @jwt_required()
+@swag_from("../specs/github/github_repo_configs_specs.yml")
 def get_repo_configs_route():
     try:
         user_id = get_jwt_identity()

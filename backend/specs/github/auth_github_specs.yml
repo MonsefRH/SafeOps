@@ -1,0 +1,17 @@
+tags:
+  - GitHub Authentication
+summary: Initiate GitHub OAuth login
+description: Generates GitHub OAuth authorization URL and redirects.
+parameters: []
+security: []
+responses:
+  302:
+    description: Redirect to GitHub auth
+    headers:
+      Location:
+        type: string
+        description: GitHub authorization URL
+  400:
+    description: Login error
+    schema:
+      $ref: '#/definitions/GithubErrorResponse'

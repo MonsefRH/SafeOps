@@ -10,11 +10,14 @@ from schemas.user_dto import (
 from pydantic import ValidationError
 import logging
 
+from flasgger import swag_from
+
 user_bp = Blueprint("user", __name__)
 bcrypt = Bcrypt()
 logger = logging.getLogger(__name__)
 
 @user_bp.route("/register", methods=["POST"])
+@swag_from("../specs/user/register_specs.yml")
 def register():
     try:
         data = RegisterRequest(**request.get_json())
@@ -31,6 +34,7 @@ def register():
         return jsonify(ErrorResponse(error=str(e)).dict()), 500
 
 @user_bp.route("/verify-code", methods=["POST"])
+@swag_from("../specs/user/verify_code_specs.yml")
 def verify_code_route():
     try:
         data = VerifyCodeRequest(**request.get_json())
@@ -47,6 +51,7 @@ def verify_code_route():
         return jsonify(ErrorResponse(error=str(e)).dict()), 500
 
 @user_bp.route("/login", methods=["POST"])
+@swag_from("../specs/user/login_specs.yml")
 def login():
     try:
         data = LoginRequest(**request.get_json())
@@ -64,6 +69,7 @@ def login():
 
 @user_bp.route("/set-password", methods=["POST"])
 @jwt_required()
+@swag_from("../specs/user/set_password_specs.yml")
 def set_password_route():
     try:
         data = SetPasswordRequest(**request.get_json())
@@ -82,6 +88,7 @@ def set_password_route():
 
 @user_bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
+@swag_from("../specs/user/refresh_specs.yml")
 def refresh():
     try:
         user_id = get_jwt_identity()

@@ -4,10 +4,12 @@ from services.admin_service import get_admin_stats
 from schemas.admin_dto import AdminStatsResponse
 from pydantic import ValidationError
 
+from flasgger import swag_from
 admin_bp = Blueprint("admin", __name__)
 
 @admin_bp.route("/api/admin-stats", methods=["GET"])
 @jwt_required()
+@swag_from("../specs/admin_specs.yml")
 def get_admin_stats_route():
     try:
         user_id = get_jwt_identity()
