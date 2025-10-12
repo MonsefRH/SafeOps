@@ -77,14 +77,13 @@ This documentation provides:
 ###  Example Screens
 
 ####  Swagger Dashboard – Overview of All Endpoints  
-![Swagger Dashboard](https://github.com/user-attachments/assets/5a43c3bc-74e9-4c49-b02a-7ba9730ebf76)
-
-####  Login Endpoint – Example Input and Parameters  
-![Login Endpoint](https://github.com/user-attachments/assets/1364beae-3832-4a92-8731-2750a6dc7d25)
+<img width="1900" height="837" alt="Image" src="https://github.com/user-attachments/assets/561eb0fd-6bcb-403f-b767-6188e57b68e8" />
+<img width="1900" height="825" alt="Image" src="https://github.com/user-attachments/assets/012f3398-c4ce-4b16-aee9-06fe070c9ed0" />
+<img width="1898" height="690" alt="Image" src="https://github.com/user-attachments/assets/7dfac6e9-3bce-402b-a72f-e595e4c6d04d" />
+<img width="1901" height="805" alt="Image" src="https://github.com/user-attachments/assets/67a9d18a-6b37-4e74-b223-baa0c7cb10a7" />
 
 ####  Models & Schemas – Data Structures for Each Endpoint  
-![Models and Schemas](https://github.com/user-attachments/assets/69bf353c-d005-4f5f-8649-e970b10768e8)
-
+<img width="1902" height="868" alt="Image" src="https://github.com/user-attachments/assets/582088d4-e5b4-485d-a8e9-cc1943392e3a" />
 
 ---
 ## Getting Started
