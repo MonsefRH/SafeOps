@@ -20,7 +20,7 @@ from routes.admin import admin_bp
 from routes.report_routes import report_bp
 
 from flasgger import Swagger
-from utils.api_spec import swagger_template, swagger_config
+from utils.api_spec import swagger_template
 
 # Load environment variables
 load_dotenv()
@@ -30,7 +30,7 @@ CORS(app)
 bcrypt = Bcrypt(app)
 
 # Initialize Swagger
-swagger = Swagger(app, template=swagger_template,config=swagger_config)
+swagger = Swagger(app, template=swagger_template)
 
 # JWT configuration
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")

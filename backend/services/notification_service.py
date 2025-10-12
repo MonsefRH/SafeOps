@@ -112,8 +112,7 @@ def _mark_failed(n: Notification, error_text: str):
     db.session.commit()
 
 def _email_allowed(user_id: int) -> bool:
-    pref = db.session.query(UserPreference).filter_by(user_id=user_id).first()
-    # Par défaut: autorisé
+    pref = db.session.query(User).filter_by(id=user_id).first()
     return True if pref is None else bool(pref.email_notifications_enabled)
 
 # ----------------------------

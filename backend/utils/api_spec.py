@@ -152,5 +152,9 @@ swagger_template["tags"] = [
     {
         "name": "Checkov Scan",
         "description": "IaC scans with Checkov (file, repo, content)."
+    },
+    {
+        "name": "Reports",
+        "description": "CSV report downloads and email delivery for scans."
     }
 ]

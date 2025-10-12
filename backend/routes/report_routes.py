@@ -5,10 +5,13 @@ from models.scan_history import ScanHistory
 from models.user import User
 from services.report_service import generate_csv_for_scan, send_csv_report_email
 
+from flasgger import swag_from
+
 report_bp = Blueprint("reports", __name__)
 
 @report_bp.route("/reports/<int:scan_id>/csv", methods=["GET"])
 @jwt_required()
+@swag_from("../specs/reports_specs.yml")
 def download_report_csv(scan_id: int):
     user_id = int(get_jwt_identity())
     scan: ScanHistory = db.session.get(ScanHistory, scan_id)
