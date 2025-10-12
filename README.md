@@ -93,13 +93,37 @@ Before you begin, ensure you have met the following requirements:
 ## Usage
 
 
-1. **Start the full application:**
-   ```bash
-   docker compose up -d --build
 
-   ```
+## Start the full application (backend, frontend, and database) with:
 
-2. **Access the application**
+1) Build the application
+
+```bash
+docker compose build
+```
+
+
+2. Run the application
+
+```bash
+docker compose up -d
+```
+
+
+ 3. View logs (Postgres)
+
+```bash
+docker compose logs -f postgres
+```
+4. View logs (Backend)
+
+```bash
+docker compose logs -f backend
+```
+
+
+
+ **Access the application**
    - Frontend: `http://localhost:3000`
    - API: `http://localhost:5000`
 
