@@ -50,6 +50,7 @@ Collect web metrics and ensure high-quality user experiences.
 
 - [Overview](#overview)
 - [Software Architecture ](#software-architecture)
+- [Swagger API Documentation](#swagger-api-documentation)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -63,7 +64,7 @@ Collect web metrics and ensure high-quality user experiences.
 
 ##  Swagger API Documentation
 
-The **SafeOps API** is fully documented with Swagger UI to make testing and understanding endpoints effortless.
+The **SafeOps+ API** is fully documented with Swagger UI to make testing and understanding endpoints effortless.
 
 **Swagger URL:**  
  [http://localhost:5000/apidocs/](http://localhost:5000/apidocs/)
@@ -122,7 +123,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Start the full application (backend, frontend, and database) with:
 
-1) Build the application
+1. Build the application
 
 ```bash
 docker compose build
