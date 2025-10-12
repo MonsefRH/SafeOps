@@ -59,7 +59,33 @@ Collect web metrics and ensure high-quality user experiences.
 - [Contact](#contact)
 - [License](#license)
 
+---
 
+##  Swagger API Documentation
+
+The **SafeOps API** is fully documented with Swagger UI to make testing and understanding endpoints effortless.
+
+**Swagger URL:**  
+ [http://localhost:5000/apidocs/](http://localhost:5000/apidocs/)
+
+This documentation provides:
+- A visual overview of all available API endpoints.
+- The ability to test endpoints directly from the browser.
+- Automatically generated schemas and request/response models.
+
+###  Example Screens
+
+####  Swagger Dashboard – Overview of All Endpoints  
+![Swagger Dashboard](https://github.com/user-attachments/assets/5a43c3bc-74e9-4c49-b02a-7ba9730ebf76)
+
+####  Login Endpoint – Example Input and Parameters  
+![Login Endpoint](https://github.com/user-attachments/assets/1364beae-3832-4a92-8731-2750a6dc7d25)
+
+####  Models & Schemas – Data Structures for Each Endpoint  
+![Models and Schemas](https://github.com/user-attachments/assets/69bf353c-d005-4f5f-8649-e970b10768e8)
+
+
+---
 ## Getting Started
 
 ### Prerequisites
