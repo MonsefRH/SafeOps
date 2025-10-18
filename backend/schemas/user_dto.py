@@ -1,26 +1,32 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, EmailStr, field_validator
 from typing import Optional
 
+
 class RegisterRequest(BaseModel):
-    name: str
-    email: str
-    password: str
+    name: str = Field(..., min_length=1, description="Full name, cannot be empty")
+    email: EmailStr = Field(..., description="Valid email address")
+    password: str = Field(..., min_length=5, description="Password at least 5 characters")
+    @field_validator('name')
+    @classmethod
+    def validate_name(cls, v: str) -> str:
+        if not v.strip():  # Extra check for whitespace-only
+            raise ValueError("Name cannot be empty or whitespace-only")
+        return v.strip()
 
 class VerifyCodeRequest(BaseModel):
-    email: str
-    code: str
+    email: EmailStr = Field(..., description="Valid email address")
+    code: str = Field(...,min_length=6,max_length=6, description="Valid code")
 
 class LoginRequest(BaseModel):
-    email: str
-    password: str
-
+    email: EmailStr = Field(..., description="Valid email address")
+    password: str = Field(..., min_length=5, description="Password at least 5 characters")
 class SetPasswordRequest(BaseModel):
-    password: str
+    password: str = Field(..., min_length=5, description="Password at least 5 characters")
 
 class UserResponse(BaseModel):
     id: int
     name: str
-    email: str
+    email: EmailStr = Field(..., description="Valid email address")
     role: str
 
 class RegisterResponse(BaseModel):

@@ -1,7 +1,7 @@
 import os
 import logging
 import torch
-from datetime import datetime
+from datetime import datetime ,UTC
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import google.generativeai as genai
 from utils.db import db
@@ -87,7 +87,7 @@ def _send_finish_email_t5(to_email: str, user_name: str, executed_at: str):
             <p>Thank you for using <strong>SafeOps</strong>!</p>
           </div>
           <div class="footer">
-            &copy; {datetime.utcnow().year} SafeOps — Automated Security Platform
+            &copy; {datetime.now(UTC).year} SafeOps — Automated Security Platform
           </div>
         </div>
       </body>
@@ -148,7 +148,7 @@ Explain line by line how the corrected version improves security/best practices.
             explanation = f"[Erreur Gemini] Impossible de générer les explications: {str(e)}"
 
         # Save in DB
-        executed_at = datetime.utcnow().isoformat() + "Z"
+        executed_at = datetime.now(UTC).isoformat() + "Z"
         result = {
             "status": "success",
             "correction": fixed_code,

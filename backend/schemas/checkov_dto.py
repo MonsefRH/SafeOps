@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional
 
 class CheckovCheck(BaseModel):
@@ -28,15 +28,22 @@ class CheckovResult(BaseModel):
     message: Optional[str] = None
 
 class CheckovResponse(BaseModel):
-    scan_id: int
+    scan_id: int = Field(...,description="The ID of the checkov Response")
     results: CheckovResult
 
+    @field_validator("scan_id")
+    @classmethod
+    def validate(cls, v) -> int :
+        if v <= 0 :
+            raise ValueError("Checkov scan id must be greater than 0")
+        return v
+
 class CheckovContentRequest(BaseModel):
-    content: str
+    content: str = Field(...,min_length=1,description="The content of the checkov scanned file")
     framework: Optional[str] = "terraform"
 
 class CheckovRepoRequest(BaseModel):
-    repo_url: str
+    repo_url: str = Field(...,min_length=1, description="The URL of the  repository")
 
 class CheckovErrorResponse(BaseModel):
     error: str

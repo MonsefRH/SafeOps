@@ -1,11 +1,11 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 class T5Request(BaseModel):
-    dockerfile: str
+    dockerfile: str = Field(...,min_length=1,description='Dockerfile')
 
 class T5Response(BaseModel):
-    scan_id: int
+    scan_id: int = Field(...,gt=0,description='scan id')
     correction: str
     explanation: str
 

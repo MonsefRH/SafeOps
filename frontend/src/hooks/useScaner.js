@@ -79,7 +79,6 @@ export const useScaner = () => {
     setIsLoading,      // NEW
     setCode,    // NEW
     setResult,
-    setIsLoading,
     resetScanner,
     clearResult,
     openHistory,

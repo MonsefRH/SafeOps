@@ -2,6 +2,8 @@ from datetime import datetime
 import pytz
 from  utils.db import db 
 from sqlalchemy.dialects.postgresql import JSONB
+from models.user import User
+from models.selected_repo import SelectedRepo
 
 class ScanHistory(db.Model):
     __tablename__ = "scan_history"
@@ -17,5 +19,5 @@ class ScanHistory(db.Model):
     input_type = db.Column(db.String(50))
     scan_type = db.Column(db.String(50))
     
-    user = db.relationship("User", backref="scan_history")
-    repo = db.relationship("SelectedRepo", backref="scan_history")
+    user = db.relationship(User, backref="scan_history")
+    repo = db.relationship(SelectedRepo, backref="scan_history")

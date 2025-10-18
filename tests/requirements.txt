@@ -1,0 +1,4 @@
+pytest
+pytest-mock # For easy mocking
+pytest-flask # For Flask test helpers (optional)
+freezegun  # For mocking datetime/timezone in tests (useful for expiration logic)

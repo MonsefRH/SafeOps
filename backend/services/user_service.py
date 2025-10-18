@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, timezone
 import logging
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import create_access_token, create_refresh_token
+from sqlalchemy.exc import SQLAlchemyError
 from utils.db import db
 from models.user import User
 from models.pending_user import PendingUser
@@ -48,18 +49,15 @@ def register_user(name, email, password):
 
     name = name.strip()
     hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
+    # Move duplicate checks OUTSIDE try to avoid catching
+    if User.query.filter((User.email == email) | (User.name == name)).first():
+        logger.error(f"User with email {email} or name {name} already exists")
+        raise ValueError("A user with this email or name already exists")
 
+    if PendingUser.query.filter_by(email=email).first():
+        logger.error(f"Verification request pending for email {email}")
+        raise ValueError("A verification request for this email is already pending")
     try:
-        # Check if email or name already exists in users
-        if User.query.filter((User.email == email) | (User.name == name)).first():
-            logger.error(f"User with email {email} or name {name} already exists")
-            raise ValueError("A user with this email or name already exists")
-
-        # Check if email is pending
-        if PendingUser.query.filter_by(email=email).first():
-            logger.error(f"Verification request pending for email {email}")
-            raise ValueError("A verification request for this email is already pending")
-
         # Store in pending_users
         verification_code = generate_verification_code()
         expires_at = datetime.now(timezone.utc) + CODE_EXPIRATION
@@ -86,7 +84,7 @@ def register_user(name, email, password):
     except Exception as e:
         logger.error(f"Registration failed for email {email}: {str(e)}")
         db.session.rollback()
-        raise RuntimeError("Registration failed")
+        raise
 
 def verify_code(email, code):
     """Verify the code and create a user account."""
@@ -94,23 +92,22 @@ def verify_code(email, code):
         logger.error("Missing email or verification code")
         raise ValueError("Email and verification code are required")
 
+    pending_user = PendingUser.query.filter_by(email=email).first()
+    if not pending_user:
+        logger.error(f"No pending registration for email {email}")
+        raise ValueError("No pending registration found for this email")
+    if code != pending_user.verification_code:
+        logger.error(f"Invalid verification code for email {email}")
+        raise ValueError("Invalid verification code")
+    expires_at_aware = pytz.utc.localize(
+        pending_user.expires_at) if pending_user.expires_at.tzinfo is None else pending_user.expires_at
+    if datetime.now(timezone.utc) > expires_at_aware:
+        db.session.delete(pending_user)
+        db.session.commit()
+        logger.error(f"Verification code expired for email {email}")
+        raise ValueError("Verification code has expired")
+
     try:
-        pending_user = PendingUser.query.filter_by(email=email).first()
-        if not pending_user:
-            logger.error(f"No pending registration for email {email}")
-            raise ValueError("No pending registration found for this email")
-
-        expires_at_aware = pytz.utc.localize(pending_user.expires_at) if pending_user.expires_at.tzinfo is None else pending_user.expires_at
-        if datetime.now(timezone.utc) > expires_at_aware:
-            db.session.delete(pending_user)
-            db.session.commit()
-            logger.error(f"Verification code expired for email {email}")
-            raise ValueError("Verification code has expired")
-
-        if code != pending_user.verification_code:
-            logger.error(f"Invalid verification code for email {email}")
-            raise ValueError("Invalid verification code")
-
         # Move to users
         user = User(
             name=pending_user.name,
@@ -189,7 +186,7 @@ def login_user(ip, email, password):
             logger.error(f"Invalid credentials for email {email}")
             raise ValueError("Invalid credentials")
 
-    except Exception as e:
+    except (SQLAlchemyError, OSError) as e:
         logger.error(f"Login failed for email {email}: {str(e)}")
         db.session.rollback()
         raise RuntimeError("Internal server error")
@@ -205,12 +202,11 @@ def set_password(user_id, password):
         raise ValueError("Password must be at least 5 characters long")
 
     hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
-
+    user = User.query.get(user_id)
+    if not user:
+        logger.error(f"User not found: {user_id}")
+        raise ValueError("User not found")
     try:
-        user = User.query.get(user_id)
-        if not user:
-            logger.error(f"User not found: {user_id}")
-            raise ValueError("User not found")
         user.password = hashed_password
         db.session.commit()
         logger.info(f"Password set successfully for user_id {user_id}")

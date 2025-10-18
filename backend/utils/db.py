@@ -53,7 +53,7 @@ def init_db(app):
         try:
             db.create_all()
             create_default_admin()
-            log.info("✅ Tables et admin par défaut OK.")
+            log.info(" Tables et admin par défaut OK.")
         except Exception as e:
             log.exception("❌ Error creating database tables or admin user: %s", e)
             # On relance l'exception pour que le conteneur fail et redémarre

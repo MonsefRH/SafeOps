@@ -9,7 +9,7 @@ import stat
 import json
 import logging
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
 import google.generativeai as genai
 from google.api_core import exceptions
@@ -449,7 +449,7 @@ def run_checkov_scan(user_id, input_type, content=None, file_path=None, repo_url
 
             result = run_checkov_on_single_file(temp_file_path)
             result.setdefault("meta", {})
-            result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+            result["meta"]["executed_at"] = datetime.now(timezone.utc).isoformat() + "Z"
 
             files_to_save = [(clean_path(temp_file_path), content)]
             scan_id = save_scan_history(user_id, result, input_type, files_to_save=files_to_save)
@@ -464,7 +464,7 @@ def run_checkov_scan(user_id, input_type, content=None, file_path=None, repo_url
 
             result = run_checkov_on_dir(file_path, is_file=True)
             result.setdefault("meta", {})
-            result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+            result["meta"]["executed_at"] = datetime.now(timezone.utc).isoformat() + "Z"
 
             files_to_save = [(clean_path(file_path), file_content)]
             scan_id = save_scan_history(user_id, result, input_type, files_to_save=files_to_save)
@@ -496,7 +496,7 @@ def run_checkov_scan(user_id, input_type, content=None, file_path=None, repo_url
 
             result = run_checkov_on_dir(temp_dir, is_file=False)
             result.setdefault("meta", {})
-            result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+            result["meta"]["executed_at"] = datetime.now(timezone.utc).isoformat() + "Z"
 
             scan_id = save_scan_history(user_id, result, input_type, files_to_save=files_found)
             return {"scan_id": scan_id, "results": result}
@@ -531,7 +531,7 @@ def run_checkov_scan(user_id, input_type, content=None, file_path=None, repo_url
 
             result = run_checkov_on_dir(temp_dir, is_file=False)
             result.setdefault("meta", {})
-            result["meta"]["executed_at"] = datetime.utcnow().isoformat() + "Z"
+            result["meta"]["executed_at"] = datetime.now(timezone.utc).isoformat() + "Z"
 
             scan_id = save_scan_history(user_id, result, input_type, repo_url=repo_url, files_to_save=files_found)
             return {"scan_id": scan_id, "results": result}
