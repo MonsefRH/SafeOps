@@ -2,7 +2,7 @@
 import os
 import csv
 import tempfile
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Dict, Any, Tuple
 import smtplib
 from email.message import EmailMessage
@@ -138,7 +138,7 @@ def generate_csv_for_scan(scan_id: int) -> Tuple[str, str]:
         })
 
     repo_part = (scan.repo_url or "local").rstrip("/").split("/")[-1]
-    ts = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
     filename = f"safeops_report_{scan.scan_type}_{repo_part}_{scan.id}_{ts}.csv"
     file_path = os.path.join(tempfile.gettempdir(), filename)
 
@@ -225,7 +225,7 @@ def send_csv_report_email(
             <p>Thank you for using <strong>SafeOps+</strong>!</p>
           </div>
           <div class="footer">
-            &copy; {datetime.utcnow().year} SafeOps+ — Automated Security Platform
+            &copy; {datetime.now(timezone.utc).year} SafeOps+ — Automated Security Platform
           </div>
         </div>
       </body>

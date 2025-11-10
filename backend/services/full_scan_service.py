@@ -136,8 +136,6 @@ def run_full_scan(user_id, repo_url, jwt_token):
 
             # Step 4: Semgrep scan
             try:
-                # ⚠️ on utilise la version de run_semgrep fournie par ton service.
-                # Elle gère déjà la sauvegarde + notifs + email CSV (selon ta version actuelle).
                 semgrep_result = run_semgrep(
                     user_id=user_id,
                     input_type="repo",

@@ -121,12 +121,12 @@ def github_callback(code):
 
 def get_github_repos(user_id):
     """Fetch GitHub repositories for a user."""
+    github_user = GithubUser.query.filter_by(user_id=user_id).first()
+    if not github_user:
+        logger.error(f"No GitHub account linked for user_id {user_id}")
+        raise ValueError("Compte GitHub non lié")
+    access_token = github_user.access_token
     try:
-        github_user = GithubUser.query.filter_by(user_id=user_id).first()
-        if not github_user:
-            logger.error(f"No GitHub account linked for user_id {user_id}")
-            raise ValueError("Compte GitHub non lié")
-        access_token = github_user.access_token
 
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get("https://api.github.com/user/repos", headers=headers)
@@ -234,11 +234,12 @@ def save_selected_repos(user_id, selected_repos):
 
 def get_repo_configs(user_id):
     """Fetch and store configuration files from selected repositories."""
+    github_user = GithubUser.query.filter_by(user_id=user_id).first()
+    if not github_user:
+        logger.error(f"No GitHub account linked for user_id {user_id}")
+        raise ValueError("Compte GitHub non lié")
     try:
-        github_user = GithubUser.query.filter_by(user_id=user_id).first()
-        if not github_user:
-            logger.error(f"No GitHub account linked for user_id {user_id}")
-            raise ValueError("Compte GitHub non lié")
+
         access_token = github_user.access_token
 
         repos = SelectedRepo.query.filter_by(user_id=user_id).all()

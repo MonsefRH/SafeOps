@@ -1,4 +1,3 @@
-# services/semgrep_service.py
 from pathlib import Path
 import os
 import tempfile
@@ -19,9 +18,7 @@ from models.user import User
 # Email + CSV
 from services.report_service import generate_csv_for_scan, send_csv_report_email
 
-# -------------------------------------------------------------------
-# Logging / Config
-# -------------------------------------------------------------------
+
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s %(levelname)s:%(name)s: %(message)s',
@@ -36,9 +33,6 @@ if not GEMINI_API_KEY:
 genai.configure(api_key=GEMINI_API_KEY)
 
 
-# -------------------------------------------------------------------
-# Helpers
-# -------------------------------------------------------------------
 def clean_path(full_path: str) -> str:
     """Remove temp-dir prefixes from file paths for nicer display."""
     try:
@@ -73,9 +67,7 @@ def get_gemini_suggestion(finding: dict, max_retries: int = 3, delay: int = 2) -
     return "Review this finding and apply best practices."
 
 
-# -------------------------------------------------------------------
-# Semgrep execution
-# -------------------------------------------------------------------
+
 def run_semgrep(target_path: str) -> dict:
     """Run Semgrep and return normalized results (failed list + summary)."""
     cmd = ["semgrep", "scan", target_path, "--config=auto", "--json"]
@@ -133,9 +125,7 @@ def run_semgrep(target_path: str) -> dict:
         raise RuntimeError(f"Semgrep failed: {str(e)}")
 
 
-# -------------------------------------------------------------------
-# Persistence + Email (one HTML email with CSV; English; no emojis; no scan id)
-# -------------------------------------------------------------------
+
 def save_scan_history(user_id, result, input_type, repo_url=None):
     """Persist Semgrep results and send one HTML email (with CSV) — English, no emojis, no scan id in subject."""
     try:
@@ -179,10 +169,10 @@ def save_scan_history(user_id, result, input_type, repo_url=None):
                 send_csv_report_email(
                     to_email=user.email,
                     subject=subject,
-                    body_text=body,      # HTML-friendly; wrapped in blue template
+                    body_text=body,
                     csv_path=csv_path,
                     csv_filename=csv_filename,
-                    user_name=user.name,  # greet by name
+                    user_name=user.name,
                 )
         except Exception as e:
             logger.warning(f"Combined email (finish + CSV) failed for Semgrep scan_id {scan_id}: {e}")
@@ -194,10 +184,6 @@ def save_scan_history(user_id, result, input_type, repo_url=None):
         db.session.rollback()
         raise RuntimeError(f"Failed to save scan: {str(e)}")
 
-
-# -------------------------------------------------------------------
-# Entry point used by route
-# -------------------------------------------------------------------
 def validate_semgrep(user_id, input_type, file=None, repo_url=None, content=None, extension="py"):
     """
     Validate inputs and run Semgrep. Returns {"scan_id": id, **result}.

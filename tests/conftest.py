@@ -11,6 +11,13 @@ from fixtures.risks_fixtures import *
 from fixtures.admin_fixtures import *
 from fixtures.checkov_fixtures import *
 from fixtures.semgrep_fixtures import *
+from fixtures.dashboard_fixtures import *
+from fixtures.fullscan_fixtures import *
+from fixtures.history_fixtures import *
+from fixtures.notification_fixtures import *
+from fixtures.report_fixtures import *
+from fixtures.github_fixtures import *
+from fixtures.google_fixtures import *
 
 
 

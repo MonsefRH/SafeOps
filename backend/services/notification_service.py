@@ -9,7 +9,6 @@ from flask import current_app
 from utils.db import db
 from models.user import User
 from models.notification import Notification
-from models.user_preference import UserPreference
 
 # On réutilise tes identifiants SMTP déjà définis dans services/email_template.py
 from services.email_template import EMAIL_ADDRESS, EMAIL_PASSWORD
